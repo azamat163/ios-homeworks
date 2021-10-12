@@ -17,6 +17,10 @@
 		F385D7AD271415F4006458CD /* NavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D7AC271415F4006458CD /* NavigationTests.swift */; };
 		F385D7B7271415F4006458CD /* NavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D7B6271415F4006458CD /* NavigationUITests.swift */; };
 		F385D7B9271415F4006458CD /* NavigationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D7B8271415F4006458CD /* NavigationUITestsLaunchTests.swift */; };
+		F385D7C627141747006458CD /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F385D7C527141747006458CD /* ProfileView.xib */; };
+		F385D7C827141A3D006458CD /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D7C727141A3D006458CD /* ProfileView.swift */; };
+		F385D7CB27141F6F006458CD /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F385D7CA27141F6F006458CD /* Profile.storyboard */; };
+		F385D7CD27141F92006458CD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D7CC27141F92006458CD /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,10 @@
 		F385D7B2271415F4006458CD /* NavigationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F385D7B6271415F4006458CD /* NavigationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUITests.swift; sourceTree = "<group>"; };
 		F385D7B8271415F4006458CD /* NavigationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F385D7C527141747006458CD /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
+		F385D7C727141A3D006458CD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		F385D7CA27141F6F006458CD /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		F385D7CC27141F92006458CD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +109,8 @@
 		F385D791271415F0006458CD /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F385D7E82714A802006458CD /* ProfileViewController */,
+				F385D7C927141AD8006458CD /* ProfileView */,
 				F385D792271415F0006458CD /* AppDelegate.swift */,
 				F385D794271415F0006458CD /* SceneDelegate.swift */,
 				F385D796271415F0006458CD /* ViewController.swift */,
@@ -128,6 +138,24 @@
 				F385D7B8271415F4006458CD /* NavigationUITestsLaunchTests.swift */,
 			);
 			path = NavigationUITests;
+			sourceTree = "<group>";
+		};
+		F385D7C927141AD8006458CD /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
+				F385D7C527141747006458CD /* ProfileView.xib */,
+				F385D7C727141A3D006458CD /* ProfileView.swift */,
+			);
+			path = ProfileView;
+			sourceTree = "<group>";
+		};
+		F385D7E82714A802006458CD /* ProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F385D7CA27141F6F006458CD /* Profile.storyboard */,
+				F385D7CC27141F92006458CD /* ProfileViewController.swift */,
+			);
+			path = ProfileViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,7 +262,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F385D7C627141747006458CD /* ProfileView.xib in Resources */,
 				F385D7A2271415F4006458CD /* LaunchScreen.storyboard in Resources */,
+				F385D7CB27141F6F006458CD /* Profile.storyboard in Resources */,
 				F385D79F271415F4006458CD /* Assets.xcassets in Resources */,
 				F385D79A271415F0006458CD /* Main.storyboard in Resources */,
 			);
@@ -261,8 +291,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F385D7CD27141F92006458CD /* ProfileViewController.swift in Sources */,
 				F385D797271415F0006458CD /* ViewController.swift in Sources */,
 				F385D793271415F0006458CD /* AppDelegate.swift in Sources */,
+				F385D7C827141A3D006458CD /* ProfileView.swift in Sources */,
 				F385D795271415F0006458CD /* SceneDelegate.swift in Sources */,
 				F385D79D271415F0006458CD /* Navigation.xcdatamodeld in Sources */,
 			);
@@ -448,7 +480,8 @@
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Profile;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -476,7 +509,8 @@
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Profile;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
