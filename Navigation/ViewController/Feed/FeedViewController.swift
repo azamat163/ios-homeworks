@@ -1,20 +1,18 @@
 //
-//  ProfileViewController.swift
+//  FeedViewController.swift
 //  Navigation
 //
-//  Created by a.agataev on 11.10.2021.
+//  Created by a.agataev on 13.10.2021.
 //
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class FeedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let profileView: ProfileView = UIView.fromNib()
-        profileView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
-        view.addSubview(profileView)
+
+        // Do any additional setup after loading the view.
     }
     
 
