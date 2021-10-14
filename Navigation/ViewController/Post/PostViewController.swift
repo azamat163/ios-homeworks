@@ -27,9 +27,6 @@ class PostViewController: UIViewController {
     }
     
     @objc func goToHome(_ sender: Any) {
-        let homeStoryboard = UIStoryboard(storyboard: .home)
-        let homeVc: HomeViewController = homeStoryboard.instantiateViewController()
-        homeVc.modalPresentationStyle = .fullScreen
-        present(homeVc, animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }
