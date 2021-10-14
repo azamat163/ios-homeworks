@@ -18,9 +18,15 @@ class HomeViewController: UITabBarController {
     }
     
     func setupVCs() {
+        let feedStoryboard = UIStoryboard(storyboard: .feed)
+        let feedVc: FeedViewController = feedStoryboard.instantiateViewController()
+        
+        let profileStoryboard = UIStoryboard(storyboard: .profile)
+        let profileVc: ProfileViewController = profileStoryboard.instantiateViewController()
+
         viewControllers = [
-            createNavController(for: FeedViewController(), title: NSLocalizedString("Feed", comment: ""), image: UIImage(systemName: "house")!),
-            createNavController(for: ProfileViewController(), title: NSLocalizedString("Profile", comment: ""), image: UIImage(systemName: "person")!)
+            createNavController(for: feedVc, title: NSLocalizedString("Feed", comment: ""), image: UIImage(systemName: "house")!),
+            createNavController(for: profileVc, title: NSLocalizedString("Profile", comment: ""), image: UIImage(systemName: "person")!)
         ]
     }
     

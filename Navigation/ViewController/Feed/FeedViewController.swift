@@ -11,19 +11,24 @@ class FeedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupFeed()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupFeed() {
+        if let feedView: FeedView = .fromNib() {
+            feedView.frame = CGRect(x: 0, y: 30, width: view.frame.size.width, height: view.frame.size.height - 30)
+            feedView.postButton.addTarget(self, action: #selector(clickButton(_:)), for: .touchUpInside)
+            view.addSubview(feedView)
+        }
     }
-    */
-
+    
+    @objc func clickButton(_ sender: Any) {
+        let post = Post(title: "Текст из экрана Feed")
+        let postStoryboard = UIStoryboard(storyboard: .post)
+        let postVc: PostViewController = postStoryboard.instantiateViewController()
+        postVc.setupTitle(post)
+        let nc = UINavigationController(rootViewController: postVc)
+        nc.modalPresentationStyle = .fullScreen
+        present(nc, animated: true, completion: nil)
+    }
 }

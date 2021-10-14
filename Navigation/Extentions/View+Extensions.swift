@@ -12,7 +12,7 @@ extension UIView {
     class func fromNib<T: UIView>() -> T? {
         let name = String(describing: T.self)
         guard
-            let nib = Bundle.main.loadNibNamed(name, owner: self, options: nil)
+            let nib = Bundle.main.loadNibNamed(name, owner: nil, options: nil)
             else { fatalError("missing expected nib named \(name)") }
         guard
             let view = nib.first as? T

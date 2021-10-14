@@ -15,8 +15,8 @@ class ProfileViewController: UIViewController {
     }
     
     private func setupProfile() {
-        if let profileView: ProfileView = .fromNib(){
-            profileView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        if let profileView: ProfileView = .fromNib() {
+            profileView.frame = CGRect(x: 0, y: 30, width: view.frame.size.width, height: view.frame.size.height - 30)
             view.addSubview(profileView)
         }
     }
