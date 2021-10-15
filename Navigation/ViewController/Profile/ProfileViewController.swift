@@ -9,15 +9,19 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    var profileView: ProfileView!
+    
+    override func loadView() {
+        super.loadView()
         setupProfile()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     private func setupProfile() {
-        if let profileView: ProfileView = .fromNib() {
-            profileView.frame = CGRect(x: 0, y: 30, width: view.frame.size.width, height: view.frame.size.height - 30)
-            view.addSubview(profileView)
-        }
+        profileView = ProfileView(frame: CGRect(x: 0, y: 150, width: view.frame.size.width, height: view.frame.size.height - 150))
+        view.addSubview(profileView)
     }
 }

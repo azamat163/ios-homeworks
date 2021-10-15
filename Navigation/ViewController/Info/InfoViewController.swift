@@ -8,28 +8,33 @@
 import UIKit
 
 class InfoViewController: UIViewController {
+    var infoView: InfoView!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    override func loadView() {
+        super.loadView()
         setupInfo()
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .orange
+    }
+    
     private func setupInfo() {
-        if let infoView: InfoView = .fromNib() {
-            infoView.frame = CGRect(x: 0, y: 30, width: view.frame.size.width, height: view.frame.size.height - 30)
-            infoView.alertButton.addTarget(self, action: #selector(clickAlertAction(_:)), for: .touchUpInside)
-            view.addSubview(infoView)
-        }
+        infoView = InfoView(frame: CGRect(x: 0, y: 30, width: view.frame.size.width, height: view.frame.size.height - 30))
+        infoView.alertButton.addTarget(self, action: #selector(clickAlertAction(_:)), for: .touchUpInside)
+        view.addSubview(infoView)
     }
     
     @objc func clickAlertAction(_ sender: Any) {
         let alert = UIAlertController(title: .title, message: .message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: .yes, style: .default, handler: { alert -> Void in
-            print("Да")
+            print(String.yes)
         }
         ))
         alert.addAction(UIAlertAction(title: .no, style: .cancel, handler: { alert -> Void in
-            print("Нет")
+            print(String.no)
         }))
         present(alert, animated: true, completion: nil)
     }

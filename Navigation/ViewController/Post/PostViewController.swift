@@ -12,8 +12,7 @@ class PostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(goToHome(_:)))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Info", style: .plain, target: self, action: #selector(goToInfo(sender:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: .barItemTitle, style: .plain, target: self, action: #selector(goToInfo(sender:)))
     }
     
     func setupTitle(_ post: Post) {
@@ -21,12 +20,11 @@ class PostViewController: UIViewController {
     }
     
     @objc func goToInfo(sender: UIBarButtonItem) {
-        let infoStoryboard = UIStoryboard(storyboard: .info)
-        let infoVc: InfoViewController = infoStoryboard.instantiateViewController()
+        let infoVc: InfoViewController = InfoViewController()
         present(infoVc, animated: true, completion: nil)
     }
-    
-    @objc func goToHome(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
+}
+
+private extension String {
+    static let barItemTitle = "Info"
 }

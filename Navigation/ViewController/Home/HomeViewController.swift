@@ -8,25 +8,27 @@
 import UIKit
 
 class HomeViewController: UITabBarController {
+    
+    private enum Constants {
+        static let feedTitle: String = "Feed"
+        static let profileTitle: String = "Profile"
+        static let feedImageName: String = "house"
+        static let profileImageName: String = "person"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        
         UITabBar.appearance().barTintColor = .systemBackground
         tabBar.tintColor = .label
         setupVCs()
     }
     
     func setupVCs() {
-        let feedStoryboard = UIStoryboard(storyboard: .feed)
-        let feedVc: FeedViewController = feedStoryboard.instantiateViewController()
-        
-        let profileStoryboard = UIStoryboard(storyboard: .profile)
-        let profileVc: ProfileViewController = profileStoryboard.instantiateViewController()
-
         viewControllers = [
-            createNavController(for: feedVc, title: NSLocalizedString("Feed", comment: ""), image: UIImage(systemName: "house")!),
-            createNavController(for: profileVc, title: NSLocalizedString("Profile", comment: ""), image: UIImage(systemName: "person")!)
+            createNavController(for: FeedViewController(), title: NSLocalizedString(Constants.feedTitle, comment: ""), image: UIImage(systemName: Constants.feedImageName)!),
+            createNavController(for: ProfileViewController(), title: NSLocalizedString(Constants.profileTitle, comment: ""), image: UIImage(systemName: Constants.profileImageName)!)
         ]
     }
     

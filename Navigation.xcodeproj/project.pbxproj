@@ -15,26 +15,16 @@
 		F385D7AD271415F4006458CD /* NavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D7AC271415F4006458CD /* NavigationTests.swift */; };
 		F385D7B7271415F4006458CD /* NavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D7B6271415F4006458CD /* NavigationUITests.swift */; };
 		F385D7B9271415F4006458CD /* NavigationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D7B8271415F4006458CD /* NavigationUITestsLaunchTests.swift */; };
-		F385D7C627141747006458CD /* ProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F385D7C527141747006458CD /* ProfileView.xib */; };
 		F385D7C827141A3D006458CD /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D7C727141A3D006458CD /* ProfileView.swift */; };
-		F385D7CB27141F6F006458CD /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F385D7CA27141F6F006458CD /* Profile.storyboard */; };
 		F385D7CD27141F92006458CD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D7CC27141F92006458CD /* ProfileViewController.swift */; };
-		F385D8092716A9D0006458CD /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F385D8082716A9D0006458CD /* Home.storyboard */; };
 		F385D80D2716AAB5006458CD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D80C2716AAB5006458CD /* HomeViewController.swift */; };
 		F385D8102716AD7F006458CD /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D80F2716AD7F006458CD /* FeedViewController.swift */; };
-		F385D8122716AD90006458CD /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F385D8112716AD90006458CD /* Feed.storyboard */; };
 		F385D8152716AEBE006458CD /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D8142716AEBE006458CD /* View+Extensions.swift */; };
 		F385D819271837B0006458CD /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D817271837AF006458CD /* PostViewController.swift */; };
 		F385D82027183C16006458CD /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D81F27183C16006458CD /* FeedView.swift */; };
-		F385D82227183C25006458CD /* FeedView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F385D82127183C25006458CD /* FeedView.xib */; };
-		F385D82427184403006458CD /* UIStoryboard+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D82327184403006458CD /* UIStoryboard+Extensions.swift */; };
-		F385D826271845BF006458CD /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D825271845BF006458CD /* UIViewController+Extensions.swift */; };
 		F385D82A27184C46006458CD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D82927184C46006458CD /* Post.swift */; };
-		F385D82D27185763006458CD /* Post.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F385D82C27185763006458CD /* Post.storyboard */; };
 		F385D82F27185E51006458CD /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D82E27185E51006458CD /* InfoViewController.swift */; };
-		F385D83127185E60006458CD /* Info.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F385D83027185E60006458CD /* Info.storyboard */; };
 		F385D83427185ECA006458CD /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D83327185ECA006458CD /* InfoView.swift */; };
-		F385D83627185ED5006458CD /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F385D83527185ED5006458CD /* InfoView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,26 +57,16 @@
 		F385D7B2271415F4006458CD /* NavigationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F385D7B6271415F4006458CD /* NavigationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUITests.swift; sourceTree = "<group>"; };
 		F385D7B8271415F4006458CD /* NavigationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		F385D7C527141747006458CD /* ProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileView.xib; sourceTree = "<group>"; };
 		F385D7C727141A3D006458CD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		F385D7CA27141F6F006458CD /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		F385D7CC27141F92006458CD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		F385D8082716A9D0006458CD /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		F385D80C2716AAB5006458CD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F385D80F2716AD7F006458CD /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
-		F385D8112716AD90006458CD /* Feed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
 		F385D8142716AEBE006458CD /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		F385D817271837AF006458CD /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		F385D81F27183C16006458CD /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
-		F385D82127183C25006458CD /* FeedView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedView.xib; sourceTree = "<group>"; };
-		F385D82327184403006458CD /* UIStoryboard+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extensions.swift"; sourceTree = "<group>"; };
-		F385D825271845BF006458CD /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		F385D82927184C46006458CD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		F385D82C27185763006458CD /* Post.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Post.storyboard; sourceTree = "<group>"; };
 		F385D82E27185E51006458CD /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		F385D83027185E60006458CD /* Info.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Info.storyboard; sourceTree = "<group>"; };
 		F385D83327185ECA006458CD /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
-		F385D83527185ED5006458CD /* InfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,7 +174,6 @@
 			isa = PBXGroup;
 			children = (
 				F385D7C727141A3D006458CD /* ProfileView.swift */,
-				F385D7C527141747006458CD /* ProfileView.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -203,7 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				F385D7CC27141F92006458CD /* ProfileViewController.swift */,
-				F385D7CA27141F6F006458CD /* Profile.storyboard */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -211,7 +189,6 @@
 		F385D8072716A9B0006458CD /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				F385D8082716A9D0006458CD /* Home.storyboard */,
 				F385D80C2716AAB5006458CD /* HomeViewController.swift */,
 			);
 			path = Home;
@@ -221,7 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				F385D80F2716AD7F006458CD /* FeedViewController.swift */,
-				F385D8112716AD90006458CD /* Feed.storyboard */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -230,8 +206,6 @@
 			isa = PBXGroup;
 			children = (
 				F385D8142716AEBE006458CD /* View+Extensions.swift */,
-				F385D82327184403006458CD /* UIStoryboard+Extensions.swift */,
-				F385D825271845BF006458CD /* UIViewController+Extensions.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -240,7 +214,6 @@
 			isa = PBXGroup;
 			children = (
 				F385D817271837AF006458CD /* PostViewController.swift */,
-				F385D82C27185763006458CD /* Post.storyboard */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -249,7 +222,6 @@
 			isa = PBXGroup;
 			children = (
 				F385D81F27183C16006458CD /* FeedView.swift */,
-				F385D82127183C25006458CD /* FeedView.xib */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -274,7 +246,6 @@
 			isa = PBXGroup;
 			children = (
 				F385D82E27185E51006458CD /* InfoViewController.swift */,
-				F385D83027185E60006458CD /* Info.storyboard */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -283,7 +254,6 @@
 			isa = PBXGroup;
 			children = (
 				F385D83327185ECA006458CD /* InfoView.swift */,
-				F385D83527185ED5006458CD /* InfoView.xib */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -392,15 +362,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F385D83127185E60006458CD /* Info.storyboard in Resources */,
-				F385D82227183C25006458CD /* FeedView.xib in Resources */,
-				F385D83627185ED5006458CD /* InfoView.xib in Resources */,
-				F385D7C627141747006458CD /* ProfileView.xib in Resources */,
-				F385D8092716A9D0006458CD /* Home.storyboard in Resources */,
-				F385D8122716AD90006458CD /* Feed.storyboard in Resources */,
-				F385D82D27185763006458CD /* Post.storyboard in Resources */,
 				F385D7A2271415F4006458CD /* LaunchScreen.storyboard in Resources */,
-				F385D7CB27141F6F006458CD /* Profile.storyboard in Resources */,
 				F385D79F271415F4006458CD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,14 +393,12 @@
 				F385D8152716AEBE006458CD /* View+Extensions.swift in Sources */,
 				F385D7CD27141F92006458CD /* ProfileViewController.swift in Sources */,
 				F385D82A27184C46006458CD /* Post.swift in Sources */,
-				F385D826271845BF006458CD /* UIViewController+Extensions.swift in Sources */,
 				F385D793271415F0006458CD /* AppDelegate.swift in Sources */,
 				F385D7C827141A3D006458CD /* ProfileView.swift in Sources */,
 				F385D795271415F0006458CD /* SceneDelegate.swift in Sources */,
 				F385D79D271415F0006458CD /* Navigation.xcdatamodeld in Sources */,
 				F385D82F27185E51006458CD /* InfoViewController.swift in Sources */,
 				F385D80D2716AAB5006458CD /* HomeViewController.swift in Sources */,
-				F385D82427184403006458CD /* UIStoryboard+Extensions.swift in Sources */,
 				F385D83427185ECA006458CD /* InfoView.swift in Sources */,
 				F385D8102716AD7F006458CD /* FeedViewController.swift in Sources */,
 			);
@@ -616,7 +576,7 @@
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Profile;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -645,7 +605,7 @@
 				INFOPLIST_FILE = Navigation/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Profile;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

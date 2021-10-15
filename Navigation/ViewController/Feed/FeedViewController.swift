@@ -8,27 +8,33 @@
 import UIKit
 
 class FeedViewController: UIViewController {
+    var feedView: FeedView!
+    
+    private enum Constains {
+        static let postTitle: String = "Текст из экрана Feed"
+    }
+    
+    override func loadView() {
+        super.loadView()
+        setupFeed()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupFeed()
     }
     
     private func setupFeed() {
-        if let feedView: FeedView = .fromNib() {
-            feedView.frame = CGRect(x: 0, y: 30, width: view.frame.size.width, height: view.frame.size.height - 30)
-            feedView.postButton.addTarget(self, action: #selector(clickButton(_:)), for: .touchUpInside)
-            view.addSubview(feedView)
-        }
+        feedView = FeedView(frame: CGRect(x: 0, y: 30, width: view.frame.size.width, height: view.frame.size.height - 30))
+        feedView.postButton.addTarget(self, action: #selector(clickButton(_:)), for: .touchUpInside)
+        
+        view.addSubview(feedView)
+        
     }
     
     @objc func clickButton(_ sender: Any) {
-        let post = Post(title: "Текст из экрана Feed")
-        let postStoryboard = UIStoryboard(storyboard: .post)
-        let postVc: PostViewController = postStoryboard.instantiateViewController()
+        let post = Post(title: Constains.postTitle)
+        let postVc: PostViewController = PostViewController()
         postVc.setupTitle(post)
-        let nc = UINavigationController(rootViewController: postVc)
-        nc.modalPresentationStyle = .fullScreen
-        present(nc, animated: true, completion: nil)
+        navigationController?.pushViewController(postVc, animated: true)
     }
 }
