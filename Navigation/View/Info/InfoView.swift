@@ -8,8 +8,6 @@
 import UIKit
 
 class InfoView: UIView {
-    var alertButton: UIButton!
-    
     private enum Constains {
         static let width: CGFloat = 300
         static let height: CGFloat = 60
@@ -17,27 +15,26 @@ class InfoView: UIView {
         static let borderColor: CGColor = UIColor.blue.cgColor
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        setupButton()
-        setupLayout()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-    
-    private func setupButton() {
+    lazy var alertButton: UIButton = {
         alertButton = UIButton(frame: .zero)
         alertButton.setTitle(.alertButtonTitle, for: .normal)
         alertButton.setTitleColor(.blue, for: .normal)
         alertButton.layer.borderColor = Constains.borderColor
         alertButton.layer.borderWidth = Constains.bordetWidth
+        return alertButton
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         self.addSubview(alertButton)
         
         alertButton.toAutoLayout()
+        setupLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
     }
     
     private func setupLayout() {
