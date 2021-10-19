@@ -8,22 +8,16 @@
 import UIKit
 
 class InfoViewController: UIViewController {
-    var infoView: InfoView!
-
-    
-    override func loadView() {
-        super.loadView()
-        setupInfo()
-    }
+    lazy var infoView: InfoView = {
+        infoView = InfoView(frame: CGRect(x: 0, y: 30, width: view.frame.size.width, height: view.frame.size.height - 30))
+        infoView.alertButton.addTarget(self, action: #selector(clickAlertAction(_:)), for: .touchUpInside)
+        return infoView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orange
-    }
-    
-    private func setupInfo() {
-        infoView = InfoView(frame: CGRect(x: 0, y: 30, width: view.frame.size.width, height: view.frame.size.height - 30))
-        infoView.alertButton.addTarget(self, action: #selector(clickAlertAction(_:)), for: .touchUpInside)
+        
         view.addSubview(infoView)
     }
     

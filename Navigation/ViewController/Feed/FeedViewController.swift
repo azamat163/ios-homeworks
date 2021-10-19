@@ -8,27 +8,20 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    var feedView: FeedView!
-    
     private enum Constains {
         static let postTitle: String = "Текст из экрана Feed"
     }
     
-    override func loadView() {
-        super.loadView()
-        setupFeed()
-    }
+    lazy var feedView: FeedView = {
+        feedView = FeedView(frame: CGRect(x: 0, y: 30, width: view.frame.size.width, height: view.frame.size.height - 30))
+        feedView.postButton.addTarget(self, action: #selector(clickButton(_:)), for: .touchUpInside)
+        return feedView
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    private func setupFeed() {
-        feedView = FeedView(frame: CGRect(x: 0, y: 30, width: view.frame.size.width, height: view.frame.size.height - 30))
-        feedView.postButton.addTarget(self, action: #selector(clickButton(_:)), for: .touchUpInside)
         
         view.addSubview(feedView)
-        
     }
     
     @objc func clickButton(_ sender: Any) {

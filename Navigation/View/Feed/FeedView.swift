@@ -8,9 +8,6 @@
 import UIKit
 
 class FeedView: UIView {
-    
-    var postButton: UIButton!
-    
     private enum Constains {
         static let width: CGFloat = 200
         static let height: CGFloat = 60
@@ -18,30 +15,29 @@ class FeedView: UIView {
         static let borderColor: CGColor = UIColor.blue.cgColor
     }
     
+    lazy var postButton: UIButton = {
+        postButton = UIButton(frame: .zero)
+        postButton.setTitle(.postButtonTitle, for: .normal)
+        postButton.setTitleColor(.blue, for: .normal)
+        postButton.layer.borderColor = Constains.borderColor
+        postButton.layer.borderWidth = Constains.bordetWidth
+        return postButton
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupButton()
-        setupLayout()
+        self.addSubview(postButton)
+        
+        postButton.toAutoLayout()
+        setupButtonLayout()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    private func setupButton() {
-        postButton = UIButton(frame: .zero)
-        postButton.setTitle(.postButtonTitle, for: .normal)
-        postButton.setTitleColor(.blue, for: .normal)
-        postButton.layer.borderColor = Constains.borderColor
-        postButton.layer.borderWidth = Constains.bordetWidth
-        
-        self.addSubview(postButton)
-        
-        postButton.toAutoLayout()
-    }
-    
-    private func setupLayout() {
+    private func setupButtonLayout() {
         NSLayoutConstraint.activate([
             postButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             postButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
