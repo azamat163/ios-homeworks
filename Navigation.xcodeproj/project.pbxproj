@@ -25,7 +25,6 @@
 		F385D82F27185E51006458CD /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D82E27185E51006458CD /* InfoViewController.swift */; };
 		F385D83427185ECA006458CD /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D83327185ECA006458CD /* InfoView.swift */; };
 		F3D792DC27206D80008299BC /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792DB27206D80008299BC /* ProfileHeaderView.swift */; };
-		F3D792E027228B57008299BC /* ProfileCustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792DF27228B57008299BC /* ProfileCustomButton.swift */; };
 		F3D792E22722912F008299BC /* Button+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792E12722912F008299BC /* Button+Extensions.swift */; };
 		F3D792E42722A532008299BC /* TextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792E32722A532008299BC /* TextField+Extensions.swift */; };
 		F3D792E62722C620008299BC /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792E52722C61F008299BC /* UIImageView+Extensions.swift */; };
@@ -71,7 +70,6 @@
 		F385D82E27185E51006458CD /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		F385D83327185ECA006458CD /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		F3D792DB27206D80008299BC /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
-		F3D792DF27228B57008299BC /* ProfileCustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCustomButton.swift; sourceTree = "<group>"; };
 		F3D792E12722912F008299BC /* Button+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+Extensions.swift"; sourceTree = "<group>"; };
 		F3D792E32722A532008299BC /* TextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Extensions.swift"; sourceTree = "<group>"; };
 		F3D792E52722C61F008299BC /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
@@ -125,7 +123,6 @@
 		F385D791271415F0006458CD /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				F3D792DD27228AF4008299BC /* Common */,
 				F385D82727184C2E006458CD /* Model */,
 				F385D8132716AEA5006458CD /* Extentions */,
 				F385D7E82714A802006458CD /* ViewController */,
@@ -268,22 +265,6 @@
 				F385D83327185ECA006458CD /* InfoView.swift */,
 			);
 			path = Info;
-			sourceTree = "<group>";
-		};
-		F3D792DD27228AF4008299BC /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				F3D792DE27228B2E008299BC /* Button */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		F3D792DE27228B2E008299BC /* Button */ = {
-			isa = PBXGroup;
-			children = (
-				F3D792DF27228B57008299BC /* ProfileCustomButton.swift */,
-			);
-			path = Button;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -432,7 +413,6 @@
 				F385D83427185ECA006458CD /* InfoView.swift in Sources */,
 				F3D792E62722C620008299BC /* UIImageView+Extensions.swift in Sources */,
 				F385D8102716AD7F006458CD /* FeedViewController.swift in Sources */,
-				F3D792E027228B57008299BC /* ProfileCustomButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
