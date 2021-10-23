@@ -12,7 +12,7 @@ class ProfileHeaderView: UIView {
     // MARK: - constants
     private enum Constants {
         static let logoImage: UIImage? = UIImage(named: .logoImageNamed)
-        static let logoImageViewFrame: CGRect = CGRect(x: 0, y: 0, width: 50, height: 50)
+        static let logoImageViewFrame: CGRect = CGRect(x: 0, y: 0, width: 100, height: 100)
         static let logoImageViewBorderWidth: CGFloat = 3.0
         static let logoImageViewBorderColor: CGColor = UIColor.white.cgColor
         
