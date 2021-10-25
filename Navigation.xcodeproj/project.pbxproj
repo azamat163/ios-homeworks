@@ -15,7 +15,6 @@
 		F385D7AD271415F4006458CD /* NavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D7AC271415F4006458CD /* NavigationTests.swift */; };
 		F385D7B7271415F4006458CD /* NavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D7B6271415F4006458CD /* NavigationUITests.swift */; };
 		F385D7B9271415F4006458CD /* NavigationUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D7B8271415F4006458CD /* NavigationUITestsLaunchTests.swift */; };
-		F385D7C827141A3D006458CD /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D7C727141A3D006458CD /* ProfileView.swift */; };
 		F385D7CD27141F92006458CD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D7CC27141F92006458CD /* ProfileViewController.swift */; };
 		F385D80D2716AAB5006458CD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D80C2716AAB5006458CD /* HomeViewController.swift */; };
 		F385D8102716AD7F006458CD /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D80F2716AD7F006458CD /* FeedViewController.swift */; };
@@ -25,6 +24,10 @@
 		F385D82A27184C46006458CD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D82927184C46006458CD /* Post.swift */; };
 		F385D82F27185E51006458CD /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D82E27185E51006458CD /* InfoViewController.swift */; };
 		F385D83427185ECA006458CD /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D83327185ECA006458CD /* InfoView.swift */; };
+		F3D792DC27206D80008299BC /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792DB27206D80008299BC /* ProfileHeaderView.swift */; };
+		F3D792E22722912F008299BC /* Button+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792E12722912F008299BC /* Button+Extensions.swift */; };
+		F3D792E42722A532008299BC /* TextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792E32722A532008299BC /* TextField+Extensions.swift */; };
+		F3D792E62722C620008299BC /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792E52722C61F008299BC /* UIImageView+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +60,6 @@
 		F385D7B2271415F4006458CD /* NavigationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F385D7B6271415F4006458CD /* NavigationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUITests.swift; sourceTree = "<group>"; };
 		F385D7B8271415F4006458CD /* NavigationUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		F385D7C727141A3D006458CD /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		F385D7CC27141F92006458CD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F385D80C2716AAB5006458CD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F385D80F2716AD7F006458CD /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +69,10 @@
 		F385D82927184C46006458CD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F385D82E27185E51006458CD /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		F385D83327185ECA006458CD /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		F3D792DB27206D80008299BC /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		F3D792E12722912F008299BC /* Button+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+Extensions.swift"; sourceTree = "<group>"; };
+		F3D792E32722A532008299BC /* TextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Extensions.swift"; sourceTree = "<group>"; };
+		F3D792E52722C61F008299BC /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,7 +179,7 @@
 		F385D8052716A7ED006458CD /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				F385D7C727141A3D006458CD /* ProfileView.swift */,
+				F3D792DB27206D80008299BC /* ProfileHeaderView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -206,6 +212,9 @@
 			isa = PBXGroup;
 			children = (
 				F385D8142716AEBE006458CD /* View+Extensions.swift */,
+				F3D792E12722912F008299BC /* Button+Extensions.swift */,
+				F3D792E32722A532008299BC /* TextField+Extensions.swift */,
+				F3D792E52722C61F008299BC /* UIImageView+Extensions.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -394,12 +403,15 @@
 				F385D7CD27141F92006458CD /* ProfileViewController.swift in Sources */,
 				F385D82A27184C46006458CD /* Post.swift in Sources */,
 				F385D793271415F0006458CD /* AppDelegate.swift in Sources */,
-				F385D7C827141A3D006458CD /* ProfileView.swift in Sources */,
 				F385D795271415F0006458CD /* SceneDelegate.swift in Sources */,
 				F385D79D271415F0006458CD /* Navigation.xcdatamodeld in Sources */,
+				F3D792E22722912F008299BC /* Button+Extensions.swift in Sources */,
+				F3D792E42722A532008299BC /* TextField+Extensions.swift in Sources */,
 				F385D82F27185E51006458CD /* InfoViewController.swift in Sources */,
 				F385D80D2716AAB5006458CD /* HomeViewController.swift in Sources */,
+				F3D792DC27206D80008299BC /* ProfileHeaderView.swift in Sources */,
 				F385D83427185ECA006458CD /* InfoView.swift in Sources */,
+				F3D792E62722C620008299BC /* UIImageView+Extensions.swift in Sources */,
 				F385D8102716AD7F006458CD /* FeedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
