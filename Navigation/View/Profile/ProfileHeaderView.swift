@@ -10,6 +10,7 @@ import UIKit
 class ProfileHeaderView: UIView {
     
     // MARK: - constants
+    
     private enum Constants {
         static let avatarImage: UIImage? = UIImage(named: .avatarImageNamed)
         static let avatarImageViewFrame: CGRect = CGRect(x: 0, y: 0, width: 100, height: 100)

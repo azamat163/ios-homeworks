@@ -13,40 +13,64 @@ class FeedView: UIView {
         static let height: CGFloat = 60
         static let bordetWidth: CGFloat = 1.0
         static let borderColor: CGColor = UIColor.blue.cgColor
+        
+        static let axis = NSLayoutConstraint.Axis.vertical
+        static let spacing: CGFloat = 10.0
     }
     
-    lazy var postButton: UIButton = {
-        postButton = UIButton(frame: .zero)
-        postButton.setTitle(.postButtonTitle, for: .normal)
-        postButton.setTitleColor(.blue, for: .normal)
-        postButton.layer.borderColor = Constains.borderColor
-        postButton.layer.borderWidth = Constains.bordetWidth
-        return postButton
+    lazy var firstPostButton: UIButton = {
+        firstPostButton = UIButton(frame: .zero)
+        firstPostButton.setTitle(.firstPostButtonTitle, for: .normal)
+        firstPostButton.setTitleColor(.blue, for: .normal)
+        firstPostButton.layer.borderColor = Constains.borderColor
+        firstPostButton.layer.borderWidth = Constains.bordetWidth
+        return firstPostButton
+    }()
+    
+    lazy var secondPostButton: UIButton = {
+        secondPostButton = UIButton(frame: .zero)
+        secondPostButton.setTitle(.secondPostButtonTitle, for: .normal)
+        secondPostButton.setTitleColor(.blue, for: .normal)
+        secondPostButton.layer.borderColor = Constains.borderColor
+        secondPostButton.layer.borderWidth = Constains.bordetWidth
+        return secondPostButton
+    }()
+    
+    lazy var stackView: UIStackView = {
+        stackView = UIStackView(frame: .zero)
+        stackView.axis = Constains.axis
+        stackView.spacing = Constains.spacing
+        let views = [
+            firstPostButton,
+            secondPostButton
+        ]
+        
+        views.forEach { stackView.addArrangedSubview($0) }
+        return stackView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.addSubview(postButton)
+        self.addSubview(stackView)
         
-        postButton.toAutoLayout()
-        setupButtonLayout()
+        stackView.toAutoLayout()
+        setupLayout()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    private func setupButtonLayout() {
+    private func setupLayout() {
         NSLayoutConstraint.activate([
-            postButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            postButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            postButton.widthAnchor.constraint(equalToConstant: Constains.width),
-            postButton.heightAnchor.constraint(equalToConstant: Constains.height)
+            stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
         ])
     }
 }
 
 private extension String {
-    static let postButtonTitle = "Нажми и сделай пост!"
+    static let firstPostButtonTitle = "Первая кнопка"
+    static let secondPostButtonTitle = "Вторая кнопка"
 }
