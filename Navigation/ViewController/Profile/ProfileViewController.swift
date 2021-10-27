@@ -8,15 +8,7 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-    
-    //MARK: - constants
-    
-    private enum Constants {
-        static let profileHeaderViewHeight: CGFloat = 222
-        
-        static let profileButtonColor: UIColor = .systemBlue
-    }
-    
+
     private var statusText: String = ""
     
     lazy var profileHeaderView: ProfileHeaderView = {
@@ -29,7 +21,7 @@ class ProfileViewController: UIViewController {
     
     lazy var profileButton: UIButton = {
         profileButton = UIButton(frame: .zero)
-        profileButton.backgroundColor = Constants.profileButtonColor
+        profileButton.backgroundColor = .profileButtonColor
         profileButton.setTitle(.profileButtonTitle, for: .normal)
         profileButton.setTitleColor(.white, for: .normal)
         
@@ -70,7 +62,7 @@ class ProfileViewController: UIViewController {
             profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileHeaderView.heightAnchor.constraint(equalToConstant: Constants.profileHeaderViewHeight)
+            profileHeaderView.heightAnchor.constraint(equalToConstant: .profileHeaderViewHeight)
         ])
     }
     
@@ -109,4 +101,12 @@ class ProfileViewController: UIViewController {
 
 private extension String {
     static let profileButtonTitle = "Кнопка"
+}
+
+private extension CGFloat {
+    static let profileHeaderViewHeight: CGFloat = 222
+}
+
+private extension UIColor {
+    static let profileButtonColor: UIColor = .systemBlue
 }

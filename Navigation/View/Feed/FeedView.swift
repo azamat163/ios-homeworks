@@ -8,22 +8,17 @@
 import UIKit
 
 class FeedView: UIView {
+    
     private enum Constains {
-        static let width: CGFloat = 200
-        static let height: CGFloat = 60
-        static let bordetWidth: CGFloat = 1.0
-        static let borderColor: CGColor = UIColor.blue.cgColor
-        
         static let axis = NSLayoutConstraint.Axis.vertical
-        static let spacing: CGFloat = 10.0
     }
     
     lazy var firstPostButton: UIButton = {
         firstPostButton = UIButton(frame: .zero)
         firstPostButton.setTitle(.firstPostButtonTitle, for: .normal)
         firstPostButton.setTitleColor(.blue, for: .normal)
-        firstPostButton.layer.borderColor = Constains.borderColor
-        firstPostButton.layer.borderWidth = Constains.bordetWidth
+        firstPostButton.layer.borderColor = .borderColor
+        firstPostButton.layer.borderWidth = .borderWidth
         return firstPostButton
     }()
     
@@ -31,15 +26,15 @@ class FeedView: UIView {
         secondPostButton = UIButton(frame: .zero)
         secondPostButton.setTitle(.secondPostButtonTitle, for: .normal)
         secondPostButton.setTitleColor(.blue, for: .normal)
-        secondPostButton.layer.borderColor = Constains.borderColor
-        secondPostButton.layer.borderWidth = Constains.bordetWidth
+        secondPostButton.layer.borderColor = .borderColor
+        secondPostButton.layer.borderWidth = .borderWidth
         return secondPostButton
     }()
     
     lazy var stackView: UIStackView = {
         stackView = UIStackView(frame: .zero)
         stackView.axis = Constains.axis
-        stackView.spacing = Constains.spacing
+        stackView.spacing = .spacing
         let views = [
             firstPostButton,
             secondPostButton
@@ -73,4 +68,13 @@ class FeedView: UIView {
 private extension String {
     static let firstPostButtonTitle = "Первая кнопка"
     static let secondPostButtonTitle = "Вторая кнопка"
+}
+
+private extension CGFloat {
+    static let borderWidth = 1.0
+    static let spacing = 10.0
+}
+
+private extension CGColor {
+    static let borderColor = UIColor.blue.cgColor
 }

@@ -8,11 +8,12 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    
+        
     lazy var feedView: FeedView = {
         feedView = FeedView(frame: .zero)
         feedView.firstPostButton.addTarget(self, action: #selector(clickButton), for: .touchUpInside)
         feedView.secondPostButton.addTarget(self, action: #selector(clickButton), for: .touchUpInside)
+
         return feedView
     }()
 
@@ -33,15 +34,17 @@ class FeedViewController: UIViewController {
             feedView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
-    
+}
+
+private extension String {
+    static let postTitle: String = "Текст из экрана Feed"
+}
+
+extension FeedViewController {
     @objc func clickButton() {
         let post = Post(title: .postTitle)
         let postVc: PostViewController = PostViewController()
         postVc.setupTitle(post)
         navigationController?.pushViewController(postVc, animated: true)
     }
-}
-
-private extension String {
-    static let postTitle: String = "Текст из экрана Feed"
 }
