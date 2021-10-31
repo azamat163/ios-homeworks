@@ -8,14 +8,24 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-    
+
     private var statusText: String = ""
     
     lazy var profileHeaderView: ProfileHeaderView = {
         profileHeaderView = ProfileHeaderView()
-        profileHeaderView.showStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        profileHeaderView.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         profileHeaderView.statusTextField.addTarget(self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
+        
         return profileHeaderView
+    }()
+    
+    lazy var profileButton: UIButton = {
+        profileButton = UIButton(frame: .zero)
+        profileButton.backgroundColor = .profileButtonColor
+        profileButton.setTitle(.profileButtonTitle, for: .normal)
+        profileButton.setTitleColor(.white, for: .normal)
+        
+        return profileButton
     }()
     
     
@@ -28,33 +38,75 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(profileHeaderView)
+        let views: [UIView] = [
+            profileHeaderView,
+            profileButton
+        ]
         
-        profileHeaderView.toAutoLayout()
-        setupLayout()
+        view.addSubviews(views)
+        
+        views.forEach{ $0.toAutoLayout() }
+        
+        setup()
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-        profileHeaderView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+    private func setup() {
+        setupProfileHeaderViewLayout()
+        setupProfileButtonLayout()
     }
     
-    private func setupLayout() {
+    //MARK: - setup profileHeaderView layout
+    
+    private func setupProfileHeaderViewLayout() {
         NSLayoutConstraint.activate([
-            profileHeaderView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            profileHeaderView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileHeaderView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-         ])
+            profileHeaderView.heightAnchor.constraint(equalToConstant: .profileHeaderViewHeight)
+        ])
+    }
+    
+    private func setupProfileButtonLayout() {
+        NSLayoutConstraint.activate([
+            profileButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            profileButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            profileButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
     
     @objc func buttonPressed() {
+        guard !statusText.isEmpty else {
+            statusTextFieldAnimate()
+            return
+        }
+        
         profileHeaderView.statusLabel.text = statusText
     }
     
-    @objc func statusTextChanged(_ textField: UITextField) {
-        guard let text = textField.text else { return }
-        statusText = text
+    private func statusTextFieldAnimate() {
+        UIView.animate(withDuration: 0.5) {
+            [weak self] in
+            self?.profileHeaderView.statusTextField.layer.borderWidth = 2
+            self?.profileHeaderView.statusTextField.layer.borderColor = UIColor.red.cgColor
+            self?.view.layoutIfNeeded()
+        }
     }
+    
+    @objc func statusTextChanged(_ textField: UITextField) {
+        statusText = textField.text ?? " "
+    }
+}
+
+//MARK: - extension string
+
+private extension String {
+    static let profileButtonTitle = "Кнопка"
+}
+
+private extension CGFloat {
+    static let profileHeaderViewHeight: CGFloat = 222
+}
+
+private extension UIColor {
+    static let profileButtonColor: UIColor = .systemBlue
 }

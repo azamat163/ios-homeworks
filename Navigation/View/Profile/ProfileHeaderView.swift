@@ -10,14 +10,16 @@ import UIKit
 class ProfileHeaderView: UIView {
     
     // MARK: - constants
+    
     private enum Constants {
-        static let logoImage: UIImage? = UIImage(named: .logoImageNamed)
-        static let logoImageViewFrame: CGRect = CGRect(x: 0, y: 0, width: 100, height: 100)
-        static let logoImageViewBorderWidth: CGFloat = 3.0
-        static let logoImageViewBorderColor: CGColor = UIColor.white.cgColor
+        static let avatarImage: UIImage? = UIImage(named: .avatarImageNamed)
+        static let avatarImageViewFrame: CGRect = CGRect(x: 0, y: 0, width: 100, height: 100)
+        static let avatarImageHeight: CGFloat = 100
+        static let avatarImageViewBorderWidth: CGFloat = 3.0
+        static let avatarImageViewBorderColor: CGColor = UIColor.white.cgColor
         
-        static let nameLabelFont: UIFont = UIFont.systemFont(ofSize: 18, weight: .bold)
-        static let nameLabelColor: UIColor = .black
+        static let fullNameLabelFont: UIFont = UIFont.systemFont(ofSize: 18, weight: .bold)
+        static let fullNameLabelColor: UIColor = .black
         
         static let statusLabelFont: UIFont = UIFont.systemFont(ofSize: 14, weight: .regular)
         static let statusLabelColor: UIColor = .gray
@@ -31,34 +33,33 @@ class ProfileHeaderView: UIView {
         static let statusTextFieldHeight: CGFloat = 40.0
         static let statusTextFieldWidth: CGFloat = 300.0
         
-        static let showStatusButtonColor: UIColor = .systemBlue
-        static let showStatusButtonCornerRadius: CGFloat = 12.0
-        static let showStatusShadowOffset: CGSize = CGSize(width: 4, height: 4)
-        static let showStatusShadowRadius: CGFloat = 4.0
-        static let showStatusShadowColor: CGColor = UIColor.black.cgColor
-        static let showStatusShadowOpacity: Float = 0.7
-        static let showStatusButtonHeight: CGFloat = 50.0
+        static let setStatusButtonColor: UIColor = .systemBlue
+        static let setStatusButtonCornerRadius: CGFloat = 12.0
+        static let setStatusShadowOffset: CGSize = CGSize(width: 4, height: 4)
+        static let setStatusShadowRadius: CGFloat = 4.0
+        static let setStatusShadowColor: CGColor = UIColor.black.cgColor
+        static let setStatusShadowOpacity: Float = 0.7
+        static let setStatusButtonHeight: CGFloat = 50.0
         
         static let padding: CGFloat = 16
         static let labelPadding: CGFloat = 27
         static let textPadding: CGFloat = 34
     }
     
-    lazy var logoImageView: UIImageView = {
-        logoImageView = UIImageView(image: Constants.logoImage)
-        logoImageView.frame = Constants.logoImageViewFrame
-      
+    lazy var avatarImageView: UIImageView = {
+        avatarImageView = UIImageView(image: Constants.avatarImage)
+        avatarImageView.frame = Constants.avatarImageViewFrame
 
-        return logoImageView
+        return avatarImageView
     }()
     
-    lazy var nameLabel: UILabel = {
-        nameLabel = UILabel(frame: .zero)
-        nameLabel.font = Constants.nameLabelFont
-        nameLabel.text = .nameLabelText
-        nameLabel.textColor = Constants.nameLabelColor
+    lazy var fullNameLabel: UILabel = {
+        fullNameLabel = UILabel(frame: .zero)
+        fullNameLabel.font = Constants.fullNameLabelFont
+        fullNameLabel.text = .fullNameLabelText
+        fullNameLabel.textColor = Constants.fullNameLabelColor
         
-        return nameLabel
+        return fullNameLabel
     }()
     
     lazy var statusLabel: UILabel = {
@@ -78,24 +79,24 @@ class ProfileHeaderView: UIView {
         return statusTextField
     }()
     
-    lazy var showStatusButton: UIButton = {
-        showStatusButton = UIButton(frame: .zero)
-        showStatusButton.backgroundColor = Constants.showStatusButtonColor
-        showStatusButton.setTitleColor(.white, for: .normal)
-        showStatusButton.setTitle(.showStatusButtonText, for: .normal)
+    lazy var setStatusButton: UIButton = {
+        setStatusButton = UIButton(frame: .zero)
+        setStatusButton.backgroundColor = Constants.setStatusButtonColor
+        setStatusButton.setTitleColor(.white, for: .normal)
+        setStatusButton.setTitle(.setStatusButtonText, for: .normal)
         
-        return showStatusButton
+        return setStatusButton
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         let views: [UIView] = [
-            logoImageView,
-            nameLabel,
+            avatarImageView,
+            fullNameLabel,
             statusLabel,
             statusTextField,
-            showStatusButton
+            setStatusButton
         ]
 
         self.addSubviews(views)
@@ -110,64 +111,64 @@ class ProfileHeaderView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         setupImage()
         setupStatusTextField()
         setupStatusButton()
-        
+
         setupPaddingTextField()
     }
     
     // MARK: - Setting layout constraints
     
     private func setupLayout() {
-        let logoImageConstraints: [NSLayoutConstraint] = [
-            logoImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.padding),
-            logoImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.padding),
+        let avatarImageConstraints: [NSLayoutConstraint] = [
+            avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.padding),
+            avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.padding)
         ]
         
-        let nameLabelConstraints: [NSLayoutConstraint] = [
-            nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.labelPadding),
-            nameLabel.leadingAnchor.constraint(equalTo: logoImageView.trailingAnchor, constant: Constants.padding)
+        let fullNameLabelConstraints: [NSLayoutConstraint] = [
+            fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.labelPadding),
+            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: Constants.padding)
         ]
         
         let statusLabelConstraints: [NSLayoutConstraint] = [
-            statusLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            statusLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Constants.textPadding),
+            statusLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
+            statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: Constants.textPadding),
         ]
         
         let statusTextFieldConstraints: [NSLayoutConstraint] = [
-            statusTextField.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
+            statusTextField.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
             statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: Constants.padding),
-            statusTextField.trailingAnchor.constraint(equalTo: showStatusButton.trailingAnchor),
+            statusTextField.trailingAnchor.constraint(equalTo: setStatusButton.trailingAnchor),
             statusTextField.heightAnchor.constraint(equalToConstant: Constants.statusTextFieldHeight),
             statusTextField.widthAnchor.constraint(lessThanOrEqualToConstant: Constants.statusTextFieldWidth),
         ]
         
-        let showStatusButtonConstraints: [NSLayoutConstraint] = [
-            showStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.padding),
-            showStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:  -Constants.padding),
-            showStatusButton.heightAnchor.constraint(equalToConstant: Constants.showStatusButtonHeight),
-            showStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: Constants.padding)
+        let setStatusButtonConstraints: [NSLayoutConstraint] = [
+            setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.padding),
+            setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:  -Constants.padding),
+            setStatusButton.heightAnchor.constraint(equalToConstant: Constants.setStatusButtonHeight),
+            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: Constants.padding)
         ]
         
         NSLayoutConstraint.activate(
-            logoImageConstraints +
-            nameLabelConstraints +
+            avatarImageConstraints +
+            fullNameLabelConstraints +
             statusLabelConstraints +
             statusTextFieldConstraints +
-            showStatusButtonConstraints
+            setStatusButtonConstraints
         )
     }
     
     //MARK: - Settings layer
     
     private func setupImage() {
-        logoImageView.clipsToBounds = true
-        logoImageView.roundedImage(
-            cornerRadius: logoImageView.frame.height / 2,
-            borderWidth: Constants.logoImageViewBorderWidth,
-            borderColor: Constants.logoImageViewBorderColor
+        avatarImageView.clipsToBounds = true
+        avatarImageView.roundedImage(
+            cornerRadius: avatarImageView.frame.height / 2,
+            borderWidth: Constants.avatarImageViewBorderWidth,
+            borderColor: Constants.avatarImageViewBorderColor
         )
     }
     
@@ -180,12 +181,12 @@ class ProfileHeaderView: UIView {
     }
     
     private func setupStatusButton() {
-        showStatusButton.roundedButtonWithShadow(
-            corderRadius: Constants.showStatusButtonCornerRadius,
-            shadowOffset: Constants.showStatusShadowOffset,
-            shadowRadius: Constants.showStatusShadowRadius,
-            shadowColor: Constants.showStatusShadowColor,
-            shadowOpacity: Constants.showStatusShadowOpacity
+        setStatusButton.roundedButtonWithShadow(
+            corderRadius: Constants.setStatusButtonCornerRadius,
+            shadowOffset: Constants.setStatusShadowOffset,
+            shadowRadius: Constants.setStatusShadowRadius,
+            shadowColor: Constants.setStatusShadowColor,
+            shadowOpacity: Constants.setStatusShadowOpacity
         )
     }
     
@@ -198,9 +199,9 @@ class ProfileHeaderView: UIView {
 // MARK: - Extension string
 
 private extension String {
-    static let logoImageNamed = "avatar_cat"
-    static let nameLabelText = "Hipster Cat"
+    static let avatarImageNamed = "avatar_cat"
+    static let fullNameLabelText = "Hipster Cat"
     static let statusLabelText = "Waiting for something..."
     static let placeholderText = "Set status..."
-    static let showStatusButtonText = "Set status"
+    static let setStatusButtonText = "Set status"
 }
