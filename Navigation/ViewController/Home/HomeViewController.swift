@@ -28,7 +28,7 @@ class HomeViewController: UITabBarController {
     func setupVCs() {
         viewControllers = [
             createNavController(for: FeedViewController(), title: NSLocalizedString(Constants.feedTitle, comment: ""), image: UIImage(systemName: Constants.feedImageName)!),
-            createNavController(for: ProfileViewController(), title: NSLocalizedString(Constants.profileTitle, comment: ""), image: UIImage(systemName: Constants.profileImageName)!)
+            createNavController(for: LogInViewController(), title: NSLocalizedString(Constants.profileTitle, comment: ""), image: UIImage(systemName: Constants.profileImageName)!)
         ]
     }
     
