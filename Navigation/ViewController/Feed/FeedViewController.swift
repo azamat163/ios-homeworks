@@ -42,9 +42,8 @@ private extension String {
 
 extension FeedViewController {
     @objc func clickButton() {
-        let post = Post(title: .postTitle)
         let postVc: PostViewController = PostViewController()
-        postVc.setupTitle(post)
+        postVc.setupTitle(.postTitle)
         navigationController?.pushViewController(postVc, animated: true)
     }
 }

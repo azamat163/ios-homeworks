@@ -8,26 +8,18 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
-    private var statusText: String = ""
+        
+    private let posts = PostAPI.getPosts()
     
     lazy var profileHeaderView: ProfileHeaderView = {
-        profileHeaderView = ProfileHeaderView()
-        profileHeaderView.setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        profileHeaderView.statusTextField.addTarget(self, action: #selector(statusTextChanged(_:)), for: .editingChanged)
-        
+        profileHeaderView = ProfileHeaderView(frame: .zero)
         return profileHeaderView
     }()
-    
-    lazy var profileButton: UIButton = {
-        profileButton = UIButton(frame: .zero)
-        profileButton.backgroundColor = .profileButtonColor
-        profileButton.setTitle(.profileButtonTitle, for: .normal)
-        profileButton.setTitleColor(.white, for: .normal)
-        
-        return profileButton
+
+    lazy var tableView: UITableView = {
+        tableView = UITableView(frame: .zero, style: .plain)
+        return tableView
     }()
-    
     
     override func loadView() {
         super.loadView()
@@ -38,75 +30,102 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let views: [UIView] = [
-            profileHeaderView,
-            profileButton
-        ]
+        view.addSubview(tableView)
         
-        view.addSubviews(views)
+        profileHeaderView.toAutoLayout()
+        tableView.toAutoLayout()
         
-        views.forEach{ $0.toAutoLayout() }
+        setupLayout()
         
-        setup()
+        tableView.tableHeaderView = profileHeaderView
+        
+        let widthConstraint = NSLayoutConstraint(
+            item: profileHeaderView,
+            attribute: .width,
+            relatedBy: .equal,
+            toItem: tableView,
+            attribute: .width,
+            multiplier: 1,
+            constant: 0)
+        
+        tableView.addConstraint(widthConstraint)
+        
+        profileHeaderView.layoutIfNeeded()
+        
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: .postTableId)
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
     }
     
-    private func setup() {
-        setupProfileHeaderViewLayout()
-        setupProfileButtonLayout()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        sizeHeaderToFit(tableView)
     }
     
-    //MARK: - setup profileHeaderView layout
-    
-    private func setupProfileHeaderViewLayout() {
-        NSLayoutConstraint.activate([
-            profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileHeaderView.heightAnchor.constraint(equalToConstant: .profileHeaderViewHeight)
-        ])
-    }
-    
-    private func setupProfileButtonLayout() {
-        NSLayoutConstraint.activate([
-            profileButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            profileButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
-    }
-    
-    @objc func buttonPressed() {
-        guard !statusText.isEmpty else {
-            statusTextFieldAnimate()
+    func sizeHeaderToFit(_ tableView: UITableView) {
+        
+        guard let headerView = tableView.tableHeaderView else {
             return
         }
-        
-        profileHeaderView.statusLabel.text = statusText
+        let size = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+
+        headerView.frame.size = size
+        tableView.tableHeaderView = headerView
     }
     
-    private func statusTextFieldAnimate() {
-        UIView.animate(withDuration: 0.5) {
-            [weak self] in
-            self?.profileHeaderView.statusTextField.layer.borderWidth = 2
-            self?.profileHeaderView.statusTextField.layer.borderColor = UIColor.red.cgColor
-            self?.view.layoutIfNeeded()
-        }
-    }
+    //MARK: - setup tableView layout
     
-    @objc func statusTextChanged(_ textField: UITextField) {
-        statusText = textField.text ?? " "
+    private func setupLayout() {
+        NSLayoutConstraint.activate([
+            profileHeaderView.heightAnchor.constraint(equalToConstant: .profileHeaderViewHeight),
+            
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
+
 }
 
-//MARK: - extension string
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: .postTableId, for: indexPath) as? PostTableViewCell else { fatalError() }
+        let currentPost: Post = posts[indexPath.row]
+        
+        cell.postAuthorLabel.text = currentPost.author
+        cell.postImageView.image = UIImage(named: currentPost.image)
+        cell.postDescription.text = currentPost.description
+        cell.postLikes.text = "Likes: \(currentPost.likes)"
+        cell.postViews.text = "Views: \(currentPost.views)"
+        
+        return cell
+    }
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableView.automaticDimension
+//    }
+//
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return UITableView.automaticDimension
+//    }
+}
 
 private extension String {
-    static let profileButtonTitle = "Кнопка"
+    static let postTableId = "postTableId"
 }
+
 
 private extension CGFloat {
     static let profileHeaderViewHeight: CGFloat = 220
-}
-
-private extension UIColor {
-    static let profileButtonColor: UIColor = .systemBlue
 }
