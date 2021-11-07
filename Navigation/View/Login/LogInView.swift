@@ -132,7 +132,7 @@ class LogInView: UIView {
         ]
         
         let formStackViewConstraints: [NSLayoutConstraint] = [
-            formStackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: .LogoImage.padding),
+            formStackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 300),
             formStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: .FormStackView.padding),
             formStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:  -.FormStackView.padding),
             formStackView.heightAnchor.constraint(equalToConstant: .FormStackView.height)

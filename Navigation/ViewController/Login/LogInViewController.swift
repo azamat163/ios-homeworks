@@ -9,9 +9,7 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    var activeTextField: UITextField?
-    var scrollOffset : CGFloat = 0
-    var distance : CGFloat = 0
+    weak var activeTextField: UITextField?
     
     lazy var logInView: LogInView = {
         logInView = LogInView(frame: .zero)
@@ -22,7 +20,6 @@ class LogInViewController: UIViewController {
     
     lazy var scrollView: UIScrollView = {
         scrollView = UIScrollView(frame: .zero)
-        scrollView.automaticallyAdjustsScrollIndicatorInsets = true
         scrollView.toAutoLayout()
         return scrollView
     }()
@@ -33,16 +30,19 @@ class LogInViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
         
+        view.addSubview(scrollView)
+        scrollView.addSubview(logInView)
+        
         setupLogInView()
         logInView.delegate = self
+        logInView.emailOfPhoneTextField.delegate = self
+        logInView.passwordTextField.delegate = self
         
-        registerNotifications()
+        configureKeyboardNotifications()
+        scrollView.contentInset.bottom = 0
     }
     
     private func setupLogInView() {
-        scrollView.addSubview(logInView)
-        view.addSubview(scrollView)
-        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -56,27 +56,37 @@ class LogInViewController: UIViewController {
         ])
     }
     
-    private func registerNotifications() {
+    private func configureKeyboardNotifications() {
         let notificationCenter = NotificationCenter.default
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        notificationCenter.addObserver(forName: UIResponder.keyboardWillHideNotification, object: nil, queue: nil) {
+            [weak self] notification in
+                    self?.adjustForKeyboard(notification)
+                }
+        notificationCenter.addObserver(forName: UIResponder.keyboardWillChangeFrameNotification, object: nil, queue: nil) {
+            [weak self] notification in
+                    self?.adjustForKeyboard(notification)
+        }
     }
-    
-    var isExpand: Bool = false
-    
-    @objc func keyboardWillShow(notification: Notification) {
-        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height , right: 0.0)
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+    private func adjustForKeyboard(_ notification: Notification) {
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+        else { return }
         
-        scrollView.contentInset = contentInsets
-        scrollView.scrollIndicatorInsets = contentInsets
+        guard let activeTextField = activeTextField else { return }
+
+        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            scrollView.contentInset = UIEdgeInsets.zero
+        } else {
+            scrollView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardViewEndFrame.height, right: 0.0)
+            
+            let activeRect = activeTextField.convert(activeTextField.bounds, to: scrollView)
+            scrollView.scrollRectToVisible(activeRect, animated: true)
+        }
+        
+        scrollView.scrollIndicatorInsets = scrollView.contentInset
     }
 }
 
@@ -86,4 +96,21 @@ extension LogInViewController: LogInViewControllerDelegate {
         let profileVc = ProfileViewController()
         navigationController?.pushViewController(profileVc, animated: true)
     }
+}
+
+extension LogInViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        activeTextField = nil
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 }
