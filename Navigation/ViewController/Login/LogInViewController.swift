@@ -39,7 +39,6 @@ class LogInViewController: UIViewController {
         logInView.passwordTextField.delegate = self
         
         configureKeyboardNotifications()
-        scrollView.contentInset.bottom = 0
     }
     
     private func setupLogInView() {
