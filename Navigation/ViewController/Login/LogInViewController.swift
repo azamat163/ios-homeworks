@@ -41,6 +41,12 @@ class LogInViewController: UIViewController {
         configureKeyboardNotifications()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     private func setupLogInView() {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -48,10 +54,12 @@ class LogInViewController: UIViewController {
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             
-            logInView.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor),
-            logInView.bottomAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.bottomAnchor),
-            logInView.leadingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leadingAnchor),
-            logInView.trailingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor),
+            logInView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            logInView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            logInView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            logInView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            logInView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            logInView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
         ])
     }
     
