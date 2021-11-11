@@ -44,6 +44,7 @@ class ProfileHeaderView: UIView {
         static let padding: CGFloat = 16
         static let labelPadding: CGFloat = 27
         static let textPadding: CGFloat = 34
+        static let buttonPadding: CGFloat = 10
     }
     
     lazy var avatarImageView: UIImageView = {
@@ -149,7 +150,7 @@ class ProfileHeaderView: UIView {
             setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.padding),
             setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:  -Constants.padding),
             setStatusButton.heightAnchor.constraint(equalToConstant: Constants.setStatusButtonHeight),
-            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: Constants.padding)
+            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: Constants.buttonPadding)
         ]
         
         NSLayoutConstraint.activate(

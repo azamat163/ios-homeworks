@@ -104,7 +104,7 @@ private extension String {
 }
 
 private extension CGFloat {
-    static let profileHeaderViewHeight: CGFloat = 222
+    static let profileHeaderViewHeight: CGFloat = 220
 }
 
 private extension UIColor {
