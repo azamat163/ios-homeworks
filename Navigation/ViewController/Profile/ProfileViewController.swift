@@ -90,7 +90,6 @@ class ProfileViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
-
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
