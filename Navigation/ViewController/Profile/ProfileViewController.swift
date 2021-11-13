@@ -10,6 +10,7 @@ import UIKit
 class ProfileViewController: UIViewController {
         
     private let posts = PostAPI.getPosts()
+    private let photos = PhotosAPI.getPhotos()
     
     lazy var profileHeaderView: ProfileHeaderView = {
         profileHeaderView = ProfileHeaderView(frame: .zero)
@@ -17,7 +18,7 @@ class ProfileViewController: UIViewController {
     }()
 
     lazy var tableView: UITableView = {
-        tableView = UITableView(frame: .zero, style: .plain)
+        tableView = UITableView(frame: .zero, style: .grouped)
         return tableView
     }()
     
@@ -29,6 +30,9 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.hidesBackButton = true
+        navigationItem.title = .profileTitle
         
         view.addSubview(tableView)
         
@@ -53,12 +57,15 @@ class ProfileViewController: UIViewController {
         profileHeaderView.layoutIfNeeded()
         
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: .postTableId)
+        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: .photosTableId)
         
         tableView.delegate = self
         tableView.dataSource = self
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
+        
+        tableView.reloadData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -94,26 +101,57 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return posts.count
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: .postTableId, for: indexPath) as? PostTableViewCell else { fatalError() }
-        let currentPost: Post = posts[indexPath.row]
-        
-        cell.postAuthorLabel.text = currentPost.author
-        cell.postImageView.image = UIImage(named: currentPost.image)
-        cell.postDescription.text = currentPost.description
-        cell.postLikes.text = "Likes: \(currentPost.likes)"
-        cell.postViews.text = "Views: \(currentPost.views)"
-        
-        return cell
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: .photosTableId, for: indexPath) as? PhotosTableViewCell else { fatalError() }
+            cell.photosFirstImageView.image = UIImage(named: photos[0].imageNamed)
+            cell.photosSecondImageView.image = UIImage(named: photos[1].imageNamed)
+            cell.photosThirdImageView.image = UIImage(named: photos[2].imageNamed)
+            cell.photosFourthImageView.image = UIImage(named: photos[3].imageNamed)
+            return cell
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: .postTableId, for: indexPath) as? PostTableViewCell else { fatalError() }
+            let currentPost: Post = posts[indexPath.row]
+            cell.postAuthorLabel.text = currentPost.author
+            cell.postImageView.image = UIImage(named: currentPost.image)
+            cell.postDescription.text = currentPost.description
+            cell.postLikes.text = "Likes: \(currentPost.likes)"
+            cell.postViews.text = "Views: \(currentPost.views)"
+            return cell
+        default:
+            return UITableViewCell()
+        }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let photoVc = PhotosViewController()
+            self.navigationController?.pushViewController(photoVc, animated: true)
+        }
+    }
+    
 }
 
 private extension String {
     static let postTableId = "postTableId"
+    static let photosTableId = "photosTableId"
+    static let profileTitle = "Profile"
 }
 
 
