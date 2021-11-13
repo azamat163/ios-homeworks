@@ -59,11 +59,13 @@ class PostTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        contentView.addSubview(postAuthorLabel)
-        contentView.addSubview(postImageView)
-        contentView.addSubview(postDescription)
-        contentView.addSubview(postLikes)
-        contentView.addSubview(postViews)
+        contentView.addSubviews([
+            postAuthorLabel,
+            postImageView,
+            postDescription,
+            postLikes,
+            postViews
+        ])
         
         setupLayout()
     }
