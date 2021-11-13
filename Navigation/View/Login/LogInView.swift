@@ -45,6 +45,7 @@ class LogInView: UIView {
         emailOfPhoneTextField.textColor = Constants.TextField.textColor
         emailOfPhoneTextField.font = Constants.TextField.font
         emailOfPhoneTextField.autocapitalizationType = .none
+        emailOfPhoneTextField.tintColor = UIColor(named: "color")
         
         emailOfPhoneTextField.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         emailOfPhoneTextField.layer.cornerRadius = Constants.TextField.cornerRadius
@@ -65,6 +66,7 @@ class LogInView: UIView {
         passwordTextField = UITextField(frame: .zero)
         passwordTextField.placeholder = .passwordPlaceholder
         passwordTextField.isSecureTextEntry = true
+        passwordTextField.tintColor = UIColor(named: "color")
         
         passwordTextField.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         passwordTextField.layer.cornerRadius = Constants.TextField.cornerRadius

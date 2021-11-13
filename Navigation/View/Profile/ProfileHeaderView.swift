@@ -9,11 +9,12 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
+    private var statusText: String = ""
+
     // MARK: - constants
     
     private enum Constants {
         static let avatarImage: UIImage? = UIImage(named: .avatarImageNamed)
-        static let avatarImageViewFrame: CGRect = CGRect(x: 0, y: 0, width: 100, height: 100)
         static let avatarImageHeight: CGFloat = 100
         static let avatarImageViewBorderWidth: CGFloat = 3.0
         static let avatarImageViewBorderColor: CGColor = UIColor.white.cgColor
@@ -49,7 +50,6 @@ class ProfileHeaderView: UIView {
     
     lazy var avatarImageView: UIImageView = {
         avatarImageView = UIImageView(image: Constants.avatarImage)
-        avatarImageView.frame = Constants.avatarImageViewFrame
 
         return avatarImageView
     }()
@@ -76,6 +76,7 @@ class ProfileHeaderView: UIView {
         statusTextField = UITextField(frame: .zero)
         statusTextField.backgroundColor = Constants.statusTextFieldBackgroundColor
         statusTextField.placeholder = .placeholderText
+        statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
 
         return statusTextField
     }()
@@ -85,6 +86,7 @@ class ProfileHeaderView: UIView {
         setStatusButton.backgroundColor = Constants.setStatusButtonColor
         setStatusButton.setTitleColor(.white, for: .normal)
         setStatusButton.setTitle(.setStatusButtonText, for: .normal)
+        setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         
         return setStatusButton
     }()
@@ -125,7 +127,9 @@ class ProfileHeaderView: UIView {
     private func setupLayout() {
         let avatarImageConstraints: [NSLayoutConstraint] = [
             avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.padding),
-            avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.padding)
+            avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.padding),
+            avatarImageView.widthAnchor.constraint(equalToConstant: Constants.avatarImageHeight),
+            avatarImageView.heightAnchor.constraint(equalToConstant: Constants.avatarImageHeight)
         ]
         
         let fullNameLabelConstraints: [NSLayoutConstraint] = [
@@ -136,21 +140,21 @@ class ProfileHeaderView: UIView {
         let statusLabelConstraints: [NSLayoutConstraint] = [
             statusLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
             statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: Constants.textPadding),
+//            statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -Constants.buttonPadding)
         ]
         
         let statusTextFieldConstraints: [NSLayoutConstraint] = [
             statusTextField.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
             statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: Constants.padding),
-            statusTextField.trailingAnchor.constraint(equalTo: setStatusButton.trailingAnchor),
+            statusTextField.trailingAnchor.constraint(equalTo:  self.trailingAnchor, constant:  -Constants.padding),
             statusTextField.heightAnchor.constraint(equalToConstant: Constants.statusTextFieldHeight),
-            statusTextField.widthAnchor.constraint(lessThanOrEqualToConstant: Constants.statusTextFieldWidth),
         ]
         
         let setStatusButtonConstraints: [NSLayoutConstraint] = [
-            setStatusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.padding),
-            setStatusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:  -Constants.padding),
+            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: Constants.buttonPadding),
+            setStatusButton.leadingAnchor.constraint(equalTo:  avatarImageView.leadingAnchor),
+            setStatusButton.trailingAnchor.constraint(equalTo:  statusTextField.trailingAnchor),
             setStatusButton.heightAnchor.constraint(equalToConstant: Constants.setStatusButtonHeight),
-            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: Constants.buttonPadding)
         ]
         
         NSLayoutConstraint.activate(
@@ -194,6 +198,24 @@ class ProfileHeaderView: UIView {
     private func setupPaddingTextField() {
         statusTextField.setLeftPaddingPoints(Constants.padding)
         statusTextField.setRightPaddingPoints(Constants.padding)
+    }
+    
+    @objc func buttonPressed() {
+        guard !statusText.isEmpty else {
+            UIView.animate(withDuration: 0.5) {
+                [weak self] in
+                self?.statusTextField.layer.borderWidth = 2
+                self?.statusTextField.layer.borderColor = UIColor.red.cgColor
+                self?.layoutIfNeeded()
+            }
+            return
+        }
+        
+        statusLabel.text = statusText
+    }
+    
+    @objc func statusTextChanged(_ textField: UITextField) {
+        statusText = textField.text ?? " "
     }
 }
 

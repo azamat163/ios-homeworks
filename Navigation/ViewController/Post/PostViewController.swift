@@ -16,8 +16,8 @@ class PostViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: .barItemTitle, style: .plain, target: self, action: #selector(goToInfo(sender:)))
     }
     
-    func setupTitle(_ post: Post) {
-        self.title = post.title
+    func setupTitle(_ title: String) {
+        self.title = title
     }
     
     @objc func goToInfo(sender: UIBarButtonItem) {

@@ -11,6 +11,8 @@
 		03AE911F2734F90600CEE4C4 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AE911E2734F90600CEE4C4 /* LogInView.swift */; };
 		03AE91252735251500CEE4C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AE91242735251500CEE4C4 /* UIImage+Extensions.swift */; };
 		03AE9127273528ED00CEE4C4 /* LogInViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AE9126273528ED00CEE4C4 /* LogInViewControllerDelegate.swift */; };
+		03AE91312735D41000CEE4C4 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AE91302735D41000CEE4C4 /* PostTableViewCell.swift */; };
+		03BB803F273712EF009B7B54 /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BB803E273712EF009B7B54 /* PostAPI.swift */; };
 		F385D793271415F0006458CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D792271415F0006458CD /* AppDelegate.swift */; };
 		F385D795271415F0006458CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D794271415F0006458CD /* SceneDelegate.swift */; };
 		F385D79D271415F0006458CD /* Navigation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F385D79B271415F0006458CD /* Navigation.xcdatamodeld */; };
@@ -56,6 +58,8 @@
 		03AE911E2734F90600CEE4C4 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		03AE91242735251500CEE4C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		03AE9126273528ED00CEE4C4 /* LogInViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewControllerDelegate.swift; sourceTree = "<group>"; };
+		03AE91302735D41000CEE4C4 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		03BB803E273712EF009B7B54 /* PostAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
 		F385D78F271415F0006458CD /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F385D792271415F0006458CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F385D794271415F0006458CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +129,14 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		03BB803C273712BB009B7B54 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				03BB803E273712EF009B7B54 /* PostAPI.swift */,
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
 		F385D786271415F0006458CD = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +160,7 @@
 		F385D791271415F0006458CD /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				03BB803C273712BB009B7B54 /* APIs */,
 				F385D82727184C2E006458CD /* Model */,
 				F385D8132716AEA5006458CD /* Extentions */,
 				F385D7E82714A802006458CD /* ViewController */,
@@ -207,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				F3D792DB27206D80008299BC /* ProfileHeaderView.swift */,
+				03AE91302735D41000CEE4C4 /* PostTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -435,11 +449,13 @@
 				03AE911F2734F90600CEE4C4 /* LogInView.swift in Sources */,
 				F385D793271415F0006458CD /* AppDelegate.swift in Sources */,
 				F385D795271415F0006458CD /* SceneDelegate.swift in Sources */,
+				03AE91312735D41000CEE4C4 /* PostTableViewCell.swift in Sources */,
 				F385D79D271415F0006458CD /* Navigation.xcdatamodeld in Sources */,
 				F3D792E22722912F008299BC /* Button+Extensions.swift in Sources */,
 				F3D792E42722A532008299BC /* TextField+Extensions.swift in Sources */,
 				F385D82F27185E51006458CD /* InfoViewController.swift in Sources */,
 				F385D80D2716AAB5006458CD /* HomeViewController.swift in Sources */,
+				03BB803F273712EF009B7B54 /* PostAPI.swift in Sources */,
 				F3D792DC27206D80008299BC /* ProfileHeaderView.swift in Sources */,
 				F385D83427185ECA006458CD /* InfoView.swift in Sources */,
 				03AE91252735251500CEE4C4 /* UIImage+Extensions.swift in Sources */,
