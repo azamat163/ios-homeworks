@@ -9,8 +9,6 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    weak var activeTextField: UITextField?
-    
     lazy var logInView: LogInView = {
         logInView = LogInView(frame: .zero)
         logInView.toAutoLayout()
@@ -21,6 +19,7 @@ class LogInViewController: UIViewController {
     lazy var scrollView: UIScrollView = {
         scrollView = UIScrollView(frame: .zero)
         scrollView.toAutoLayout()
+        
         return scrollView
     }()
 
@@ -35,8 +34,6 @@ class LogInViewController: UIViewController {
         
         setupLogInView()
         logInView.delegate = self
-        logInView.emailOfPhoneTextField.delegate = self
-        logInView.passwordTextField.delegate = self
         
         configureKeyboardNotifications()
     }
@@ -49,8 +46,8 @@ class LogInViewController: UIViewController {
     
     private func setupLogInView() {
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             
@@ -79,8 +76,6 @@ class LogInViewController: UIViewController {
         guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         else { return }
         
-        guard let activeTextField = activeTextField else { return }
-
         let keyboardScreenEndFrame = keyboardValue.cgRectValue
         let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
 
@@ -89,7 +84,7 @@ class LogInViewController: UIViewController {
         } else {
             scrollView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardViewEndFrame.height, right: 0.0)
             
-            let activeRect = activeTextField.convert(activeTextField.bounds, to: scrollView)
+            let activeRect = logInView.logInButton.convert(logInView.logInButton.bounds, to: scrollView)
             scrollView.scrollRectToVisible(activeRect, animated: true)
         }
         
@@ -102,21 +97,5 @@ extension LogInViewController: LogInViewControllerDelegate {
     func tappedButton(sender: UIButton) {
         let profileVc = ProfileViewController()
         navigationController?.pushViewController(profileVc, animated: true)
-    }
-}
-
-extension LogInViewController: UITextFieldDelegate {
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        activeTextField = textField
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        activeTextField = nil
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
 }
