@@ -109,27 +109,14 @@ class PhotosTableViewCell: UITableViewCell {
             photosStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: .padding),
             photosStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -.padding),
             photosStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -.padding),
-            
-            photosFirstImageView.widthAnchor.constraint(lessThanOrEqualToConstant: amountImageWidth),
-            photosFirstImageView.heightAnchor.constraint(lessThanOrEqualToConstant: amountImageWidth),
-            
-            photosSecondImageView.widthAnchor.constraint(lessThanOrEqualToConstant: amountImageWidth),
-            photosSecondImageView.heightAnchor.constraint(lessThanOrEqualToConstant: amountImageWidth),
-
-            
-            photosThirdImageView.widthAnchor.constraint(lessThanOrEqualToConstant: amountImageWidth),
-            photosThirdImageView.heightAnchor.constraint(lessThanOrEqualToConstant: amountImageWidth),
-
-            
-            photosFourthImageView.widthAnchor.constraint(lessThanOrEqualToConstant: amountImageWidth),
-            photosFourthImageView.heightAnchor.constraint(lessThanOrEqualToConstant: amountImageWidth),
+            photosStackView.heightAnchor.constraint(equalToConstant: height)
         ])
     }
-    
-    private var amountImageWidth: CGFloat {
-        return CGFloat(round((UIScreen.main.bounds.width - (.padding * 2 + .spacing * 3)) / 4))
-    }
 }
+
+private var height: CGFloat = {
+    return CGFloat(round((UIScreen.main.bounds.width - (.padding * 2 + .spacing * 3)) / 4))
+}()
 
 private extension String {
     static let photosTitleText = "Photos"
