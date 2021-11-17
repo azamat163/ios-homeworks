@@ -110,19 +110,19 @@ class PhotosTableViewCell: UITableViewCell {
             photosStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -.padding),
             photosStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -.padding),
             
-            photosFirstImageView.widthAnchor.constraint(equalToConstant: amountImageWidth),
-            photosFirstImageView.heightAnchor.constraint(equalToConstant: amountImageWidth),
+            photosFirstImageView.widthAnchor.constraint(lessThanOrEqualToConstant: amountImageWidth),
+            photosFirstImageView.heightAnchor.constraint(lessThanOrEqualToConstant: amountImageWidth),
             
-            photosSecondImageView.widthAnchor.constraint(equalToConstant: amountImageWidth),
-            photosSecondImageView.heightAnchor.constraint(equalToConstant: amountImageWidth),
+            photosSecondImageView.widthAnchor.constraint(lessThanOrEqualToConstant: amountImageWidth),
+            photosSecondImageView.heightAnchor.constraint(lessThanOrEqualToConstant: amountImageWidth),
 
             
-            photosThirdImageView.widthAnchor.constraint(equalToConstant: amountImageWidth),
-            photosThirdImageView.heightAnchor.constraint(equalToConstant: amountImageWidth),
+            photosThirdImageView.widthAnchor.constraint(lessThanOrEqualToConstant: amountImageWidth),
+            photosThirdImageView.heightAnchor.constraint(lessThanOrEqualToConstant: amountImageWidth),
 
             
-            photosFourthImageView.widthAnchor.constraint(equalToConstant: amountImageWidth),
-            photosFourthImageView.heightAnchor.constraint(equalToConstant: amountImageWidth),
+            photosFourthImageView.widthAnchor.constraint(lessThanOrEqualToConstant: amountImageWidth),
+            photosFourthImageView.heightAnchor.constraint(lessThanOrEqualToConstant: amountImageWidth),
         ])
     }
     
