@@ -50,6 +50,7 @@ class ProfileHeaderView: UIView {
     
     lazy var avatarImageView: UIImageView = {
         avatarImageView = UIImageView(image: Constants.avatarImage)
+        avatarImageView.isUserInteractionEnabled = true
 
         return avatarImageView
     }()

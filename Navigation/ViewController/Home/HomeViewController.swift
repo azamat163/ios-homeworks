@@ -14,6 +14,7 @@ class HomeViewController: UITabBarController {
         static let profileTitle: String = "Profile"
         static let feedImageName: String = "house"
         static let profileImageName: String = "person"
+        static let mainColor: UIColor = UIColor(named: "Color") ?? .label
     }
 
     override func viewDidLoad() {
@@ -21,7 +22,8 @@ class HomeViewController: UITabBarController {
         view.backgroundColor = .systemBackground
         
         UITabBar.appearance().barTintColor = .systemBackground
-        tabBar.tintColor = .label
+        tabBar.tintColor = Constants.mainColor
+        
         setupVCs()
     }
     
@@ -38,8 +40,10 @@ class HomeViewController: UITabBarController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title
         navController.tabBarItem.image = image
+        navController.tabBarItem.selectedImage = image.withTintColor(Constants.mainColor, renderingMode: .alwaysOriginal)
         navController.navigationBar.prefersLargeTitles = false
         rootViewController.navigationItem.title = title
+        
         return navController
     }
 }

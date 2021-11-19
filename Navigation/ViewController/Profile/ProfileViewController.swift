@@ -14,11 +14,13 @@ class ProfileViewController: UIViewController {
     
     lazy var profileHeaderView: ProfileHeaderView = {
         profileHeaderView = ProfileHeaderView(frame: .zero)
+    
         return profileHeaderView
     }()
 
     lazy var tableView: UITableView = {
         tableView = UITableView(frame: .zero, style: .grouped)
+        
         return tableView
     }()
     
@@ -66,6 +68,8 @@ class ProfileViewController: UIViewController {
         tableView.estimatedRowHeight = UITableView.automaticDimension
         
         tableView.reloadData()
+        
+        setupTapGestureRecognizer()
     }
     
     override func viewDidLayoutSubviews() {
@@ -96,6 +100,11 @@ class ProfileViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+    
+    private func setupTapGestureRecognizer() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTappedAvatarImage(_:)))
+        profileHeaderView.avatarImageView.addGestureRecognizer(tapGestureRecognizer)
     }
 }
 
@@ -146,6 +155,28 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+}
+
+extension ProfileViewController {
+    
+    @objc func onTappedAvatarImage(_ sender: UITapGestureRecognizer) {
+        animateKeyFramesAvatarImage()
+    }
+    
+    private func animateKeyFramesAvatarImage() {
+        let start = self.profileHeaderView.avatarImageView.center
+        
+        UIView.animateKeyframes(withDuration: 5, delay: 0, options: .calculationModeCubicPaced, animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.0) {
+                self.profileHeaderView.avatarImageView.transform = CGAffineTransform(scaleX: 2, y: 2)
+            }
+            
+            UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25) {
+                self.profileHeaderView.avatarImageView.center = CGPoint(x: self.view.center.x, y: self.view.center.y)
+            }
+            
+        })
+    }
 }
 
 private extension String {
