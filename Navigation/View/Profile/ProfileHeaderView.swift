@@ -10,6 +10,8 @@ import UIKit
 class ProfileHeaderView: UIView {
     
     private var statusText: String = ""
+    
+    var delegate: ProfileViewControllerDelegate?
 
     // MARK: - constants
     
@@ -51,6 +53,8 @@ class ProfileHeaderView: UIView {
     lazy var avatarImageView: UIImageView = {
         avatarImageView = UIImageView(image: Constants.avatarImage)
         avatarImageView.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTappedAvatarImage(_:)))
+        avatarImageView.addGestureRecognizer(tapGestureRecognizer)
         avatarImageView.toAutoLayout()
 
         return avatarImageView
@@ -236,6 +240,10 @@ class ProfileHeaderView: UIView {
     
     @objc func statusTextChanged(_ textField: UITextField) {
         statusText = textField.text ?? " "
+    }
+    
+    @objc func onTappedAvatarImage(_ sender: UITapGestureRecognizer) {
+        delegate?.onTappedAvatarImage(sender)
     }
 }
 

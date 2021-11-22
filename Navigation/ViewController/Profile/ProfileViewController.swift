@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol ProfileViewControllerDelegate {
+    func onTappedAvatarImage(_ sender: UITapGestureRecognizer)
+}
+
 class ProfileViewController: UIViewController {
     
     private let posts = PostAPI.getPosts()
@@ -71,7 +75,7 @@ class ProfileViewController: UIViewController {
         
         tableView.reloadData()
         
-        setupTapGestureRecognizer()
+        profileHeaderView.delegate = self
     }
     
     override func viewDidLayoutSubviews() {
@@ -102,11 +106,6 @@ class ProfileViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-    }
-    
-    private func setupTapGestureRecognizer() {
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTappedAvatarImage(_:)))
-        profileHeaderView.avatarImageView.addGestureRecognizer(tapGestureRecognizer)
     }
 }
 
@@ -159,46 +158,17 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-extension ProfileViewController {
+extension ProfileViewController: ProfileViewControllerDelegate {
     
-    @objc func onTappedAvatarImage(_ sender: UITapGestureRecognizer) {
-        setupProfileShadowView(sender)
-    }
-    
-    private func setupProfileShadowView(_ sender: UITapGestureRecognizer) {
-        guard let avatarImage = sender.view else { return }
-        avatarImage.isHidden = true
-        let profileShadowView = ProfileShadowView(frame: .zero)
+    func onTappedAvatarImage(_ sender: UITapGestureRecognizer) {
+        let avatarImageView = profileHeaderView.avatarImageView
+        avatarImageView.isHidden = true
+        let profileShadowView = ProfileShadowView(toView: avatarImageView, frame: .zero)
         profileShadowView.frame.size = view.frame.size
         view.addSubview(profileShadowView)
-        profileShadowView.avatarImageView.frame = avatarImage.convert(avatarImage.bounds, to: view)
         
-        animateAvatarImage(with: profileShadowView)
-        animatedClosedButton(view: profileShadowView, avatarView: avatarImage)
-    }
-        
-    private func animateAvatarImage(with view: ProfileShadowView) {
-        UIView.animate(withDuration: 0.5, delay: 0, options: [.allowUserInteraction, .beginFromCurrentState, .allowUserInteraction], animations: { [unowned view] in
-            view.avatarImageView.frame.size.width = view.bounds.width
-            view.avatarImageView.frame.size.height = view.bounds.width
-            view.avatarImageView.center = view.center
-            view.avatarImageView.layer.cornerRadius = 0
-            view.shadowView.alpha = 0.5
-        })
-
-        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveLinear, .allowUserInteraction, .beginFromCurrentState], animations: { [unowned view] in
-            view.closeButton.alpha = 1.0
-        })
-    }
-    
-    private func animatedClosedButton(view: ProfileShadowView, avatarView: UIView) {
-        view.closeButton.addTarget(self, action: #selector(self.clickClosedButton(view:avatarView:)), for: .touchUpInside)
-    }
-
-    @objc func clickClosedButton(view: ProfileShadowView, avatarView: UIView) {
-        UIView.animate(withDuration: 0.5, delay: 0, options: [.allowUserInteraction, .beginFromCurrentState, .allowUserInteraction], animations: { [unowned view] in
-            view.avatarImageView.isHidden = true
-        })
+        profileShadowView.animationAvatarImage()
+        profileShadowView.animationCloseButton()
     }
 }
 
