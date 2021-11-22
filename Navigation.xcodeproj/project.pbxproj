@@ -12,6 +12,7 @@
 		03053C4127401A0A002D5EC4 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03053C4027401A0A002D5EC4 /* Photo.swift */; };
 		03053C4427403852002D5EC4 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03053C4327403852002D5EC4 /* PhotosViewController.swift */; };
 		03053C48274045C9002D5EC4 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03053C47274045C9002D5EC4 /* PhotosCollectionViewCell.swift */; };
+		034B5EF2274AADBC00E84998 /* ProfileShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034B5EF1274AADBC00E84998 /* ProfileShadowView.swift */; };
 		03AE911D2734F79D00CEE4C4 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AE911C2734F79D00CEE4C4 /* LogInViewController.swift */; };
 		03AE911F2734F90600CEE4C4 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AE911E2734F90600CEE4C4 /* LogInView.swift */; };
 		03AE91252735251500CEE4C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AE91242735251500CEE4C4 /* UIImage+Extensions.swift */; };
@@ -64,6 +65,7 @@
 		03053C4027401A0A002D5EC4 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		03053C4327403852002D5EC4 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		03053C47274045C9002D5EC4 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		034B5EF1274AADBC00E84998 /* ProfileShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileShadowView.swift; sourceTree = "<group>"; };
 		03AE911C2734F79D00CEE4C4 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		03AE911E2734F90600CEE4C4 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		03AE91242735251500CEE4C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				F3D792DB27206D80008299BC /* ProfileHeaderView.swift */,
 				03AE91302735D41000CEE4C4 /* PostTableViewCell.swift */,
 				03053C3C27400E5D002D5EC4 /* PhotosTableViewCell.swift */,
+				034B5EF1274AADBC00E84998 /* ProfileShadowView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				F385D8152716AEBE006458CD /* View+Extensions.swift in Sources */,
 				F385D7CD27141F92006458CD /* ProfileViewController.swift in Sources */,
 				03AE911D2734F79D00CEE4C4 /* LogInViewController.swift in Sources */,
+				034B5EF2274AADBC00E84998 /* ProfileShadowView.swift in Sources */,
 				03AE9127273528ED00CEE4C4 /* LogInViewControllerDelegate.swift in Sources */,
 				F385D82A27184C46006458CD /* Post.swift in Sources */,
 				03AE911F2734F90600CEE4C4 /* LogInView.swift in Sources */,
