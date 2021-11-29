@@ -25,8 +25,8 @@ class LogInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = ""
         
-        self.navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
         
         view.addSubview(scrollView)

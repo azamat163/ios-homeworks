@@ -20,7 +20,7 @@ class PostTableViewCell: UITableViewCell {
     }()
     
     lazy var postImageView: UIImageView = {
-        postImageView = UIImageView()
+        postImageView = UIImageView(frame: .zero)
         postImageView.contentMode = .scaleAspectFit
         postImageView.backgroundColor = .black
         postImageView.toAutoLayout()
