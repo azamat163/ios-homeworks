@@ -7,18 +7,26 @@
 
 import UIKit
 
+protocol ProfileViewControllerDelegate {
+    func onTappedAvatarImage(_ sender: UITapGestureRecognizer)
+}
+
 class ProfileViewController: UIViewController {
-        
+    
     private let posts = PostAPI.getPosts()
     private let photos = PhotosAPI.getPhotos()
     
     lazy var profileHeaderView: ProfileHeaderView = {
         profileHeaderView = ProfileHeaderView(frame: .zero)
+        profileHeaderView.toAutoLayout()
+    
         return profileHeaderView
     }()
 
     lazy var tableView: UITableView = {
         tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.toAutoLayout()
+        
         return tableView
     }()
     
@@ -66,6 +74,8 @@ class ProfileViewController: UIViewController {
         tableView.estimatedRowHeight = UITableView.automaticDimension
         
         tableView.reloadData()
+        
+        profileHeaderView.delegate = self
     }
     
     override func viewDidLayoutSubviews() {
@@ -146,6 +156,20 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+}
+
+extension ProfileViewController: ProfileViewControllerDelegate {
+    
+    func onTappedAvatarImage(_ sender: UITapGestureRecognizer) {
+        let avatarImageView = profileHeaderView.avatarImageView
+        avatarImageView.isHidden = true
+        let profileShadowView = ProfileShadowView(toView: avatarImageView, frame: .zero)
+        profileShadowView.frame.size = view.frame.size
+        view.addSubview(profileShadowView)
+        
+        profileShadowView.animationAvatarImage()
+        profileShadowView.animationCloseButton()
+    }
 }
 
 private extension String {

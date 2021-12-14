@@ -10,6 +10,8 @@ import UIKit
 class ProfileHeaderView: UIView {
     
     private var statusText: String = ""
+    
+    var delegate: ProfileViewControllerDelegate?
 
     // MARK: - constants
     
@@ -50,6 +52,10 @@ class ProfileHeaderView: UIView {
     
     lazy var avatarImageView: UIImageView = {
         avatarImageView = UIImageView(image: Constants.avatarImage)
+        avatarImageView.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTappedAvatarImage(_:)))
+        avatarImageView.addGestureRecognizer(tapGestureRecognizer)
+        avatarImageView.toAutoLayout()
 
         return avatarImageView
     }()
@@ -59,6 +65,7 @@ class ProfileHeaderView: UIView {
         fullNameLabel.font = Constants.fullNameLabelFont
         fullNameLabel.text = .fullNameLabelText
         fullNameLabel.textColor = Constants.fullNameLabelColor
+        fullNameLabel.toAutoLayout()
         
         return fullNameLabel
     }()
@@ -68,6 +75,7 @@ class ProfileHeaderView: UIView {
         statusLabel.font = Constants.statusLabelFont
         statusLabel.text = .statusLabelText
         statusLabel.textColor = Constants.statusLabelColor
+        statusLabel.toAutoLayout()
         
         return statusLabel
     }()
@@ -77,6 +85,7 @@ class ProfileHeaderView: UIView {
         statusTextField.backgroundColor = Constants.statusTextFieldBackgroundColor
         statusTextField.placeholder = .placeholderText
         statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
+        statusTextField.toAutoLayout()
 
         return statusTextField
     }()
@@ -87,24 +96,34 @@ class ProfileHeaderView: UIView {
         setStatusButton.setTitleColor(.white, for: .normal)
         setStatusButton.setTitle(.setStatusButtonText, for: .normal)
         setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        setStatusButton.toAutoLayout()
         
         return setStatusButton
     }()
     
+    lazy var closeButton: UIButton = {
+        closeButton = UIButton(frame: .zero)
+        closeButton.setImage(UIImage(systemName: "x.circle"), for: .normal)
+        closeButton.alpha = 0
+        closeButton.toAutoLayout()
+        
+        return closeButton
+    }()
+    
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        let views: [UIView] = [
+        self.addSubviews([
             avatarImageView,
             fullNameLabel,
             statusLabel,
             statusTextField,
-            setStatusButton
-        ]
-
-        self.addSubviews(views)
-        views.forEach { $0.toAutoLayout() }
-
+            setStatusButton,
+            closeButton
+        ])
+        
         setupLayout()
     }
     
@@ -140,7 +159,6 @@ class ProfileHeaderView: UIView {
         let statusLabelConstraints: [NSLayoutConstraint] = [
             statusLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
             statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: Constants.textPadding),
-//            statusLabel.bottomAnchor.constraint(equalTo: statusTextField.topAnchor, constant: -Constants.buttonPadding)
         ]
         
         let statusTextFieldConstraints: [NSLayoutConstraint] = [
@@ -157,12 +175,18 @@ class ProfileHeaderView: UIView {
             setStatusButton.heightAnchor.constraint(equalToConstant: Constants.setStatusButtonHeight),
         ]
         
+        let closedButtonConstraints: [NSLayoutConstraint] = [
+            closeButton.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.padding),
+            closeButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.padding)
+        ]
+        
         NSLayoutConstraint.activate(
             avatarImageConstraints +
             fullNameLabelConstraints +
             statusLabelConstraints +
             statusTextFieldConstraints +
-            setStatusButtonConstraints
+            setStatusButtonConstraints +
+            closedButtonConstraints
         )
     }
     
@@ -216,6 +240,10 @@ class ProfileHeaderView: UIView {
     
     @objc func statusTextChanged(_ textField: UITextField) {
         statusText = textField.text ?? " "
+    }
+    
+    @objc func onTappedAvatarImage(_ sender: UITapGestureRecognizer) {
+        delegate?.onTappedAvatarImage(sender)
     }
 }
 
