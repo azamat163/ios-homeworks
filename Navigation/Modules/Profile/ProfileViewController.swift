@@ -17,19 +17,32 @@ class ProfileViewController: UIViewController {
     private let posts = PostAPI.getPosts()
     private let photos = PhotosAPI.getPhotos()
     
-    lazy var profileHeaderView: ProfileHeaderView = {
+    var service: UserService
+    var fullName: String
+    
+    private lazy var profileHeaderView: ProfileHeaderView = {
         profileHeaderView = ProfileHeaderView(frame: .zero)
         profileHeaderView.toAutoLayout()
     
         return profileHeaderView
     }()
 
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         tableView = UITableView(frame: .zero, style: .grouped)
         tableView.toAutoLayout()
         
         return tableView
     }()
+    
+    init(service: UserService, fullName: String) {
+        self.service = service
+        self.fullName = fullName
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func loadView() {
         super.loadView()
@@ -51,10 +64,9 @@ class ProfileViewController: UIViewController {
         
         view.addSubview(tableView)
         
-        profileHeaderView.toAutoLayout()
-        tableView.toAutoLayout()
-        
         setupLayout()
+        
+        configureProfileHeaderView()
         
         tableView.tableHeaderView = profileHeaderView
         
@@ -113,6 +125,11 @@ class ProfileViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+    
+    private func configureProfileHeaderView() {
+        guard let user = service.getUser(fullName: fullName) else { return }
+        profileHeaderView.configure(with: user)
     }
 }
 

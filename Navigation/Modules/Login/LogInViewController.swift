@@ -8,7 +8,7 @@
 import UIKit
 
 protocol LogInViewControllerDelegate {
-    func tappedButton(sender: UIButton)
+    func tappedButton(sender: UIButton, fullName: String)
 }
 
 class LogInViewController: UIViewController {
@@ -98,8 +98,20 @@ class LogInViewController: UIViewController {
 
 extension LogInViewController: LogInViewControllerDelegate {
     
-    func tappedButton(sender: UIButton) {
-        let profileVc = ProfileViewController()
+    func tappedButton(sender: UIButton, fullName: String) {
+        var currentUser: UserService
+
+        #if DEBUG
+            currentUser = TestUserService()
+        #else
+           let user = User(
+            fullName: fullName,
+            avatar: "avatar_cat",
+            status: "Waiting for something..."
+           )
+           currentUser = CurrentService(user: user)
+        #endif
+        let profileVc = ProfileViewController(service: currentUser, fullName: fullName)
         navigationController?.pushViewController(profileVc, animated: true)
     }
 }
