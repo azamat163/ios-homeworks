@@ -124,8 +124,8 @@ extension PostTableViewCell {
             imageProcessor.processImage(
                 sourceImage: image,
                 filter: filter,
-                completion: { image in
-                    self.postImageView.image = image
+                completion: { [weak self] image in
+                    self?.postImageView.image = image
                 }
             )
         }
