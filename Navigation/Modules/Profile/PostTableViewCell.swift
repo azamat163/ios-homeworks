@@ -132,8 +132,6 @@ extension PostTableViewCell {
     }
 }
 
-
-
 private extension CGFloat {
     static let padding: CGFloat = 16
 }
