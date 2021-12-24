@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import StorageService
 
 protocol ProfileViewControllerDelegate {
     func onTappedAvatarImage(_ sender: UITapGestureRecognizer)
@@ -39,6 +40,12 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        #if DEBUG
+            view.backgroundColor = .red
+        #else
+            view.backgroundColor = .blue
+        #endif
+
         navigationItem.hidesBackButton = true
         navigationItem.title = .profileTitle
         

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol LogInViewControllerDelegate {
+    func tappedButton(sender: UIButton)
+}
+
 class LogInViewController: UIViewController {
     
     lazy var logInView: LogInView = {
