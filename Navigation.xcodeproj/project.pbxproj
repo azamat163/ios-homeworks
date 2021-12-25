@@ -26,6 +26,10 @@
 		03AE91252735251500CEE4C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AE91242735251500CEE4C4 /* UIImage+Extensions.swift */; };
 		03AE91312735D41000CEE4C4 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AE91302735D41000CEE4C4 /* PostTableViewCell.swift */; };
 		03BB803F273712EF009B7B54 /* PostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03BB803E273712EF009B7B54 /* PostAPI.swift */; };
+		03D23CA127765F850009A6DB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D23CA027765F850009A6DB /* User.swift */; };
+		03D23CA427765FF60009A6DB /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D23CA327765FF60009A6DB /* UserService.swift */; };
+		03D23CA62776602F0009A6DB /* CurrentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D23CA52776602F0009A6DB /* CurrentService.swift */; };
+		03D23CA827766A910009A6DB /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D23CA727766A910009A6DB /* TestUserService.swift */; };
 		2047F23E10CD214C50CF39C8 /* Pods_NavigationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0DCA5721FAB1CF0D9F8DA1F /* Pods_NavigationTests.framework */; };
 		6CAFA5415BF37BEFD9996EB9 /* Pods_Navigation_NavigationUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70451A3E2C1A491677B57628 /* Pods_Navigation_NavigationUITests.framework */; };
 		881D961D7A0EBBE72819CD0F /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D504B08EB11230732DF502B /* Pods_StorageService.framework */; };
@@ -122,6 +126,10 @@
 		03AE91242735251500CEE4C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		03AE91302735D41000CEE4C4 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		03BB803E273712EF009B7B54 /* PostAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAPI.swift; sourceTree = "<group>"; };
+		03D23CA027765F850009A6DB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		03D23CA327765FF60009A6DB /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		03D23CA52776602F0009A6DB /* CurrentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentService.swift; sourceTree = "<group>"; };
+		03D23CA727766A910009A6DB /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		1CF4F59CBF42DD4F1FE5BBC4 /* Pods-NavigationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NavigationTests.debug.xcconfig"; path = "Target Support Files/Pods-NavigationTests/Pods-NavigationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		34816974732ECDE8A1E173C0 /* Pods-Navigation-NavigationUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation-NavigationUITests.release.xcconfig"; path = "Target Support Files/Pods-Navigation-NavigationUITests/Pods-Navigation-NavigationUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3D504B08EB11230732DF502B /* Pods_StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -300,6 +308,16 @@
 			path = APIs;
 			sourceTree = "<group>";
 		};
+		03D23CA227765FE50009A6DB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				03D23CA327765FF60009A6DB /* UserService.swift */,
+				03D23CA52776602F0009A6DB /* CurrentService.swift */,
+				03D23CA727766A910009A6DB /* TestUserService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		7B82986F110DC65073366054 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,6 +376,7 @@
 		F385D791271415F0006458CD /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				03D23CA227765FE50009A6DB /* Services */,
 				033DC5692775F69700802BBA /* App */,
 				033DC5642775F5CE00802BBA /* Modules */,
 				03BB803C273712BB009B7B54 /* APIs */,
@@ -429,6 +448,7 @@
 			isa = PBXGroup;
 			children = (
 				03053C4027401A0A002D5EC4 /* Photo.swift */,
+				03D23CA027765F850009A6DB /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -813,11 +833,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03D23CA427765FF60009A6DB /* UserService.swift in Sources */,
 				F385D82027183C16006458CD /* FeedView.swift in Sources */,
 				03053C4427403852002D5EC4 /* PhotosViewController.swift in Sources */,
 				03053C48274045C9002D5EC4 /* PhotosCollectionViewCell.swift in Sources */,
 				03053C3F274019C4002D5EC4 /* PhotosAPI.swift in Sources */,
+				03D23CA62776602F0009A6DB /* CurrentService.swift in Sources */,
 				F385D819271837B0006458CD /* PostViewController.swift in Sources */,
+				03D23CA127765F850009A6DB /* User.swift in Sources */,
+				03D23CA827766A910009A6DB /* TestUserService.swift in Sources */,
 				F385D8152716AEBE006458CD /* View+Extensions.swift in Sources */,
 				F385D7CD27141F92006458CD /* ProfileViewController.swift in Sources */,
 				03AE911D2734F79D00CEE4C4 /* LogInViewController.swift in Sources */,
