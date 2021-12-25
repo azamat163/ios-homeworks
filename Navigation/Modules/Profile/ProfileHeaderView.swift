@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileHeaderView: UIView {
     
@@ -55,7 +56,6 @@ class ProfileHeaderView: UIView {
         avatarImageView.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTappedAvatarImage(_:)))
         avatarImageView.addGestureRecognizer(tapGestureRecognizer)
-        avatarImageView.toAutoLayout()
 
         return avatarImageView
     }()
@@ -65,7 +65,6 @@ class ProfileHeaderView: UIView {
         fullNameLabel.font = Constants.fullNameLabelFont
         fullNameLabel.text = .fullNameLabelText
         fullNameLabel.textColor = Constants.fullNameLabelColor
-        fullNameLabel.toAutoLayout()
         
         return fullNameLabel
     }()
@@ -75,7 +74,6 @@ class ProfileHeaderView: UIView {
         statusLabel.font = Constants.statusLabelFont
         statusLabel.text = .statusLabelText
         statusLabel.textColor = Constants.statusLabelColor
-        statusLabel.toAutoLayout()
         
         return statusLabel
     }()
@@ -85,7 +83,6 @@ class ProfileHeaderView: UIView {
         statusTextField.backgroundColor = Constants.statusTextFieldBackgroundColor
         statusTextField.placeholder = .placeholderText
         statusTextField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
-        statusTextField.toAutoLayout()
 
         return statusTextField
     }()
@@ -96,7 +93,6 @@ class ProfileHeaderView: UIView {
         setStatusButton.setTitleColor(.white, for: .normal)
         setStatusButton.setTitle(.setStatusButtonText, for: .normal)
         setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-        setStatusButton.toAutoLayout()
         
         return setStatusButton
     }()
@@ -105,7 +101,6 @@ class ProfileHeaderView: UIView {
         closeButton = UIButton(frame: .zero)
         closeButton.setImage(UIImage(systemName: "x.circle"), for: .normal)
         closeButton.alpha = 0
-        closeButton.toAutoLayout()
         
         return closeButton
     }()
@@ -141,53 +136,44 @@ class ProfileHeaderView: UIView {
         setupPaddingTextField()
     }
     
-    // MARK: - Setting layout constraints
+    // MARK: - Setting layout constraints with SnapKit
     
     private func setupLayout() {
-        let avatarImageConstraints: [NSLayoutConstraint] = [
-            avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.padding),
-            avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.padding),
-            avatarImageView.widthAnchor.constraint(equalToConstant: Constants.avatarImageHeight),
-            avatarImageView.heightAnchor.constraint(equalToConstant: Constants.avatarImageHeight)
-        ]
+        avatarImageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(Constants.padding)
+            make.top.equalToSuperview().offset(Constants.padding)
+            make.width.equalTo(Constants.avatarImageHeight)
+            make.height.equalTo(Constants.avatarImageHeight)
+        }
         
-        let fullNameLabelConstraints: [NSLayoutConstraint] = [
-            fullNameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.labelPadding),
-            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: Constants.padding)
-        ]
+        fullNameLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Constants.labelPadding)
+            make.leading.equalTo(avatarImageView.snp.trailing).offset(Constants.padding)
+        }
         
-        let statusLabelConstraints: [NSLayoutConstraint] = [
-            statusLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
-            statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: Constants.textPadding),
-        ]
+        statusLabel.snp.makeConstraints { make in
+            make.leading.equalTo(fullNameLabel.snp.leading)
+            make.top.equalTo(fullNameLabel.snp.bottom).offset(Constants.textPadding)
+        }
         
-        let statusTextFieldConstraints: [NSLayoutConstraint] = [
-            statusTextField.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
-            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: Constants.padding),
-            statusTextField.trailingAnchor.constraint(equalTo:  self.trailingAnchor, constant:  -Constants.padding),
-            statusTextField.heightAnchor.constraint(equalToConstant: Constants.statusTextFieldHeight),
-        ]
+        statusTextField.snp.makeConstraints { make in
+            make.leading.equalTo(fullNameLabel.snp.leading)
+            make.top.equalTo(statusLabel.snp.bottom).offset(Constants.padding)
+            make.trailing.equalToSuperview().offset(-Constants.padding)
+            make.height.equalTo(Constants.statusTextFieldHeight)
+        }
         
-        let setStatusButtonConstraints: [NSLayoutConstraint] = [
-            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: Constants.buttonPadding),
-            setStatusButton.leadingAnchor.constraint(equalTo:  avatarImageView.leadingAnchor),
-            setStatusButton.trailingAnchor.constraint(equalTo:  statusTextField.trailingAnchor),
-            setStatusButton.heightAnchor.constraint(equalToConstant: Constants.setStatusButtonHeight),
-        ]
+        setStatusButton.snp.makeConstraints { make in
+            make.top.equalTo(statusTextField.snp.bottom).offset(Constants.buttonPadding)
+            make.leading.equalTo(avatarImageView.snp.leading)
+            make.trailing.equalTo(statusTextField.snp.trailing)
+            make.height.equalTo(Constants.setStatusButtonHeight)
+        }
         
-        let closedButtonConstraints: [NSLayoutConstraint] = [
-            closeButton.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.padding),
-            closeButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.padding)
-        ]
-        
-        NSLayoutConstraint.activate(
-            avatarImageConstraints +
-            fullNameLabelConstraints +
-            statusLabelConstraints +
-            statusTextFieldConstraints +
-            setStatusButtonConstraints +
-            closedButtonConstraints
-        )
+        closeButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Constants.padding)
+            make.trailing.equalToSuperview().offset(-Constants.padding)
+        }
     }
     
     //MARK: - Settings layer

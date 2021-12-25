@@ -145,11 +145,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: .postTableId, for: indexPath) as? PostTableViewCell else { fatalError() }
             let currentPost: Post = posts[indexPath.row]
-            cell.postAuthorLabel.text = currentPost.author
-            cell.postImageView.image = UIImage(named: currentPost.image)
-            cell.postDescription.text = currentPost.description
-            cell.postLikes.text = "Likes: \(currentPost.likes)"
-            cell.postViews.text = "Views: \(currentPost.views)"
+            cell.configure(with: currentPost)
+            
             return cell
         default:
             return UITableViewCell()

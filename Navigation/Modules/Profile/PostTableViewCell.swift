@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import StorageService
+import iOSIntPackage
 
-class PostTableViewCell: UITableViewCell {
+final class PostTableViewCell: UITableViewCell {
     
-    lazy var postAuthorLabel: UILabel = {
+    private lazy var postAuthorLabel: UILabel = {
         postAuthorLabel = UILabel(frame: .zero)
         postAuthorLabel.font = UIFont.boldSystemFont(ofSize: 20)
         postAuthorLabel.textColor = .black
@@ -19,7 +21,7 @@ class PostTableViewCell: UITableViewCell {
         return postAuthorLabel
     }()
     
-    lazy var postImageView: UIImageView = {
+    private lazy var postImageView: UIImageView = {
         postImageView = UIImageView(frame: .zero)
         postImageView.contentMode = .scaleAspectFit
         postImageView.backgroundColor = .black
@@ -28,7 +30,7 @@ class PostTableViewCell: UITableViewCell {
         return postImageView
     }()
     
-    lazy var postDescription: UILabel = {
+    private lazy var postDescription: UILabel = {
         postDescription = UILabel(frame: .zero)
         postDescription.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         postDescription.textColor = .systemGray
@@ -38,7 +40,7 @@ class PostTableViewCell: UITableViewCell {
         return postDescription
     }()
     
-    lazy var postLikes: UILabel = {
+    private lazy var postLikes: UILabel = {
         postLikes = UILabel(frame: .zero)
         postLikes.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         postLikes.textColor = .black
@@ -47,7 +49,7 @@ class PostTableViewCell: UITableViewCell {
         return postLikes
     }()
     
-    lazy var postViews: UILabel = {
+    private lazy var postViews: UILabel = {
         postViews = UILabel(frame: .zero)
         postViews.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         postViews.textColor = .black
@@ -98,6 +100,35 @@ class PostTableViewCell: UITableViewCell {
             postViews.trailingAnchor.constraint(equalTo: postDescription.trailingAnchor),
             postViews.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -.padding),
         ])
+    }
+}
+
+extension PostTableViewCell {
+    
+    public func configure(with post: Post) {
+        postAuthorLabel.text = post.author
+        postDescription.text = post.description
+        postLikes.text = "Likes: \(post.likes)"
+        postViews.text = "Views: \(post.views)"
+                
+        randomFilterImage(with: post.image)
+    }
+    
+    private func randomFilterImage(with namedImage: String) {
+        let imageProcessor = ImageProcessor()
+        
+        guard let image = UIImage(named: namedImage) else { return }
+        guard let filter = ColorFilter.allCases.randomElement() else { return }
+        
+        DispatchQueue.main.async {
+            imageProcessor.processImage(
+                sourceImage: image,
+                filter: filter,
+                completion: { [weak self] image in
+                    self?.postImageView.image = image
+                }
+            )
+        }
     }
 }
 
