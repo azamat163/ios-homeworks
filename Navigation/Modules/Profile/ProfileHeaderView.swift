@@ -60,7 +60,7 @@ class ProfileHeaderView: UIView {
         return avatarImageView
     }()
     
-    lazy var fullNameLabel: UILabel = {
+    private lazy var fullNameLabel: UILabel = {
         fullNameLabel = UILabel(frame: .zero)
         fullNameLabel.font = Constants.fullNameLabelFont
         fullNameLabel.text = .fullNameLabelText
@@ -69,7 +69,7 @@ class ProfileHeaderView: UIView {
         return fullNameLabel
     }()
     
-    lazy var statusLabel: UILabel = {
+    private lazy var statusLabel: UILabel = {
         statusLabel = UILabel(frame: .zero)
         statusLabel.font = Constants.statusLabelFont
         statusLabel.text = .statusLabelText
@@ -78,7 +78,7 @@ class ProfileHeaderView: UIView {
         return statusLabel
     }()
     
-    lazy var statusTextField: UITextField = {
+    private lazy var statusTextField: UITextField = {
         statusTextField = UITextField(frame: .zero)
         statusTextField.backgroundColor = Constants.statusTextFieldBackgroundColor
         statusTextField.placeholder = .placeholderText
@@ -87,7 +87,7 @@ class ProfileHeaderView: UIView {
         return statusTextField
     }()
     
-    lazy var setStatusButton: UIButton = {
+    private lazy var setStatusButton: UIButton = {
         setStatusButton = UIButton(frame: .zero)
         setStatusButton.backgroundColor = Constants.setStatusButtonColor
         setStatusButton.setTitleColor(.white, for: .normal)
@@ -97,7 +97,7 @@ class ProfileHeaderView: UIView {
         return setStatusButton
     }()
     
-    lazy var closeButton: UIButton = {
+    private lazy var closeButton: UIButton = {
         closeButton = UIButton(frame: .zero)
         closeButton.setImage(UIImage(systemName: "x.circle"), for: .normal)
         closeButton.alpha = 0
@@ -230,6 +230,14 @@ class ProfileHeaderView: UIView {
     
     @objc func onTappedAvatarImage(_ sender: UITapGestureRecognizer) {
         delegate?.onTappedAvatarImage(sender)
+    }
+}
+
+extension ProfileHeaderView {
+    public func configure(with user: User) {
+        avatarImageView.image = UIImage(named: user.avatar)
+        fullNameLabel.text = user.fullName
+        statusLabel.text = user.status
     }
 }
 
