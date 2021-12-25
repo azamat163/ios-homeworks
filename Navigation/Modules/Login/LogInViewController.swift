@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol LogInViewControllerDelegate {
+protocol LogInViewControllerDelegate: AnyObject {
     func tappedButton(sender: UIButton)
 }
 

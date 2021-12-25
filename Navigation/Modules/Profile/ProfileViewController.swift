@@ -8,7 +8,7 @@
 import UIKit
 import StorageService
 
-protocol ProfileViewControllerDelegate {
+protocol ProfileViewControllerDelegate: AnyObject {
     func onTappedAvatarImage(_ sender: UITapGestureRecognizer)
 }
 

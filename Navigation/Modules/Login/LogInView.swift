@@ -9,7 +9,7 @@ import UIKit
 
 class LogInView: UIView {
     
-    var delegate: LogInViewControllerDelegate?
+    weak var delegate: LogInViewControllerDelegate?
     
     //MARK: - constants
     

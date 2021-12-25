@@ -12,7 +12,7 @@ class ProfileHeaderView: UIView {
     
     private var statusText: String = ""
     
-    var delegate: ProfileViewControllerDelegate?
+    weak var delegate: ProfileViewControllerDelegate?
 
     // MARK: - constants
     
