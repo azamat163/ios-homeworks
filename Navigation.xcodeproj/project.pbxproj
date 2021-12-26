@@ -30,6 +30,10 @@
 		03D23CA427765FF60009A6DB /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D23CA327765FF60009A6DB /* UserService.swift */; };
 		03D23CA62776602F0009A6DB /* CurrentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D23CA52776602F0009A6DB /* CurrentService.swift */; };
 		03D23CA827766A910009A6DB /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D23CA727766A910009A6DB /* TestUserService.swift */; };
+		03E8E4A42778B5EF00B073A5 /* CheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8E4A32778B5EF00B073A5 /* CheckerService.swift */; };
+		03E8E4A62778DB4D00B073A5 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8E4A52778DB4D00B073A5 /* LoginInspector.swift */; };
+		03E8E4A82778F06800B073A5 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8E4A72778F06800B073A5 /* LoginFactory.swift */; };
+		03E8E4AA2778F1C800B073A5 /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8E4A92778F1C800B073A5 /* MyLoginFactory.swift */; };
 		2047F23E10CD214C50CF39C8 /* Pods_NavigationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0DCA5721FAB1CF0D9F8DA1F /* Pods_NavigationTests.framework */; };
 		6CAFA5415BF37BEFD9996EB9 /* Pods_Navigation_NavigationUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70451A3E2C1A491677B57628 /* Pods_Navigation_NavigationUITests.framework */; };
 		881D961D7A0EBBE72819CD0F /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D504B08EB11230732DF502B /* Pods_StorageService.framework */; };
@@ -130,6 +134,10 @@
 		03D23CA327765FF60009A6DB /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		03D23CA52776602F0009A6DB /* CurrentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentService.swift; sourceTree = "<group>"; };
 		03D23CA727766A910009A6DB /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
+		03E8E4A32778B5EF00B073A5 /* CheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerService.swift; sourceTree = "<group>"; };
+		03E8E4A52778DB4D00B073A5 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
+		03E8E4A72778F06800B073A5 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
+		03E8E4A92778F1C800B073A5 /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
 		1CF4F59CBF42DD4F1FE5BBC4 /* Pods-NavigationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NavigationTests.debug.xcconfig"; path = "Target Support Files/Pods-NavigationTests/Pods-NavigationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		34816974732ECDE8A1E173C0 /* Pods-Navigation-NavigationUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation-NavigationUITests.release.xcconfig"; path = "Target Support Files/Pods-Navigation-NavigationUITests/Pods-Navigation-NavigationUITests.release.xcconfig"; sourceTree = "<group>"; };
 		3D504B08EB11230732DF502B /* Pods_StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -265,6 +273,9 @@
 			children = (
 				03AE911E2734F90600CEE4C4 /* LogInView.swift */,
 				03AE911C2734F79D00CEE4C4 /* LogInViewController.swift */,
+				03E8E4A52778DB4D00B073A5 /* LoginInspector.swift */,
+				03E8E4A72778F06800B073A5 /* LoginFactory.swift */,
+				03E8E4A92778F1C800B073A5 /* MyLoginFactory.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -314,6 +325,7 @@
 				03D23CA327765FF60009A6DB /* UserService.swift */,
 				03D23CA52776602F0009A6DB /* CurrentService.swift */,
 				03D23CA727766A910009A6DB /* TestUserService.swift */,
+				03E8E4A32778B5EF00B073A5 /* CheckerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -847,6 +859,7 @@
 				03AE911D2734F79D00CEE4C4 /* LogInViewController.swift in Sources */,
 				034B5EF2274AADBC00E84998 /* ProfileShadowView.swift in Sources */,
 				03AE911F2734F90600CEE4C4 /* LogInView.swift in Sources */,
+				03E8E4A82778F06800B073A5 /* LoginFactory.swift in Sources */,
 				F385D793271415F0006458CD /* AppDelegate.swift in Sources */,
 				F385D795271415F0006458CD /* SceneDelegate.swift in Sources */,
 				03053C3D27400E5D002D5EC4 /* PhotosTableViewCell.swift in Sources */,
@@ -855,14 +868,17 @@
 				F3D792E22722912F008299BC /* Button+Extensions.swift in Sources */,
 				F3D792E42722A532008299BC /* TextField+Extensions.swift in Sources */,
 				F385D82F27185E51006458CD /* InfoViewController.swift in Sources */,
+				03E8E4A42778B5EF00B073A5 /* CheckerService.swift in Sources */,
 				F385D80D2716AAB5006458CD /* HomeViewController.swift in Sources */,
 				03053C4127401A0A002D5EC4 /* Photo.swift in Sources */,
+				03E8E4AA2778F1C800B073A5 /* MyLoginFactory.swift in Sources */,
 				03BB803F273712EF009B7B54 /* PostAPI.swift in Sources */,
 				F3D792DC27206D80008299BC /* ProfileHeaderView.swift in Sources */,
 				F385D83427185ECA006458CD /* InfoView.swift in Sources */,
 				03AE91252735251500CEE4C4 /* UIImage+Extensions.swift in Sources */,
 				F3D792E62722C620008299BC /* UIImageView+Extensions.swift in Sources */,
 				F385D8102716AD7F006458CD /* FeedViewController.swift in Sources */,
+				03E8E4A62778DB4D00B073A5 /* LoginInspector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

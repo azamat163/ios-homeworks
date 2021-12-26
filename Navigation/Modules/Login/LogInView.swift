@@ -7,9 +7,11 @@
 
 import UIKit
 
-class LogInView: UIView {
+
+final class LogInView: UIView {
     
     weak var delegate: LogInViewControllerDelegate?
+    weak var checkerDelegate: LogInViewControllerCheckerDelegate?
     
     //MARK: - constants
     
@@ -32,14 +34,14 @@ class LogInView: UIView {
         }
     }
     
-    lazy var logoImageView: UIImageView = {
+    private lazy var logoImageView: UIImageView = {
         logoImageView = UIImageView(image: Constants.Logo.image)
         logoImageView.toAutoLayout()
         
         return logoImageView
     }()
     
-    lazy var emailOfPhoneTextField: UITextField = {
+    private lazy var emailOfPhoneTextField: UITextField = {
         emailOfPhoneTextField = UITextField(frame: .zero)
         emailOfPhoneTextField.placeholder = .emailOfPhonePlaceholder
         emailOfPhoneTextField.textColor = Constants.TextField.textColor
@@ -62,7 +64,7 @@ class LogInView: UIView {
         return emailOfPhoneTextField
     }()
     
-    lazy var passwordTextField: UITextField = {
+    private lazy var passwordTextField: UITextField = {
         passwordTextField = UITextField(frame: .zero)
         passwordTextField.placeholder = .passwordPlaceholder
         passwordTextField.isSecureTextEntry = true
@@ -83,7 +85,7 @@ class LogInView: UIView {
         return passwordTextField
     }()
     
-    lazy var formStackView: UIStackView = {
+    private lazy var formStackView: UIStackView = {
         formStackView = UIStackView(arrangedSubviews: [emailOfPhoneTextField, passwordTextField])
         formStackView.spacing = 0
         formStackView.axis = .vertical
@@ -155,13 +157,11 @@ class LogInView: UIView {
     }
     
     @objc func tappedButton(sender: UIButton) {
-        guard let emailText = emailOfPhoneTextField.text else { return }
-        guard let passwordText = passwordTextField.text else { return }
-        if !emailText.isEmpty && !passwordText.isEmpty {
-            delegate?.tappedButton(sender: sender, fullName: emailText)
-        } else {
-            animateButton()
-        }
+        guard let emailText = emailOfPhoneTextField.text, !emailText.isEmpty else { return }
+        guard let passwordText = passwordTextField.text, !passwordText.isEmpty else { return }
+        
+        guard let isAvailabilityLogin = checkerDelegate?.checkLoginPasswordAvailability(inputLogin: emailText, inputPassword: passwordText) else { return }
+        isAvailabilityLogin == true ? delegate?.tappedButton(sender: sender, fullName: emailText) : animateButton()
     }
     
     private func animateButton() {
