@@ -17,10 +17,7 @@ protocol LogInViewControllerCheckerDelegate: AnyObject {
 
 class LogInViewController: UIViewController {
     
-    private lazy var loginInspector: LoginInspector = {
-        let myLoginFactory = MyLoginFactory()
-        return myLoginFactory.makeLoginInspector()
-    }()
+    var delegate: LogInViewControllerCheckerDelegate?
         
     private lazy var logInView: LogInView = {
         logInView = LogInView(frame: .zero)
@@ -48,7 +45,7 @@ class LogInViewController: UIViewController {
         setupLogInView()
         
         logInView.delegate = self
-        logInView.checkerDelegate = loginInspector
+        logInView.checkerDelegate = delegate
         
         configureKeyboardNotifications()
     }

@@ -160,8 +160,14 @@ final class LogInView: UIView {
         guard let emailText = emailOfPhoneTextField.text, !emailText.isEmpty else { return }
         guard let passwordText = passwordTextField.text, !passwordText.isEmpty else { return }
         
-        guard let isAvailabilityLogin = checkerDelegate?.checkLoginPasswordAvailability(inputLogin: emailText, inputPassword: passwordText) else { return }
-        isAvailabilityLogin == true ? delegate?.tappedButton(sender: sender, fullName: emailText) : animateButton()
+        guard let isAvailabilityLogin = checkerDelegate?.checkLoginPasswordAvailability(
+            inputLogin: emailText,
+            inputPassword: passwordText
+        ), isAvailabilityLogin == true else {
+            animateButton()
+            return
+        }
+        delegate?.tappedButton(sender: sender, fullName: emailText)
     }
     
     private func animateButton() {

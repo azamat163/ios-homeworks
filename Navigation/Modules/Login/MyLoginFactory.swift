@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MyLoginFactory: LoginFactory {
+final class MyLoginFactory: LoginFactory {
     
     func makeLoginInspector() -> LoginInspector {
         return LoginInspector()

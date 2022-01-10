@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LoginInspector: LogInViewControllerCheckerDelegate {
+final class LoginInspector: LogInViewControllerCheckerDelegate {
 
     let sharedChecker = CheckerService.shared
     
