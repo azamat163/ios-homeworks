@@ -36,6 +36,10 @@ class PhotosViewController: UIViewController {
 
         setupViews()
         setupLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         imagePublisherFacade.subscribe(self)
         imagePublisherFacade.addImagesWithTimer(time: 1, repeat: 10, userImages: getUserImages())
