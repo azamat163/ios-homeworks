@@ -20,15 +20,15 @@ final class PhotosCollectionViewCell: UICollectionViewCell {
         }
     }
         
-    lazy var photosImageView: UIImageView = {
+    private lazy var photosImageView: UIImageView = {
         photosImageView = UIImageView(frame: .zero)
         photosImageView.toAutoLayout()
         
         return photosImageView
     }()
     
-    func setup(with photo: Photo) {
-        photosImageView.image = UIImage(named: photo.imageNamed)
+    func configure(with image: UIImage) {
+        photosImageView.image = image
     }
     
     override init(frame: CGRect) {

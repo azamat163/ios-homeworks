@@ -11,16 +11,22 @@ protocol LogInViewControllerDelegate: AnyObject {
     func tappedButton(sender: UIButton, fullName: String)
 }
 
+protocol LogInViewControllerCheckerDelegate: AnyObject {
+    func checkLoginPasswordAvailability(inputLogin: String, inputPassword: String) -> Bool
+}
+
 class LogInViewController: UIViewController {
     
-    lazy var logInView: LogInView = {
+    var delegate: LogInViewControllerCheckerDelegate?
+        
+    private lazy var logInView: LogInView = {
         logInView = LogInView(frame: .zero)
         logInView.toAutoLayout()
         
         return logInView
     }()
     
-    lazy var scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         scrollView = UIScrollView(frame: .zero)
         scrollView.toAutoLayout()
         
@@ -37,7 +43,9 @@ class LogInViewController: UIViewController {
         scrollView.addSubview(logInView)
         
         setupLogInView()
+        
         logInView.delegate = self
+        logInView.checkerDelegate = delegate
         
         configureKeyboardNotifications()
     }
