@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileShadowView: UIView {
+final class ProfileShadowView: UIView {
     private enum Constants {
         static let avatarImageHeight: CGFloat = 100
         static let avatarImageViewBorderWidth: CGFloat = 3.0
@@ -37,11 +37,13 @@ class ProfileShadowView: UIView {
         return avatarImageView
     }()
     
-    lazy var closeButton: UIButton = {
-        closeButton = UIButton(frame: .zero)
+    lazy var closeButton: CustomButton = {
+        closeButton = CustomButton(frame: .zero)
         closeButton.setImage(UIImage(systemName: "x.circle"), for: .normal)
         closeButton.alpha = 0
-        closeButton.addTarget(self, action: #selector(clickCloseButton), for: .touchUpInside)
+        closeButton.onTap = { [weak self] in
+            self?.clickCloseButton()
+        }
         closeButton.toAutoLayout()
         
         return closeButton
@@ -114,7 +116,7 @@ class ProfileShadowView: UIView {
         })
     }
     
-    @objc func clickCloseButton() {
+    private  func clickCloseButton() {
         self.layoutIfNeeded()
         avatarImageView.toAutoLayout()
         NSLayoutConstraint.activate(avatarImageConstraints())

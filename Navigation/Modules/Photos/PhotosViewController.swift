@@ -8,7 +8,7 @@
 import UIKit
 import iOSIntPackage
 
-class PhotosViewController: UIViewController {
+final class PhotosViewController: UIViewController {
     
     private let photos = PhotosAPI.getPhotos() // массив локальных картинок, хранящиеся в структуре Photo
     private var images: [UIImage] = [] // массив картинок, которые сеттятся из паблишара
@@ -20,7 +20,7 @@ class PhotosViewController: UIViewController {
         imagePublisherFacade.rechargeImageLibrary()
     }
     
-    lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .white
