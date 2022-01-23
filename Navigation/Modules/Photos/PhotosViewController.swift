@@ -6,10 +6,19 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PhotosViewController: UIViewController {
     
-    private let photos = PhotosAPI.getPhotos()
+    private let photos = PhotosAPI.getPhotos() // массив локальных картинок, хранящиеся в структуре Photo
+    private var images: [UIImage] = [] // массив картинок, которые сеттятся из паблишара
+    private var userImages: [UIImage] = [] // массив локальных картинок, которые преобразуются из photos
+    private let imagePublisherFacade = ImagePublisherFacade() // экземпляр ImagePublisherFacade
+    
+    deinit {
+        imagePublisherFacade.removeSubscription(for: self)
+        imagePublisherFacade.rechargeImageLibrary()
+    }
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -27,6 +36,13 @@ class PhotosViewController: UIViewController {
 
         setupViews()
         setupLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        imagePublisherFacade.subscribe(self)
+        imagePublisherFacade.addImagesWithTimer(time: 1, repeat: 10, userImages: getUserImages())
     }
     
     private func setupViews() {
@@ -52,20 +68,27 @@ class PhotosViewController: UIViewController {
 
 extension PhotosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return photos.count
+        return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier, for: indexPath) as? PhotosCollectionViewCell else { fatalError() }
         
-        let photo = photos[indexPath.row]
-        cell.photo = photo
+        let image = images[indexPath.row]
+        cell.configure(with: image)
         
         return cell
     }
 }
 
-extension PhotosViewController: UICollectionViewDelegate {
+extension PhotosViewController: ImageLibrarySubscriber {
+    func receive(images: [UIImage]) {
+        images.forEach {
+            self.images.append($0)
+        }
+        
+        collectionView.reloadData()
+    }
 }
 
 extension PhotosViewController: UICollectionViewDelegateFlowLayout {
@@ -91,6 +114,16 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return .spacing
+    }
+}
+
+extension PhotosViewController {
+    private func getUserImages() -> [UIImage] {
+        photos.forEach {
+            guard let image = UIImage(named: $0.imageNamed) else { return }
+            userImages.append(image)
+        }
+        return userImages
     }
 }
 
