@@ -13,10 +13,12 @@ protocol FeedViewControllerDelegate: AnyObject {
 }
 
 final class FeedViewController: UIViewController {
-    private var model: FeedModel
+    var showPostVc: (() -> Void)?
     
-    init(model: FeedModel) {
-        self.model = model
+    private var viewModel: FeedViewModel
+    
+    init(viewModel: FeedViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -30,7 +32,6 @@ final class FeedViewController: UIViewController {
     
     private lazy var feedView: FeedView = {
         feedView = FeedView(frame: .zero)
-
         return feedView
     }()
 
@@ -50,7 +51,7 @@ final class FeedViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.post(name: .changedText, object: model)
+        NotificationCenter.default.post(name: .changedText, object: viewModel.model)
     }
     
     private func setupLayout() {
@@ -69,9 +70,7 @@ private extension String {
 
 extension FeedViewController: FeedViewControllerDelegate {
     func clickButton() {
-        let postVc: PostViewController = PostViewController()
-        postVc.setupTitle(.postTitle)
-        navigationController?.pushViewController(postVc, animated: true)
+        viewModel.send(.showPostVc(.postTitle))
     }
     
     @objc

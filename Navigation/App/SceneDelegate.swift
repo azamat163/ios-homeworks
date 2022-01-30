@@ -10,6 +10,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    private var appCoordinator: AppCoordinator?
+    private var viewControllerFactory: ViewControllerFactoryProtocol!
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -18,16 +20,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
+
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = HomeViewController()
-        window?.makeKeyAndVisible()
+        viewControllerFactory = ViewControllerFactory()
         
-        let myLoginFactory = MyLoginFactory()
-        
-        let tabController = window?.rootViewController as? UITabBarController
-        let loginNavigation = tabController?.viewControllers?.last as? UINavigationController
-        let loginController = loginNavigation?.viewControllers.first as? LogInViewController
-        loginController?.delegate = myLoginFactory.makeLoginInspector()
+        appCoordinator = AppCoordinator(scene: windowScene, viewControllerFactory: viewControllerFactory)
+        appCoordinator?.start()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
