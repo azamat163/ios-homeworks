@@ -14,6 +14,7 @@ final class PhotosViewController: UIViewController {
     private var images: [UIImage] = [] // массив картинок, которые сеттятся из паблишара
     private var userImages: [UIImage] = [] // массив локальных картинок, которые преобразуются из photos
     private let imagePublisherFacade = ImagePublisherFacade() // экземпляр ImagePublisherFacade
+    private let imageProcessor = ImageProcessor()
     
     deinit {
         imagePublisherFacade.removeSubscription(for: self)
@@ -31,6 +32,7 @@ final class PhotosViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.title = .photosGallery
         navigationController?.navigationBar.prefersLargeTitles = false
 
@@ -41,8 +43,7 @@ final class PhotosViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        imagePublisherFacade.subscribe(self)
-        imagePublisherFacade.addImagesWithTimer(time: 1, repeat: 10, userImages: getUserImages())
+        initUserImages()
     }
     
     private func setupViews() {
@@ -118,12 +119,43 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension PhotosViewController {
-    private func getUserImages() -> [UIImage] {
-        photos.forEach {
-            guard let image = UIImage(named: $0.imageNamed) else { return }
-            userImages.append(image)
-        }
-        return userImages
+    /// Результаты измерения:
+    /// Время выполнения с qos: default = 1218.0 miliseconds
+    /// Время выполнения с qos: background = 5002.0 miliseconds
+    /// Время выполнения с qos: userInitiated = 1045.0 miliseconds
+    /// Время выполнения с qos: utility = 1532.0 miliseconds
+    /// Время выполнения с qos: userInteractive = 987.0 miliseconds
+    private func initUserImages() {
+        let sourceImages: [UIImage] = photos.compactMap { photo in UIImage(named: photo.imageNamed) }
+        
+        guard let filter = ColorFilter.allCases.randomElement() else { return }
+        guard let qos = QualityOfService.allCases.randomElement() else { return }
+        
+        let start = DispatchTime.now()
+        imageProcessor.processImagesOnThread(
+            sourceImages: sourceImages,
+            filter: filter,
+            qos: qos,
+            completion: { cgImages in
+                self.userImages = cgImages.compactMap({ cgImage in
+                    guard let cgImage = cgImage else { fatalError("Unable to fetch filter image") }
+                    return UIImage(cgImage: cgImage)
+                })
+                let end = DispatchTime.now()
+                let nanoTime = end.uptimeNanoseconds - start.uptimeNanoseconds
+                let elapsedTime = Double(nanoTime / 1_000_000)
+                print("Время выполнения с qos: \(qos.description) = \(elapsedTime) miliseconds")
+                
+                DispatchQueue.main.async {
+                    self.imagePublisherFacade.subscribe(self)
+                    self.imagePublisherFacade.addImagesWithTimer(
+                        time: 0.25,
+                        repeat: 10,
+                        userImages: self.userImages
+                    )
+                }
+            }
+        )
     }
 }
 
@@ -133,4 +165,27 @@ private extension String {
 
 private extension CGFloat {
     static let spacing: CGFloat = 8
+}
+
+extension QualityOfService: CaseIterable, CustomStringConvertible {
+    public static var allCases: [QualityOfService] {
+        return [.userInteractive, .userInitiated, .background, .default, .utility]
+    }
+    
+    public var description: String {
+        switch self {
+        case .utility:
+            return "utility"
+        case .background:
+            return"background"
+        case .userInteractive:
+            return "userInteractive"
+        case .userInitiated:
+            return "userInitiated"
+        case .default:
+            return "default"
+        @unknown default:
+            return "unknown default"
+        }
+    }
 }
