@@ -79,6 +79,7 @@ final class LogInView: UIView {
         
         passwordTextField.setLeftPaddingPoints(.TextField.padding)
         passwordTextField.setRightPaddingPoints(.TextField.padding)
+        passwordTextField.rightViewMode = UITextField.ViewMode.always
         
         passwordTextField.toAutoLayout()
         
@@ -114,12 +115,40 @@ final class LogInView: UIView {
         return logInButton
     }()
     
+    private lazy var pickUpPassButton: CustomButton = {
+        pickUpPassButton = CustomButton(frame: .zero)
+        pickUpPassButton.apply(title: .pickUpPassButtonTitle, titleColor: .white)
+        pickUpPassButton.setBackgroundImage(Constants.Button.image?.alpha(1), for: .normal)
+        pickUpPassButton.setBackgroundImage(Constants.Button.image?.alpha(0.8), for: [.selected, .highlighted, .disabled])
+        
+        pickUpPassButton.layer.cornerRadius = Constants.Button.cornerRadius
+        pickUpPassButton.layer.masksToBounds = true
+        
+        pickUpPassButton.onTap = { [weak self] in
+            self?.pickUpPasswordButton()
+        }
+        
+        pickUpPassButton.toAutoLayout()
+        
+        return pickUpPassButton
+    }()
+    
+    private lazy var spinnerView: UIActivityIndicatorView = {
+        spinnerView = UIActivityIndicatorView(style: .large)
+        spinnerView.toAutoLayout()
+        return spinnerView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
                 
-        addSubview(logoImageView)
-        addSubview(formStackView)
-        addSubview(logInButton)
+        addSubviews([
+            logoImageView,
+            formStackView,
+            pickUpPassButton,
+            spinnerView,
+            logInButton
+        ])
         
         setupLayout()
     }
@@ -143,17 +172,32 @@ final class LogInView: UIView {
             formStackView.heightAnchor.constraint(equalToConstant: .FormStackView.height)
         ]
         
+        let pickUpPassButtonConstraints: [NSLayoutConstraint] = [
+            pickUpPassButton.topAnchor.constraint(equalTo: formStackView.bottomAnchor, constant: .FormStackView.padding),
+            pickUpPassButton.leadingAnchor.constraint(equalTo: formStackView.leadingAnchor),
+            pickUpPassButton.trailingAnchor.constraint(equalTo: formStackView.trailingAnchor),
+            pickUpPassButton.heightAnchor.constraint(equalToConstant: .Button.height)
+        ]
+        
         let logInButtonConstraints: [NSLayoutConstraint] = [
-            logInButton.topAnchor.constraint(equalTo: formStackView.bottomAnchor, constant: .FormStackView.padding),
-            logInButton.leadingAnchor.constraint(equalTo: formStackView.leadingAnchor),
-            logInButton.trailingAnchor.constraint(equalTo: formStackView.trailingAnchor),
+            logInButton.topAnchor.constraint(equalTo: pickUpPassButton.bottomAnchor, constant: .FormStackView.padding),
+            logInButton.leadingAnchor.constraint(equalTo: pickUpPassButton.leadingAnchor),
+            logInButton.trailingAnchor.constraint(equalTo: pickUpPassButton.trailingAnchor),
             logInButton.heightAnchor.constraint(equalToConstant: .Button.height)
+        ]
+        
+        let snipperViewConstraints: [NSLayoutConstraint] = [
+            spinnerView.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor),
+            spinnerView.bottomAnchor.constraint(equalTo: passwordTextField.bottomAnchor)
+
         ]
         
         NSLayoutConstraint.activate(
             logoImageConstraints +
             formStackViewConstraints +
-            logInButtonConstraints
+            pickUpPassButtonConstraints +
+            logInButtonConstraints +
+            snipperViewConstraints
         )
     }
     
@@ -179,6 +223,22 @@ final class LogInView: UIView {
             self?.layoutIfNeeded()
         }
     }
+    
+    private func pickUpPasswordButton() {
+        spinnerView.startAnimating()
+        let bruteForceOperation = BruteForceOperation()
+        bruteForceOperation.completionBlock = { [weak self] in
+            DispatchQueue.main.async {
+                self?.passwordTextField.text = bruteForceOperation.expectedPassword
+                self?.passwordTextField.isSecureTextEntry = false
+                self?.spinnerView.stopAnimating()
+                self?.layoutIfNeeded()
+            }
+        }
+        let operation = OperationQueue()
+        operation.qualityOfService = .userInitiated
+        operation.addOperation(bruteForceOperation)
+    }
 }
 
 private extension String {
@@ -189,6 +249,7 @@ private extension String {
     
     static let logInButtonTitle = "Log In"
     static let blueImageNamed = "blue_pixel"
+    static let pickUpPassButtonTitle = "Pick up password"
 }
 
 private extension CGFloat {
