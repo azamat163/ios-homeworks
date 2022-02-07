@@ -261,7 +261,7 @@ extension ProfileViewController {
         if let cell = tableView.cellForRow(at: indexPath) as? TimerTableViewCell {
             cell.titleLabel.text = "Осташееся время обновления: \(reverseTime)"
         }
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+        tableView.reloadRows(at: [indexPath], with: .none)
     }
     
     func presentNewsAlert() {
