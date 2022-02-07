@@ -19,6 +19,7 @@ class ProfileViewController: UIViewController {
     
     var service: UserService
     var fullName: String
+    var timer: Timer?
     
     private lazy var profileHeaderView: ProfileHeaderView = {
         profileHeaderView = ProfileHeaderView(frame: .zero)
@@ -190,6 +191,34 @@ extension ProfileViewController: ProfileViewControllerDelegate {
         
         profileShadowView.animationAvatarImage()
         profileShadowView.animationCloseButton()
+    }
+}
+
+extension ProfileViewController {
+    func createTimer() {
+        if timer == nil {
+            let timer = Timer.scheduledTimer(
+                timeInterval: 1.0,
+                target: self,
+                selector: #selector(updateTimer),
+                userInfo: nil,
+                repeats: true
+            )
+            RunLoop.current.add(timer, forMode: .common)
+            RunLoop.current.run()
+            timer.tolerance = 0.1
+            
+            self.timer = timer
+        }
+    }
+    
+    @objc func updateTimer() {
+        print("fired")
+    }
+    
+    func cancelTimer() {
+      timer?.invalidate()
+      timer = nil
     }
 }
 
