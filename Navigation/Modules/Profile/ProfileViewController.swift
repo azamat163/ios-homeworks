@@ -14,13 +14,14 @@ protocol ProfileViewControllerDelegate: AnyObject {
 
 class ProfileViewController: UIViewController {
     
-    private let posts = PostAPI.getPosts()
+    private var posts = PostAPI.getPosts()
     private let photos = PhotosAPI.getPhotos()
     var showPhotosVc: (() -> Void)?
     
     var service: UserService
     var fullName: String
     var timer: Timer?
+    var reverseTime: Int = 10
     
     private lazy var profileHeaderView: ProfileHeaderView = {
         profileHeaderView = ProfileHeaderView(frame: .zero)
@@ -85,6 +86,7 @@ class ProfileViewController: UIViewController {
         
         profileHeaderView.layoutIfNeeded()
         
+        tableView.register(TimerTableViewCell.self, forCellReuseIdentifier: .timerTableId)
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: .postTableId)
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: .photosTableId)
         
@@ -97,6 +99,8 @@ class ProfileViewController: UIViewController {
         tableView.reloadData()
         
         profileHeaderView.delegate = self
+        
+        createTimer()
     }
     
     override func viewDidLayoutSubviews() {
@@ -114,6 +118,16 @@ class ProfileViewController: UIViewController {
 
         headerView.frame.size = size
         tableView.tableHeaderView = headerView
+    }
+    
+    deinit {
+        cancelTimer()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        createTimer()
     }
     
     //MARK: - setup tableView layout
@@ -138,7 +152,7 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -146,6 +160,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 1
         case 1:
+            return 1
+        case 2:
             return posts.count
         default:
             return 0
@@ -162,6 +178,11 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             cell.photosFourthImageView.image = UIImage(named: photos[3].imageNamed)
             return cell
         case 1:
+            guard let cell = self.tableView.dequeueReusableCell(withIdentifier: .timerTableId, for: indexPath) as? TimerTableViewCell else { fatalError() }
+            cell.titleLabel.text = "Осташееся время обновления: \(self.reverseTime)"
+            return cell
+
+        case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: .postTableId, for: indexPath) as? PostTableViewCell else { fatalError() }
             let currentPost: Post = posts[indexPath.row]
             cell.configure(with: currentPost)
@@ -200,31 +221,72 @@ extension ProfileViewController {
             let timer = Timer.scheduledTimer(
                 timeInterval: 1.0,
                 target: self,
-                selector: #selector(updateTimer),
+                selector: #selector(self.updateTimer),
                 userInfo: nil,
                 repeats: true
             )
-            RunLoop.current.add(timer, forMode: .common)
-            RunLoop.current.run()
             timer.tolerance = 0.1
-            
+
+            DispatchQueue.global().async {
+                RunLoop.current.add(timer, forMode: .common)
+                RunLoop.current.run()
+            }
             self.timer = timer
         }
     }
     
     @objc func updateTimer() {
-        print("fired")
+        if reverseTime > 0 {
+            reverseTime -= 1
+            DispatchQueue.main.async {
+                self.updateCell()
+            }
+        } else {
+            reverseTime = 10
+            cancelTimer()
+            posts.append(posts.randomElement()!)
+            DispatchQueue.main.async {
+                self.presentNewsAlert()
+            }
+        }
     }
     
     func cancelTimer() {
       timer?.invalidate()
       timer = nil
     }
+    
+    func updateCell() {
+        let indexPath = IndexPath(row: 0, section: 1)
+        if let cell = tableView.cellForRow(at: indexPath) as? TimerTableViewCell {
+            cell.titleLabel.text = "Осташееся время обновления: \(reverseTime)"
+        }
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
+    func presentNewsAlert() {
+        let alertVC = UIAlertController(title: "Свежая новость", message: "Показать новость?", preferredStyle: .alert)
+        let yes = UIAlertAction(title: "Да", style: .default) { _ in
+            self.createTimer()
+            self.tableView.reloadData()
+        }
+        let no = UIAlertAction(title: "Нет", style: .default) { _ in
+            self.cancelTimer()
+            self.tableView.reloadData()
+
+        }
+        
+        alertVC.addAction(yes)
+        alertVC.addAction(no)
+        
+        self.present(alertVC, animated: true, completion: nil)
+    }
 }
 
 private extension String {
     static let postTableId = "postTableId"
     static let photosTableId = "photosTableId"
+    static let timerTableId = "timerTableId"
     static let profileTitle = "Profile"
 }
 
