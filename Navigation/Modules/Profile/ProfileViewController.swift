@@ -16,6 +16,7 @@ class ProfileViewController: UIViewController {
     
     private let posts = PostAPI.getPosts()
     private let photos = PhotosAPI.getPhotos()
+    var showPhotosVc: (() -> Void)?
     
     var service: UserService
     var fullName: String
@@ -173,8 +174,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            let photoVc = PhotosViewController()
-            self.navigationController?.pushViewController(photoVc, animated: true)
+            showPhotosVc?()
         }
     }
     

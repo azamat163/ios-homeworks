@@ -87,18 +87,19 @@ class ProfileHeaderView: UIView {
         return statusTextField
     }()
     
-    private lazy var setStatusButton: UIButton = {
-        setStatusButton = UIButton(frame: .zero)
+    private lazy var setStatusButton: CustomButton = {
+        setStatusButton = CustomButton(frame: .zero)
         setStatusButton.backgroundColor = Constants.setStatusButtonColor
-        setStatusButton.setTitleColor(.white, for: .normal)
-        setStatusButton.setTitle(.setStatusButtonText, for: .normal)
-        setStatusButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        setStatusButton.apply(title: .setStatusButtonText, titleColor: .white)
+        setStatusButton.onTap = { [weak self] in
+            self?.buttonPressed()
+        }
         
         return setStatusButton
     }()
     
-    private lazy var closeButton: UIButton = {
-        closeButton = UIButton(frame: .zero)
+    private lazy var closeButton: CustomButton = {
+        closeButton = CustomButton(frame: .zero)
         closeButton.setImage(UIImage(systemName: "x.circle"), for: .normal)
         closeButton.alpha = 0
         
@@ -210,7 +211,7 @@ class ProfileHeaderView: UIView {
         statusTextField.setRightPaddingPoints(Constants.padding)
     }
     
-    @objc func buttonPressed() {
+    private func buttonPressed() {
         guard !statusText.isEmpty else {
             UIView.animate(withDuration: 0.5) {
                 [weak self] in
