@@ -97,17 +97,18 @@ final class LogInView: UIView {
     }()
     
     lazy var logInButton: CustomButton = {
-        logInButton = CustomButton(frame: .zero)
-        logInButton.apply(title: .logInButtonTitle, titleColor: .white)
+        logInButton = CustomButton(
+            title: .logInButtonTitle,
+            titleColor: .white,
+            onTap: { [weak self] in
+                self?.tappedButton()
+            }
+        )
         logInButton.setBackgroundImage(Constants.Button.image?.alpha(1), for: .normal)
         logInButton.setBackgroundImage(Constants.Button.image?.alpha(0.8), for: [.selected, .highlighted, .disabled])
         
         logInButton.layer.cornerRadius = Constants.Button.cornerRadius
         logInButton.layer.masksToBounds = true
-        
-        logInButton.onTap = { [weak self] in
-            self?.tappedButton()
-        }
                 
         logInButton.toAutoLayout()
         

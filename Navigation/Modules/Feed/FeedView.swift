@@ -10,15 +10,16 @@ import UIKit
 
 final class FeedView: UIView {
     
-    var model: FeedModel?
     weak var delegate: FeedViewControllerDelegate?
     
     private lazy var firstPostButton: CustomButton = {
-        firstPostButton = CustomButton(frame: .zero)
-        firstPostButton.apply(title: .firstPostButtonTitle, titleColor: .blue)
-        firstPostButton.onTap = { [weak self] in
-            self?.buttonTapped()
-        }
+        firstPostButton = CustomButton(
+            title: .firstPostButtonTitle,
+            titleColor: .blue,
+            onTap: { [weak self] in
+                self?.buttonTapped()
+            }
+        )
         firstPostButton.layer.borderColor = .borderColor
         firstPostButton.layer.borderWidth = .borderWidth
         
@@ -26,11 +27,13 @@ final class FeedView: UIView {
     }()
     
     private lazy var secondPostButton: CustomButton = {
-        secondPostButton = CustomButton(frame: .zero)
-        secondPostButton.apply(title: .secondPostButtonTitle, titleColor: .blue)
-        secondPostButton.onTap = { [weak self] in
-            self?.buttonTapped()
-        }
+        secondPostButton = CustomButton(
+            title: .secondPostButtonTitle,
+            titleColor: .blue,
+            onTap: { [weak self] in
+                self?.buttonTapped()
+            }
+        )
 
         secondPostButton.layer.borderColor = .borderColor
         secondPostButton.layer.borderWidth = .borderWidth
@@ -53,13 +56,15 @@ final class FeedView: UIView {
     }()
     
     private lazy var checkButton: CustomButton = {
-        checkButton = CustomButton(frame: .zero)
-        checkButton.apply(title: .buttonTitle, titleColor: .blue)
+        checkButton = CustomButton(
+            title: .buttonTitle,
+            titleColor: .blue,
+            onTap: { [weak self] in
+                self?.changedTextTapped()
+            }
+        )
         checkButton.layer.borderColor = .borderColor
         checkButton.layer.borderWidth = .borderWidth
-        checkButton.onTap = { [weak self] in
-            self?.changedTextTapped()
-        }
 
         return checkButton
     }()
@@ -82,13 +87,17 @@ final class FeedView: UIView {
         super.init(frame: frame)
         
         addSubview(stackView)
-        
         setupLayout()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(checkPassword), name: .checkPassword, object: nil)
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     private func setupLayout() {
@@ -102,15 +111,15 @@ final class FeedView: UIView {
         delegate?.clickButton()
     }
     
+    @objc
+    func checkPassword(notification: Notification) {
+        guard let isCorrect = notification.object as? Bool else { return }
+        isCorrect ? animateGreen() : animateRed()
+    }
+    
     func changedTextTapped()  {
-        guard let object = model else { return }
         guard let inputText = checkTextField.text, !inputText.isEmpty else { return }
-        
-        guard let isCheck = object.check(word: inputText), isCheck == true else {
-            animateRed()
-            return
-        }
-        animateGreen()
+        delegate?.clickCheckerButton(word: inputText)
     }
     
     private func animateRed() {

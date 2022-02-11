@@ -88,18 +88,20 @@ class ProfileHeaderView: UIView {
     }()
     
     private lazy var setStatusButton: CustomButton = {
-        setStatusButton = CustomButton(frame: .zero)
+        setStatusButton = CustomButton(
+            title: .setStatusButtonText,
+            titleColor: .white,
+            onTap: { [weak self] in
+                self?.buttonPressed()
+            }
+        )
         setStatusButton.backgroundColor = Constants.setStatusButtonColor
-        setStatusButton.apply(title: .setStatusButtonText, titleColor: .white)
-        setStatusButton.onTap = { [weak self] in
-            self?.buttonPressed()
-        }
         
         return setStatusButton
     }()
     
-    private lazy var closeButton: CustomButton = {
-        closeButton = CustomButton(frame: .zero)
+    private lazy var closeButton: UIButton = {
+        closeButton = UIButton(frame: .zero)
         closeButton.setImage(UIImage(systemName: "x.circle"), for: .normal)
         closeButton.alpha = 0
         
