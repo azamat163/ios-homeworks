@@ -19,13 +19,16 @@ final class InfoView: UIView {
     }
     
     private lazy var alertButton: CustomButton = {
-        alertButton = CustomButton(frame: .zero)
-        alertButton.apply(title: .alertButtonTitle, titleColor: .blue)
-        alertButton.onTap = { [weak self] in
-            self?.buttonTapped()
-        }
+        alertButton = CustomButton(
+            title: .alertButtonTitle,
+            titleColor: .blue,
+            onTap: { [weak self] in
+                self?.buttonTapped()
+            }
+        )
         alertButton.layer.borderColor = Constains.borderColor
         alertButton.layer.borderWidth = Constains.bordetWidth
+        
         return alertButton
     }()
     

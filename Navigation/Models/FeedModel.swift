@@ -7,12 +7,18 @@
 
 import Foundation
 
-struct FeedModel {
-    var password: String = "пароль"
+class FeedModel {
+    var password: String
     
-    func check(word: String) -> Bool? {
-        guard password.lowercased() == word.lowercased() else { return false }
-        
-        return true
+    init(password: String = "пароль") {
+        self.password = password
     }
+    
+    func check(word: String) {
+        NotificationCenter.default.post(name: .checkPassword, object: password.lowercased() == word.lowercased())
+    }
+}
+
+extension Notification.Name {
+    static let checkPassword = Notification.Name("checkPassword")
 }

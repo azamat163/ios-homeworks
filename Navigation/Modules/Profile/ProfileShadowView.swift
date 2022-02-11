@@ -37,13 +37,11 @@ final class ProfileShadowView: UIView {
         return avatarImageView
     }()
     
-    lazy var closeButton: CustomButton = {
-        closeButton = CustomButton(frame: .zero)
+    lazy var closeButton: UIButton = {
+        closeButton = UIButton(frame: .zero)
         closeButton.setImage(UIImage(systemName: "x.circle"), for: .normal)
         closeButton.alpha = 0
-        closeButton.onTap = { [weak self] in
-            self?.clickCloseButton()
-        }
+        closeButton.addTarget(self, action: #selector(clickCloseButton), for: .touchUpInside)
         closeButton.toAutoLayout()
         
         return closeButton
@@ -116,6 +114,7 @@ final class ProfileShadowView: UIView {
         })
     }
     
+    @objc
     private  func clickCloseButton() {
         self.layoutIfNeeded()
         avatarImageView.toAutoLayout()
