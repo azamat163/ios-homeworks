@@ -63,6 +63,6 @@ extension FeedViewController: FeedViewControllerDelegate {
     }
     
     func clickCheckerButton(word: String) {
-        model.check(word: word)
+        viewModel.model.check(word: word)
     }
 }
