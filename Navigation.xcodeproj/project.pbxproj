@@ -70,6 +70,8 @@
 		F385D82027183C16006458CD /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D81F27183C16006458CD /* FeedView.swift */; };
 		F385D82F27185E51006458CD /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D82E27185E51006458CD /* InfoViewController.swift */; };
 		F385D83427185ECA006458CD /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D83327185ECA006458CD /* InfoView.swift */; };
+		F39AE77127BA29B5002E9751 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39AE77027BA29B5002E9751 /* ProfileViewModel.swift */; };
+		F39AE77527BA5EEE002E9751 /* CommonAlertError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39AE77427BA5EEE002E9751 /* CommonAlertError.swift */; };
 		F3D792DC27206D80008299BC /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792DB27206D80008299BC /* ProfileHeaderView.swift */; };
 		F3D792E22722912F008299BC /* Button+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792E12722912F008299BC /* Button+Extensions.swift */; };
 		F3D792E42722A532008299BC /* TextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792E32722A532008299BC /* TextField+Extensions.swift */; };
@@ -204,6 +206,8 @@
 		F385D82927184C46006458CD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F385D82E27185E51006458CD /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		F385D83327185ECA006458CD /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		F39AE77027BA29B5002E9751 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		F39AE77427BA5EEE002E9751 /* CommonAlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonAlertError.swift; sourceTree = "<group>"; };
 		F3D792DB27206D80008299BC /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		F3D792E12722912F008299BC /* Button+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+Extensions.swift"; sourceTree = "<group>"; };
 		F3D792E32722A532008299BC /* TextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Extensions.swift"; sourceTree = "<group>"; };
@@ -344,6 +348,7 @@
 				03053C3C27400E5D002D5EC4 /* PhotosTableViewCell.swift */,
 				034B5EF1274AADBC00E84998 /* ProfileShadowView.swift */,
 				F3133A6827B17DB200BA3DD2 /* TimerTableViewCell.swift */,
+				F39AE77027BA29B5002E9751 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -377,6 +382,7 @@
 			isa = PBXGroup;
 			children = (
 				039C4E25279D4F3700AA58C0 /* CustomButton.swift */,
+				F39AE77427BA5EEE002E9751 /* CommonAlertError.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -936,6 +942,7 @@
 				03D23CA127765F850009A6DB /* User.swift in Sources */,
 				03F4FEF027A05E9E00AE4A17 /* LogInCoordinator.swift in Sources */,
 				03D23CA827766A910009A6DB /* TestUserService.swift in Sources */,
+				F39AE77127BA29B5002E9751 /* ProfileViewModel.swift in Sources */,
 				F385D8152716AEBE006458CD /* View+Extensions.swift in Sources */,
 				03F4FEF227A0734C00AE4A17 /* FeedViewModel.swift in Sources */,
 				F385D7CD27141F92006458CD /* ProfileViewController.swift in Sources */,
@@ -949,6 +956,7 @@
 				F385D793271415F0006458CD /* AppDelegate.swift in Sources */,
 				F385D795271415F0006458CD /* SceneDelegate.swift in Sources */,
 				03439B4427A6BCF800BF8002 /* ProfileCoordinator.swift in Sources */,
+				F39AE77527BA5EEE002E9751 /* CommonAlertError.swift in Sources */,
 				03053C3D27400E5D002D5EC4 /* PhotosTableViewCell.swift in Sources */,
 				039C4E28279D5DE400AA58C0 /* FeedModel.swift in Sources */,
 				03439B5027A6DE3200BF8002 /* LoginViewModel.swift in Sources */,

@@ -73,7 +73,7 @@ extension PhotosViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier, for: indexPath) as? PhotosCollectionViewCell else { fatalError() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier, for: indexPath) as? PhotosCollectionViewCell else { preconditionFailure("Unable to cast cell to PhotosCollectionViewCell") }
         
         let image = images[indexPath.row]
         cell.configure(with: image)
@@ -138,7 +138,7 @@ extension PhotosViewController {
             qos: qos,
             completion: { cgImages in
                 self.userImages = cgImages.compactMap({ cgImage in
-                    guard let cgImage = cgImage else { fatalError("Unable to fetch filter image") }
+                    guard let cgImage = cgImage else { preconditionFailure("Unable to fetch filter image") }
                     return UIImage(cgImage: cgImage)
                 })
                 let end = DispatchTime.now()

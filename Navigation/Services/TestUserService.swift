@@ -10,7 +10,7 @@ import Foundation
 class TestUserService: UserService {
     var user: User = User(fullName: "Test", avatar: "avatar_cat", status: "Busy Test")
     
-    func getUser(fullName: String) -> User? {
+    func getUser(fullName: String) throws -> User {
         return user
     }
 }

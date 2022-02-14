@@ -8,14 +8,6 @@
 import Foundation
 
 class LoginViewModel {
-    
-    private(set) var state: State = .initial {
-        didSet {
-           onStateChanged?(state)
-        }
-    }
-    
-    var onStateChanged: ((State) -> Void)?
     var showProfileVc: ((String) -> Void)?
 
     func send(_ action: Action){
@@ -29,11 +21,5 @@ class LoginViewModel {
 extension LoginViewModel {
     enum Action {
         case showProfileVc(String)
-    }
-
-    enum State {
-        case initial
-        case configureKeyboards
-        case error(String)
     }
 }
