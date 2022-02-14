@@ -8,7 +8,7 @@
 import UIKit
 
 protocol LogInViewControllerDelegate: AnyObject {
-    func tappedButton(sender: UIButton, fullName: String)
+    func tappedButton(fullName: String)
 }
 
 protocol LogInViewControllerCheckerDelegate: AnyObject {
@@ -106,7 +106,7 @@ class LogInViewController: UIViewController {
 
 extension LogInViewController: LogInViewControllerDelegate {
     
-    func tappedButton(sender: UIButton, fullName: String) {
+    func tappedButton(fullName: String) {
         var currentUser: UserService
 
         #if DEBUG

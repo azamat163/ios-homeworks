@@ -21,6 +21,8 @@
 		033DC5632775F4A000802BBA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D82927184C46006458CD /* Post.swift */; };
 		033DC56C27761B4A00802BBA /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 033DC56B27761B4A00802BBA /* iOSIntPackage */; };
 		034B5EF2274AADBC00E84998 /* ProfileShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034B5EF1274AADBC00E84998 /* ProfileShadowView.swift */; };
+		039C4E26279D4F3700AA58C0 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039C4E25279D4F3700AA58C0 /* CustomButton.swift */; };
+		039C4E28279D5DE400AA58C0 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 039C4E27279D5DE400AA58C0 /* FeedModel.swift */; };
 		03AE911D2734F79D00CEE4C4 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AE911C2734F79D00CEE4C4 /* LogInViewController.swift */; };
 		03AE911F2734F90600CEE4C4 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AE911E2734F90600CEE4C4 /* LogInView.swift */; };
 		03AE91252735251500CEE4C4 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AE91242735251500CEE4C4 /* UIImage+Extensions.swift */; };
@@ -125,6 +127,8 @@
 		033DC54C2775F24500802BBA /* StorageServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StorageServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		033DC5532775F24500802BBA /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
 		034B5EF1274AADBC00E84998 /* ProfileShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileShadowView.swift; sourceTree = "<group>"; };
+		039C4E25279D4F3700AA58C0 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		039C4E27279D5DE400AA58C0 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 		03AE911C2734F79D00CEE4C4 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		03AE911E2734F90600CEE4C4 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		03AE91242735251500CEE4C4 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
@@ -310,6 +314,14 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		039C4E24279D4F1D00AA58C0 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				039C4E25279D4F3700AA58C0 /* CustomButton.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		03BB803C273712BB009B7B54 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,6 +400,7 @@
 		F385D791271415F0006458CD /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				039C4E24279D4F1D00AA58C0 /* Common */,
 				03D23CA227765FE50009A6DB /* Services */,
 				033DC5692775F69700802BBA /* App */,
 				033DC5642775F5CE00802BBA /* Modules */,
@@ -461,6 +474,7 @@
 			children = (
 				03053C4027401A0A002D5EC4 /* Photo.swift */,
 				03D23CA027765F850009A6DB /* User.swift */,
+				039C4E27279D5DE400AA58C0 /* FeedModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -849,6 +863,7 @@
 				F385D82027183C16006458CD /* FeedView.swift in Sources */,
 				03053C4427403852002D5EC4 /* PhotosViewController.swift in Sources */,
 				03053C48274045C9002D5EC4 /* PhotosCollectionViewCell.swift in Sources */,
+				039C4E26279D4F3700AA58C0 /* CustomButton.swift in Sources */,
 				03053C3F274019C4002D5EC4 /* PhotosAPI.swift in Sources */,
 				03D23CA62776602F0009A6DB /* CurrentService.swift in Sources */,
 				F385D819271837B0006458CD /* PostViewController.swift in Sources */,
@@ -863,6 +878,7 @@
 				F385D793271415F0006458CD /* AppDelegate.swift in Sources */,
 				F385D795271415F0006458CD /* SceneDelegate.swift in Sources */,
 				03053C3D27400E5D002D5EC4 /* PhotosTableViewCell.swift in Sources */,
+				039C4E28279D5DE400AA58C0 /* FeedModel.swift in Sources */,
 				03AE91312735D41000CEE4C4 /* PostTableViewCell.swift in Sources */,
 				F385D79D271415F0006458CD /* Navigation.xcdatamodeld in Sources */,
 				F3D792E22722912F008299BC /* Button+Extensions.swift in Sources */,

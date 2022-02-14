@@ -7,12 +7,25 @@
 
 import UIKit
 
-class FeedViewController: UIViewController {
-        
-    lazy var feedView: FeedView = {
+protocol FeedViewControllerDelegate: AnyObject {
+    func clickButton()
+    func clickCheckerButton(word: String)
+}
+
+final class FeedViewController: UIViewController {
+    private var model: FeedModel
+    
+    init(model: FeedModel) {
+        self.model = model
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private lazy var feedView: FeedView = {
         feedView = FeedView(frame: .zero)
-        feedView.firstPostButton.addTarget(self, action: #selector(clickButton), for: .touchUpInside)
-        feedView.secondPostButton.addTarget(self, action: #selector(clickButton), for: .touchUpInside)
 
         return feedView
     }()
@@ -24,6 +37,8 @@ class FeedViewController: UIViewController {
         
         feedView.toAutoLayout()
         setupLayout()
+        
+        feedView.delegate = self
     }
     
     private func setupLayout() {
@@ -36,14 +51,19 @@ class FeedViewController: UIViewController {
     }
 }
 
+
 private extension String {
     static let postTitle: String = "Текст из экрана Feed"
 }
 
-extension FeedViewController {
-    @objc func clickButton() {
+extension FeedViewController: FeedViewControllerDelegate {
+    func clickButton() {
         let postVc: PostViewController = PostViewController()
         postVc.setupTitle(.postTitle)
         navigationController?.pushViewController(postVc, animated: true)
+    }
+    
+    func clickCheckerButton(word: String) {
+        model.check(word: word)
     }
 }

@@ -96,17 +96,19 @@ final class LogInView: UIView {
         return formStackView
     }()
     
-    lazy var logInButton: UIButton = {
-        logInButton = UIButton(frame: .zero)
-        logInButton.setTitle(.logInButtonTitle, for: .normal)
-        logInButton.setTitleColor(.white, for: .normal)
+    lazy var logInButton: CustomButton = {
+        logInButton = CustomButton(
+            title: .logInButtonTitle,
+            titleColor: .white,
+            onTap: { [weak self] in
+                self?.tappedButton()
+            }
+        )
         logInButton.setBackgroundImage(Constants.Button.image?.alpha(1), for: .normal)
         logInButton.setBackgroundImage(Constants.Button.image?.alpha(0.8), for: [.selected, .highlighted, .disabled])
         
         logInButton.layer.cornerRadius = Constants.Button.cornerRadius
         logInButton.layer.masksToBounds = true
-        
-        logInButton.addTarget(self, action: #selector(tappedButton(sender:)), for: .touchUpInside)
                 
         logInButton.toAutoLayout()
         
@@ -156,7 +158,7 @@ final class LogInView: UIView {
         )
     }
     
-    @objc func tappedButton(sender: UIButton) {
+    private func tappedButton() {
         guard let emailText = emailOfPhoneTextField.text, !emailText.isEmpty else { return }
         guard let passwordText = passwordTextField.text, !passwordText.isEmpty else { return }
         
@@ -167,7 +169,7 @@ final class LogInView: UIView {
             animateButton()
             return
         }
-        delegate?.tappedButton(sender: sender, fullName: emailText)
+        delegate?.tappedButton(fullName: emailText)
     }
     
     private func animateButton() {

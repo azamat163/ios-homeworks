@@ -7,10 +7,13 @@
 
 import UIKit
 
-class InfoViewController: UIViewController {
-    lazy var infoView: InfoView = {
+protocol InfoViewControllerDelegate: AnyObject {
+    func clickAlertAction()
+}
+
+final class InfoViewController: UIViewController {
+    private lazy var infoView: InfoView = {
         infoView = InfoView(frame: CGRect(x: 0, y: 30, width: view.frame.size.width, height: view.frame.size.height - 30))
-        infoView.alertButton.addTarget(self, action: #selector(clickAlertAction(_:)), for: .touchUpInside)
         return infoView
     }()
     
@@ -19,9 +22,13 @@ class InfoViewController: UIViewController {
         view.backgroundColor = .orange
         
         view.addSubview(infoView)
+        
+        infoView.delegate = self
     }
-    
-    @objc func clickAlertAction(_ sender: Any) {
+}
+
+extension InfoViewController: InfoViewControllerDelegate {
+    func clickAlertAction() {
         let alert = UIAlertController(title: .title, message: .message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: .yes, style: .default, handler: { alert -> Void in
             print(String.yes)

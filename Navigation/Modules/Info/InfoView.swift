@@ -7,7 +7,10 @@
 
 import UIKit
 
-class InfoView: UIView {
+final class InfoView: UIView {
+    
+    weak var delegate: InfoViewControllerDelegate?
+    
     private enum Constains {
         static let width: CGFloat = 300
         static let height: CGFloat = 60
@@ -15,12 +18,17 @@ class InfoView: UIView {
         static let borderColor: CGColor = UIColor.blue.cgColor
     }
     
-    lazy var alertButton: UIButton = {
-        alertButton = UIButton(frame: .zero)
-        alertButton.setTitle(.alertButtonTitle, for: .normal)
-        alertButton.setTitleColor(.blue, for: .normal)
+    private lazy var alertButton: CustomButton = {
+        alertButton = CustomButton(
+            title: .alertButtonTitle,
+            titleColor: .blue,
+            onTap: { [weak self] in
+                self?.buttonTapped()
+            }
+        )
         alertButton.layer.borderColor = Constains.borderColor
         alertButton.layer.borderWidth = Constains.bordetWidth
+        
         return alertButton
     }()
     
@@ -44,6 +52,10 @@ class InfoView: UIView {
             alertButton.widthAnchor.constraint(equalToConstant: Constains.width),
             alertButton.heightAnchor.constraint(equalToConstant: Constains.height)
         ])
+    }
+    
+    private func buttonTapped() {
+        delegate?.clickAlertAction()
     }
 }
 

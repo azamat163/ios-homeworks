@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileShadowView: UIView {
+final class ProfileShadowView: UIView {
     private enum Constants {
         static let avatarImageHeight: CGFloat = 100
         static let avatarImageViewBorderWidth: CGFloat = 3.0
@@ -114,7 +114,8 @@ class ProfileShadowView: UIView {
         })
     }
     
-    @objc func clickCloseButton() {
+    @objc
+    private  func clickCloseButton() {
         self.layoutIfNeeded()
         avatarImageView.toAutoLayout()
         NSLayoutConstraint.activate(avatarImageConstraints())
