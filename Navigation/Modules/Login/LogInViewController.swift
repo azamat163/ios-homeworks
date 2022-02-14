@@ -67,9 +67,7 @@ class LogInViewController: UIViewController {
             case .configureKeyboards:
                 self.configureKeyboardNotifications()
             default: break
-
             }
-
         }
     }
     

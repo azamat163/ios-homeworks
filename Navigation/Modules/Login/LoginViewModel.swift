@@ -20,7 +20,6 @@ class LoginViewModel {
 
     func send(_ action: Action){
         switch action {
-
         case .showProfileVc(let title):
             showProfileVc?(title)
         }
