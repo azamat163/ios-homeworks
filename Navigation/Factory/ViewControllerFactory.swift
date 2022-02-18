@@ -16,6 +16,7 @@ enum TypeOfViewController {
     case postView(title: String)
     case infoView
     case photosView
+    case audio(viewModel: AudioViewModel)
 }
 
 extension TypeOfViewController {
@@ -35,6 +36,8 @@ extension TypeOfViewController {
             return InfoViewController()
         case .photosView:
             return PhotosViewController()
+        case .audio(let viewModel):
+            return AudioViewController(viewModel: viewModel)
         }
     }
 }
