@@ -83,6 +83,15 @@
 		F390015027C36D6500171D53 /* Remember.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F390014B27C36D6500171D53 /* Remember.mp3 */; };
 		F390015127C36D6500171D53 /* Little Bit of Love.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F390014C27C36D6500171D53 /* Little Bit of Love.mp3 */; };
 		F390015227C36D6500171D53 /* Before You Go.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F390014D27C36D6500171D53 /* Before You Go.mp3 */; };
+		F390015427C3C6FB00171D53 /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F390015327C3C6FB00171D53 /* VideoModel.swift */; };
+		F390015C27C3CE1300171D53 /* VideosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F390015B27C3CE1300171D53 /* VideosTableViewCell.swift */; };
+		F390015E27C3CEA300171D53 /* VideoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F390015D27C3CEA300171D53 /* VideoAPI.swift */; };
+		F390016027C3D71900171D53 /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F390015F27C3D71900171D53 /* VideoViewModel.swift */; };
+		F390016127C3E10900171D53 /* Video1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F390015A27C3CC8B00171D53 /* Video1.mp4 */; };
+		F390016227C3E10D00171D53 /* Video2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F390015927C3CC8900171D53 /* Video2.mp4 */; };
+		F390016327C3E11000171D53 /* Video3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F390015827C3CC8900171D53 /* Video3.mp4 */; };
+		F390016427C3E11300171D53 /* Video4.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F390015627C3CC8600171D53 /* Video4.mp4 */; };
+		F390016527C3E11700171D53 /* Video5.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F390015727C3CC8800171D53 /* Video5.mp4 */; };
 		F39AE77127BA29B5002E9751 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39AE77027BA29B5002E9751 /* ProfileViewModel.swift */; };
 		F39AE77527BA5EEE002E9751 /* CommonAlertError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39AE77427BA5EEE002E9751 /* CommonAlertError.swift */; };
 		F3D792DC27206D80008299BC /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792DB27206D80008299BC /* ProfileHeaderView.swift */; };
@@ -232,6 +241,15 @@
 		F390014B27C36D6500171D53 /* Remember.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Remember.mp3; sourceTree = "<group>"; };
 		F390014C27C36D6500171D53 /* Little Bit of Love.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Little Bit of Love.mp3"; sourceTree = "<group>"; };
 		F390014D27C36D6500171D53 /* Before You Go.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Before You Go.mp3"; sourceTree = "<group>"; };
+		F390015327C3C6FB00171D53 /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
+		F390015627C3CC8600171D53 /* Video4.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Video4.mp4; sourceTree = "<group>"; };
+		F390015727C3CC8800171D53 /* Video5.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Video5.mp4; sourceTree = "<group>"; };
+		F390015827C3CC8900171D53 /* Video3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Video3.mp4; sourceTree = "<group>"; };
+		F390015927C3CC8900171D53 /* Video2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Video2.mp4; sourceTree = "<group>"; };
+		F390015A27C3CC8B00171D53 /* Video1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Video1.mp4; sourceTree = "<group>"; };
+		F390015B27C3CE1300171D53 /* VideosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosTableViewCell.swift; sourceTree = "<group>"; };
+		F390015D27C3CEA300171D53 /* VideoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAPI.swift; sourceTree = "<group>"; };
+		F390015F27C3D71900171D53 /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
 		F39AE77027BA29B5002E9751 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		F39AE77427BA5EEE002E9751 /* CommonAlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonAlertError.swift; sourceTree = "<group>"; };
 		F3D792DB27206D80008299BC /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
@@ -421,6 +439,7 @@
 				03BB803E273712EF009B7B54 /* PostAPI.swift */,
 				03053C3E274019C4002D5EC4 /* PhotosAPI.swift */,
 				F312B3B627BE74AE0033889E /* AudioAPI.swift */,
+				F390015D27C3CEA300171D53 /* VideoAPI.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -473,6 +492,8 @@
 				F312B3B827BE78400033889E /* AudiosViewModel.swift */,
 				F312B3BA27BE7E340033889E /* AudioTableViewCell.swift */,
 				F390013D27C3667700171D53 /* AudioViewModel.swift */,
+				F390015B27C3CE1300171D53 /* VideosTableViewCell.swift */,
+				F390015F27C3D71900171D53 /* VideoViewModel.swift */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -506,6 +527,7 @@
 		F385D791271415F0006458CD /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F390015527C3CC7000171D53 /* Videos */,
 				F390013227C358E800171D53 /* Musics */,
 				03439B5327AC499C00BF8002 /* Operation */,
 				03439B4C27A6CB2500BF8002 /* Factory */,
@@ -587,6 +609,7 @@
 				03D23CA027765F850009A6DB /* User.swift */,
 				039C4E27279D5DE400AA58C0 /* FeedModel.swift */,
 				F312B3B427BE745B0033889E /* AudioModel.swift */,
+				F390015327C3C6FB00171D53 /* VideoModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -601,6 +624,18 @@
 				F390014B27C36D6500171D53 /* Remember.mp3 */,
 			);
 			path = Musics;
+			sourceTree = "<group>";
+		};
+		F390015527C3CC7000171D53 /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				F390015A27C3CC8B00171D53 /* Video1.mp4 */,
+				F390015927C3CC8900171D53 /* Video2.mp4 */,
+				F390015827C3CC8900171D53 /* Video3.mp4 */,
+				F390015627C3CC8600171D53 /* Video4.mp4 */,
+				F390015727C3CC8800171D53 /* Video5.mp4 */,
+			);
+			path = Videos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -793,6 +828,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F390016527C3E11700171D53 /* Video5.mp4 in Resources */,
+				F390016427C3E11300171D53 /* Video4.mp4 in Resources */,
+				F390016327C3E11000171D53 /* Video3.mp4 in Resources */,
+				F390016227C3E10D00171D53 /* Video2.mp4 in Resources */,
+				F390016127C3E10900171D53 /* Video1.mp4 in Resources */,
 				F390015127C36D6500171D53 /* Little Bit of Love.mp3 in Resources */,
 				F390015227C36D6500171D53 /* Before You Go.mp3 in Resources */,
 				F390014E27C36D6500171D53 /* 2002.mp3 in Resources */,
@@ -1031,15 +1071,19 @@
 				F3D792E42722A532008299BC /* TextField+Extensions.swift in Sources */,
 				F312B3BD27BF7EF80033889E /* AudioPlayerService.swift in Sources */,
 				F385D82F27185E51006458CD /* InfoViewController.swift in Sources */,
+				F390015427C3C6FB00171D53 /* VideoModel.swift in Sources */,
 				03E8E4A42778B5EF00B073A5 /* CheckerService.swift in Sources */,
 				F385D80D2716AAB5006458CD /* HomeViewController.swift in Sources */,
+				F390016027C3D71900171D53 /* VideoViewModel.swift in Sources */,
 				03053C4127401A0A002D5EC4 /* Photo.swift in Sources */,
 				03439B4A27A6C58700BF8002 /* PhotosViewCoordinator.swift in Sources */,
 				F312B3B527BE745B0033889E /* AudioModel.swift in Sources */,
 				03E8E4AA2778F1C800B073A5 /* MyLoginFactory.swift in Sources */,
 				03439B4E27A6CCDC00BF8002 /* ViewControllerFactory.swift in Sources */,
 				03BB803F273712EF009B7B54 /* PostAPI.swift in Sources */,
+				F390015C27C3CE1300171D53 /* VideosTableViewCell.swift in Sources */,
 				F3D792DC27206D80008299BC /* ProfileHeaderView.swift in Sources */,
+				F390015E27C3CEA300171D53 /* VideoAPI.swift in Sources */,
 				F385D83427185ECA006458CD /* InfoView.swift in Sources */,
 				03AE91252735251500CEE4C4 /* UIImage+Extensions.swift in Sources */,
 				031475BD279F30BD0004502C /* AppCoordinator.swift in Sources */,

@@ -52,13 +52,35 @@ final class AudioTableViewCell: UITableViewCell {
     
     private lazy var audioPlayImageView: UIImageView = {
         audioPlayImageView = UIImageView(frame: .zero)
-        audioPlayImageView.image = UIImage(systemName: "play.fill")
+        audioPlayImageView.image = UIImage(systemName: "play.circle.fill")
         audioPlayImageView.backgroundColor = .white
         audioPlayImageView.tintColor = .black
         audioPlayImageView.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedPlayPauseButton))
         audioPlayImageView.addGestureRecognizer(tapGestureRecognizer)
         return audioPlayImageView
+    }()
+    
+    private lazy var audioBackwardImageView: UIImageView = {
+        audioBackwardImageView = UIImageView(frame: .zero)
+        audioBackwardImageView.image = UIImage(systemName: "backward.circle.fill")
+        audioBackwardImageView.backgroundColor = .white
+        audioBackwardImageView.tintColor = .black
+        audioBackwardImageView.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedPrevButton))
+        audioBackwardImageView.addGestureRecognizer(tapGestureRecognizer)
+        return audioBackwardImageView
+    }()
+    
+    private lazy var audioForwardImageView: UIImageView = {
+        audioForwardImageView = UIImageView(frame: .zero)
+        audioForwardImageView.image = UIImage(systemName: "forward.circle.fill")
+        audioForwardImageView.backgroundColor = .white
+        audioForwardImageView.tintColor = .black
+        audioForwardImageView.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedNextButton))
+        audioForwardImageView.addGestureRecognizer(tapGestureRecognizer)
+        return audioForwardImageView
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -68,6 +90,8 @@ final class AudioTableViewCell: UITableViewCell {
         contentView.addSubview(audioStackView)
         contentView.addSubview(audioImageView)
         contentView.addSubview(audioPlayImageView)
+        contentView.addSubview(audioBackwardImageView)
+        contentView.addSubview(audioForwardImageView)
         
         setupLayout()
     }
@@ -94,9 +118,23 @@ final class AudioTableViewCell: UITableViewCell {
         
         audioPlayImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-10)
-            make.width.equalTo(18)
-            make.height.equalTo(18)
+            make.trailing.equalToSuperview().offset(-33)
+            make.width.equalTo(30)
+            make.height.equalTo(30)
+        }
+        
+        audioBackwardImageView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-63)
+            make.width.equalTo(30)
+            make.height.equalTo(30)
+        }
+        
+        audioForwardImageView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-3)
+            make.width.equalTo(30)
+            make.height.equalTo(30)
         }
     }
     
@@ -104,6 +142,20 @@ final class AudioTableViewCell: UITableViewCell {
     func tappedPlayPauseButton() {
         guard let viewModel = viewModel else { return }
         delegate?.play(viewModel.model)
+        configure(with: viewModel)
+    }
+    
+    @objc
+    func tappedPrevButton() {
+        guard let viewModel = viewModel else { return }
+        delegate?.playPrev(viewModel.model)
+        configure(with: viewModel)
+    }
+    
+    @objc
+    func tappedNextButton() {
+        guard let viewModel = viewModel else { return }
+        delegate?.playNext(viewModel.model)
         configure(with: viewModel)
     }
 }
@@ -116,7 +168,7 @@ extension AudioTableViewCell {
         audioArtist.text = viewModel.model.artist
         audioImageView.image = UIImage(named: viewModel.model.image)
         
-        let image = viewModel.isNowPlaying ? UIImage(systemName: "stop.fill") : UIImage(systemName: "play.fill")
+        let image = viewModel.isNowPlaying ? UIImage(systemName: "pause.circle.fill") : UIImage(systemName: "play.circle.fill")
         audioPlayImageView.image = image
     }
 }

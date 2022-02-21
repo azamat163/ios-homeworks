@@ -7,9 +7,12 @@
 
 import UIKit
 import SnapKit
+import AVKit
 
 protocol AudiosViewControllerDelegate: AnyObject {
     func play(_ model: AudioModel)
+    func playPrev(_ model: AudioModel)
+    func playNext(_ model: AudioModel)
 }
 
 class AudiosViewController: UIViewController {
@@ -47,6 +50,7 @@ class AudiosViewController: UIViewController {
         tableView.dataSource = self
         
         tableView.register(AudioTableViewCell.self, forCellReuseIdentifier: AudioTableViewCell.identifier)
+        tableView.register(VideosTableViewCell.self, forCellReuseIdentifier: VideosTableViewCell.identifier)
     }
     
     private func setupLayout() {
@@ -71,6 +75,10 @@ class AudiosViewController: UIViewController {
                 self.tableView.reloadData()
             case .played:
                 self.tableView.reloadData()
+            case .playNext:
+                self.tableView.reloadData()
+            case .playPrev:
+                self.tableView.reloadData()
             }
         }
     }
@@ -78,39 +86,83 @@ class AudiosViewController: UIViewController {
 
 extension AudiosViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.audios.count
+        if section == 0 {
+            return viewModel.audios.count
+        } else {
+            return viewModel.videos.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: AudioTableViewCell.identifier, for: indexPath) as? AudioTableViewCell else {
-            preconditionFailure("Unable to cast cell to AudioTableViewCell")
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: AudioTableViewCell.identifier, for: indexPath) as? AudioTableViewCell else {
+                preconditionFailure("Unable to cast cell to AudioTableViewCell")
+            }
+            
+            let audioModel = viewModel.audios[indexPath.row]
+            let viewModel = AudioViewModel(model: audioModel)
+            cell.configure(with: viewModel)
+            cell.delegate = self
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: VideosTableViewCell.identifier, for: indexPath) as? VideosTableViewCell else {
+                preconditionFailure("Unable to cast cell to VideosTableViewCell")
+            }
+            
+            let videoModel = viewModel.videos[indexPath.row]
+            let viewModel = VideoViewModel(model: videoModel)
+            cell.configure(with: viewModel)
+            return cell
         }
-        
-        let audioModel = viewModel.audios[indexPath.row]
-        let viewModel = AudioViewModel(model: audioModel)
-        cell.configure(with: viewModel)
-        cell.delegate = self
-        
-        return cell
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Музыка"
+        if section == 0 {
+            return "Музыка"
+        } else {
+            return "Видеo"
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 55
+        if indexPath.section == 0 {
+            return 55
+        } else {
+            return UITableView.automaticDimension
+        }
     }
 }
 
-extension AudiosViewController: UITableViewDelegate {}
+extension AudiosViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            let videoModel = viewModel.videos[indexPath.row]
+            guard let path = Bundle.main.path(forResource: videoModel.title, ofType: videoModel.type) else { return }
+            let player = AVPlayer(url: URL.init(fileURLWithPath: path))
+            let playerViewController = AVPlayerViewController()
+            playerViewController.player = player
+            present(playerViewController, animated: true) {
+                player.play()
+            }
+        }
+    }
+}
 
 extension AudiosViewController: AudiosViewControllerDelegate {
     func play(_ model: AudioModel) {
         viewModel.send(.tappedPlayPause(model))
+    }
+    
+    func playNext(_ model: AudioModel) {
+        viewModel.send(.tappedNext(model))
+    }
+    
+    func playPrev(_ model: AudioModel) {
+        viewModel.send(.tappedPrev(model))
     }
 }
