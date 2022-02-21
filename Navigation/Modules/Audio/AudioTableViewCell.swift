@@ -9,6 +9,10 @@ import UIKit
 import SnapKit
 
 final class AudioTableViewCell: UITableViewCell {
+    
+    weak var delegate: AudiosViewControllerDelegate?
+    var viewModel: AudioViewModel?
+    
     static var identifier: String {
         return String(describing: self)
     }
@@ -51,6 +55,9 @@ final class AudioTableViewCell: UITableViewCell {
         audioPlayImageView.image = UIImage(systemName: "play.fill")
         audioPlayImageView.backgroundColor = .white
         audioPlayImageView.tintColor = .black
+        audioPlayImageView.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tappedPlayPauseButton))
+        audioPlayImageView.addGestureRecognizer(tapGestureRecognizer)
         return audioPlayImageView
     }()
     
@@ -92,18 +99,24 @@ final class AudioTableViewCell: UITableViewCell {
             make.height.equalTo(18)
         }
     }
+    
+    @objc
+    func tappedPlayPauseButton() {
+        guard let viewModel = viewModel else { return }
+        delegate?.play(viewModel.model)
+        configure(with: viewModel)
+    }
 }
 
 extension AudioTableViewCell {
-    func configure(with model: AudioModel) {
-        audioTitle.text = model.title
-        audioArtist.text = model.artist
-        audioImageView.image = UIImage(named: model.image)
-    }
-    
-    func reloadData(with model: AudioModel) {
-        let image = model.isPlaying == true ? UIImage(systemName: "stop.fill") : UIImage(systemName: "play.fill")
+    func configure(with viewModel: AudioViewModel) {
+        self.viewModel = viewModel
+                
+        audioTitle.text = viewModel.model.title
+        audioArtist.text = viewModel.model.artist
+        audioImageView.image = UIImage(named: viewModel.model.image)
+        
+        let image = viewModel.isNowPlaying ? UIImage(systemName: "stop.fill") : UIImage(systemName: "play.fill")
         audioPlayImageView.image = image
-        configure(with: model)
     }
 }

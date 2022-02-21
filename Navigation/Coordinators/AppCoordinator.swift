@@ -57,8 +57,8 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
         let navLogInVc = createNavController(for: logInVc, title: NSLocalizedString(Constants.profileTitle, comment: ""), image: UIImage(systemName: Constants.profileImageName)!)
         let logInCoordinator = LogInCoordinator(navigationController: navLogInVc, viewControllerFactory: viewControllerFactory)
         
-        let audioViewModel = AudioViewModel()
-        let audioVc = viewControllerFactory.viewController(for: .audio(viewModel: audioViewModel))
+        let audiosViewModel = AudiosViewModel()
+        let audioVc = viewControllerFactory.viewController(for: .audio(viewModel: audiosViewModel))
         let navAudioVc = createNavController(for: audioVc, title: Constants.audioTitle, image: UIImage(systemName: Constants.audioImageName)!)
         let audioCoordinator = AudioCoordinator(navigationController: navAudioVc, viewControllerFactory: viewControllerFactory)
         

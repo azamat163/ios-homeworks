@@ -10,34 +10,36 @@ import AVFoundation
 
 final class AudioPlayerService {
     static let shared = AudioPlayerService()
-    var player: AVAudioPlayer?
+    
+    private(set) var player: AVAudioPlayer?
+    private(set) var audio: AudioModel?
     
     private init() {}
     
-    func prepare(with audio: AudioModel) {
+    var isPlaying: Bool {
+        return player?.isPlaying ?? false
+    }
+    
+    func play(with viewModel: AudioViewModel) {
         do {
-            guard let path = Bundle.main.path(forResource: audio.title, ofType: audio.type) else { return }
+            self.audio = viewModel.model
+            guard let path = Bundle.main.path(forResource: viewModel.model.title, ofType: viewModel.model.type) else { return }
             player = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: path))
+            play()
         } catch {
             print(error)
         }
     }
     
-    func play(audio: AudioModel) {
-        prepare(with: audio)
+    func play() {
         player?.play()
     }
     
-    func stop(audio: AudioModel) {
-        prepare(with: audio)
-        guard let player = player else {
-            return
-        }
-
-        if player.isPlaying {
-            player.stop()
-        } else {
-            print("Already stopped!")
-        }
+    func pause() {
+        player?.pause()
+    }
+    
+    func stop() {
+        player?.stop()
     }
 }

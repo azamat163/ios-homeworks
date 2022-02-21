@@ -53,11 +53,11 @@
 		881D961D7A0EBBE72819CD0F /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D504B08EB11230732DF502B /* Pods_StorageService.framework */; };
 		A136399D7BB098E8B318B63E /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2964D07A393470927A5535E /* Pods_Navigation.framework */; };
 		BEDDA02978E227E43330DE33 /* Pods_StorageService_StorageServiceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3960A154F1BDAE608E1119 /* Pods_StorageService_StorageServiceTests.framework */; };
-		F312B3AF27BE53420033889E /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3AE27BE53420033889E /* AudioViewController.swift */; };
+		F312B3AF27BE53420033889E /* AudiosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3AE27BE53420033889E /* AudiosViewController.swift */; };
 		F312B3B127BE69EF0033889E /* AudioCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3B027BE69EF0033889E /* AudioCoordinator.swift */; };
 		F312B3B527BE745B0033889E /* AudioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3B427BE745B0033889E /* AudioModel.swift */; };
 		F312B3B727BE74AE0033889E /* AudioAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3B627BE74AE0033889E /* AudioAPI.swift */; };
-		F312B3B927BE78400033889E /* AudioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3B827BE78400033889E /* AudioViewModel.swift */; };
+		F312B3B927BE78400033889E /* AudiosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3B827BE78400033889E /* AudiosViewModel.swift */; };
 		F312B3BB27BE7E340033889E /* AudioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3BA27BE7E340033889E /* AudioTableViewCell.swift */; };
 		F312B3BD27BF7EF80033889E /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3BC27BF7EF80033889E /* AudioPlayerService.swift */; };
 		F3133A6927B17DB200BA3DD2 /* TimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3133A6827B17DB200BA3DD2 /* TimerTableViewCell.swift */; };
@@ -77,6 +77,12 @@
 		F385D82027183C16006458CD /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D81F27183C16006458CD /* FeedView.swift */; };
 		F385D82F27185E51006458CD /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D82E27185E51006458CD /* InfoViewController.swift */; };
 		F385D83427185ECA006458CD /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D83327185ECA006458CD /* InfoView.swift */; };
+		F390013E27C3667700171D53 /* AudioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F390013D27C3667700171D53 /* AudioViewModel.swift */; };
+		F390014E27C36D6500171D53 /* 2002.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F390014927C36D6500171D53 /* 2002.mp3 */; };
+		F390014F27C36D6500171D53 /* Iris.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F390014A27C36D6500171D53 /* Iris.mp3 */; };
+		F390015027C36D6500171D53 /* Remember.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F390014B27C36D6500171D53 /* Remember.mp3 */; };
+		F390015127C36D6500171D53 /* Little Bit of Love.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F390014C27C36D6500171D53 /* Little Bit of Love.mp3 */; };
+		F390015227C36D6500171D53 /* Before You Go.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F390014D27C36D6500171D53 /* Before You Go.mp3 */; };
 		F39AE77127BA29B5002E9751 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39AE77027BA29B5002E9751 /* ProfileViewModel.swift */; };
 		F39AE77527BA5EEE002E9751 /* CommonAlertError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39AE77427BA5EEE002E9751 /* CommonAlertError.swift */; };
 		F3D792DC27206D80008299BC /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792DB27206D80008299BC /* ProfileHeaderView.swift */; };
@@ -191,11 +197,11 @@
 		F0DCA5721FAB1CF0D9F8DA1F /* Pods_NavigationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NavigationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F21B715891E6AA67FDCF17D7 /* Pods-StorageService-StorageServiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService-StorageServiceTests.debug.xcconfig"; path = "Target Support Files/Pods-StorageService-StorageServiceTests/Pods-StorageService-StorageServiceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F2964D07A393470927A5535E /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F312B3AE27BE53420033889E /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
+		F312B3AE27BE53420033889E /* AudiosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudiosViewController.swift; sourceTree = "<group>"; };
 		F312B3B027BE69EF0033889E /* AudioCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCoordinator.swift; sourceTree = "<group>"; };
 		F312B3B427BE745B0033889E /* AudioModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioModel.swift; sourceTree = "<group>"; };
 		F312B3B627BE74AE0033889E /* AudioAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioAPI.swift; sourceTree = "<group>"; };
-		F312B3B827BE78400033889E /* AudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewModel.swift; sourceTree = "<group>"; };
+		F312B3B827BE78400033889E /* AudiosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudiosViewModel.swift; sourceTree = "<group>"; };
 		F312B3BA27BE7E340033889E /* AudioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTableViewCell.swift; sourceTree = "<group>"; };
 		F312B3BC27BF7EF80033889E /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
 		F3133A6827B17DB200BA3DD2 /* TimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTableViewCell.swift; sourceTree = "<group>"; };
@@ -220,6 +226,12 @@
 		F385D82927184C46006458CD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F385D82E27185E51006458CD /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		F385D83327185ECA006458CD /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		F390013D27C3667700171D53 /* AudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewModel.swift; sourceTree = "<group>"; };
+		F390014927C36D6500171D53 /* 2002.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 2002.mp3; sourceTree = "<group>"; };
+		F390014A27C36D6500171D53 /* Iris.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Iris.mp3; sourceTree = "<group>"; };
+		F390014B27C36D6500171D53 /* Remember.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Remember.mp3; sourceTree = "<group>"; };
+		F390014C27C36D6500171D53 /* Little Bit of Love.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Little Bit of Love.mp3"; sourceTree = "<group>"; };
+		F390014D27C36D6500171D53 /* Before You Go.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Before You Go.mp3"; sourceTree = "<group>"; };
 		F39AE77027BA29B5002E9751 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		F39AE77427BA5EEE002E9751 /* CommonAlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonAlertError.swift; sourceTree = "<group>"; };
 		F3D792DB27206D80008299BC /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
@@ -457,9 +469,10 @@
 		F312B3AD27BE53210033889E /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				F312B3AE27BE53420033889E /* AudioViewController.swift */,
-				F312B3B827BE78400033889E /* AudioViewModel.swift */,
+				F312B3AE27BE53420033889E /* AudiosViewController.swift */,
+				F312B3B827BE78400033889E /* AudiosViewModel.swift */,
 				F312B3BA27BE7E340033889E /* AudioTableViewCell.swift */,
+				F390013D27C3667700171D53 /* AudioViewModel.swift */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -493,6 +506,7 @@
 		F385D791271415F0006458CD /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F390013227C358E800171D53 /* Musics */,
 				03439B5327AC499C00BF8002 /* Operation */,
 				03439B4C27A6CB2500BF8002 /* Factory */,
 				031475B9279F27C50004502C /* Coordinators */,
@@ -575,6 +589,18 @@
 				F312B3B427BE745B0033889E /* AudioModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F390013227C358E800171D53 /* Musics */ = {
+			isa = PBXGroup;
+			children = (
+				F390014927C36D6500171D53 /* 2002.mp3 */,
+				F390014D27C36D6500171D53 /* Before You Go.mp3 */,
+				F390014A27C36D6500171D53 /* Iris.mp3 */,
+				F390014C27C36D6500171D53 /* Little Bit of Love.mp3 */,
+				F390014B27C36D6500171D53 /* Remember.mp3 */,
+			);
+			path = Musics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -767,6 +793,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F390015127C36D6500171D53 /* Little Bit of Love.mp3 in Resources */,
+				F390015227C36D6500171D53 /* Before You Go.mp3 in Resources */,
+				F390014E27C36D6500171D53 /* 2002.mp3 in Resources */,
+				F390015027C36D6500171D53 /* Remember.mp3 in Resources */,
+				F390014F27C36D6500171D53 /* Iris.mp3 in Resources */,
 				F385D7A2271415F4006458CD /* LaunchScreen.storyboard in Resources */,
 				F385D79F271415F4006458CD /* Assets.xcassets in Resources */,
 			);
@@ -984,7 +1015,7 @@
 				03439B4827A6C3B900BF8002 /* InfoViewCoordinator.swift in Sources */,
 				031475BB279F2A0E0004502C /* Coordinator.swift in Sources */,
 				03E8E4A82778F06800B073A5 /* LoginFactory.swift in Sources */,
-				F312B3AF27BE53420033889E /* AudioViewController.swift in Sources */,
+				F312B3AF27BE53420033889E /* AudiosViewController.swift in Sources */,
 				F385D793271415F0006458CD /* AppDelegate.swift in Sources */,
 				F385D795271415F0006458CD /* SceneDelegate.swift in Sources */,
 				F312B3B127BE69EF0033889E /* AudioCoordinator.swift in Sources */,
@@ -995,7 +1026,7 @@
 				03439B5027A6DE3200BF8002 /* LoginViewModel.swift in Sources */,
 				03AE91312735D41000CEE4C4 /* PostTableViewCell.swift in Sources */,
 				F385D79D271415F0006458CD /* Navigation.xcdatamodeld in Sources */,
-				F312B3B927BE78400033889E /* AudioViewModel.swift in Sources */,
+				F312B3B927BE78400033889E /* AudiosViewModel.swift in Sources */,
 				F3D792E22722912F008299BC /* Button+Extensions.swift in Sources */,
 				F3D792E42722A532008299BC /* TextField+Extensions.swift in Sources */,
 				F312B3BD27BF7EF80033889E /* AudioPlayerService.swift in Sources */,
@@ -1012,6 +1043,7 @@
 				F385D83427185ECA006458CD /* InfoView.swift in Sources */,
 				03AE91252735251500CEE4C4 /* UIImage+Extensions.swift in Sources */,
 				031475BD279F30BD0004502C /* AppCoordinator.swift in Sources */,
+				F390013E27C3667700171D53 /* AudioViewModel.swift in Sources */,
 				F3D792E62722C620008299BC /* UIImageView+Extensions.swift in Sources */,
 				F385D8102716AD7F006458CD /* FeedViewController.swift in Sources */,
 				03E8E4A62778DB4D00B073A5 /* LoginInspector.swift in Sources */,

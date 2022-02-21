@@ -18,8 +18,8 @@ class AudioCoordinator: Coordinator {
     }
     
     func start() {
-        let viewModel = AudioViewModel()
-        let viewController = viewControllerFactory.viewController(for: .audio(viewModel: viewModel)) as! AudioViewController
+        let viewModel = AudiosViewModel()
+        let viewController = viewControllerFactory.viewController(for: .audio(viewModel: viewModel)) as! AudiosViewController
         navigationController?.setViewControllers([viewController], animated: false)
     }
 }
