@@ -51,6 +51,7 @@ class AudiosViewController: UIViewController {
         
         tableView.register(AudioTableViewCell.self, forCellReuseIdentifier: AudioTableViewCell.identifier)
         tableView.register(VideosTableViewCell.self, forCellReuseIdentifier: VideosTableViewCell.identifier)
+        tableView.register(RecordButtonTableViewCell.self, forCellReuseIdentifier: RecordButtonTableViewCell.identifier)
     }
     
     private func setupLayout() {
@@ -86,14 +87,16 @@ class AudiosViewController: UIViewController {
 
 extension AudiosViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return viewModel.audios.count
-        } else {
+        } else if section == 1 {
             return viewModel.videos.count
+        } else {
+            return 1
         }
     }
     
@@ -108,7 +111,7 @@ extension AudiosViewController: UITableViewDataSource {
             cell.configure(with: viewModel)
             cell.delegate = self
             return cell
-        } else {
+        } else if indexPath.section == 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: VideosTableViewCell.identifier, for: indexPath) as? VideosTableViewCell else {
                 preconditionFailure("Unable to cast cell to VideosTableViewCell")
             }
@@ -117,14 +120,21 @@ extension AudiosViewController: UITableViewDataSource {
             let viewModel = VideoViewModel(model: videoModel)
             cell.configure(with: viewModel)
             return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: RecordButtonTableViewCell.identifier, for: indexPath) as? RecordButtonTableViewCell else {
+                preconditionFailure("Unable to cast cell to VideosTableViewCell")
+            }
+            return cell
         }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
             return "Музыка"
-        } else {
+        } else if section == 1 {
             return "Видеo"
+        } else {
+            return ""
         }
         
     }
@@ -149,6 +159,8 @@ extension AudiosViewController: UITableViewDelegate {
             present(playerViewController, animated: true) {
                 player.play()
             }
+        } else if indexPath.section == 2 {
+            viewModel.send(.showRecordVc(self))
         }
     }
 }

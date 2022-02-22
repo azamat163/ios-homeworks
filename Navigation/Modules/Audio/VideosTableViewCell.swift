@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class VideosTableViewCell: UITableViewCell {
+final class VideosTableViewCell: UITableViewCell {
     
     var viewModel: VideoViewModel?
     

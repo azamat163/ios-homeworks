@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 final class AudiosViewModel {
     
     var onStateChanged: ((State) -> Void)?
+    var showRecordVc: ((UIViewController) -> Void)?
     
     private(set) var state: State = .initial {
         didSet {
@@ -39,6 +41,8 @@ final class AudiosViewModel {
         case .tappedNext(let audioModel):
             let viewModel = AudioViewModel(model: audioModel)
             playNext(with: viewModel)
+        case .showRecordVc(let vc):
+            showRecordVc?(vc)
         }
     }
     
@@ -116,6 +120,7 @@ extension AudiosViewModel {
         case tappedPlayPause(AudioModel)
         case tappedPrev(AudioModel)
         case tappedNext(AudioModel)
+        case showRecordVc(UIViewController)
     }
     
     enum State {

@@ -20,6 +20,12 @@ class AudioCoordinator: Coordinator {
     func start() {
         let viewModel = AudiosViewModel()
         let viewController = viewControllerFactory.viewController(for: .audio(viewModel: viewModel)) as! AudiosViewController
+        viewModel.showRecordVc = showRecordVc(viewController:)
         navigationController?.setViewControllers([viewController], animated: false)
+    }
+    
+    func showRecordVc(viewController: UIViewController) {
+        let recordViewCoordinator = RecordCoordinator(vc: viewController, viewControllerFactory: viewControllerFactory)
+        recordViewCoordinator.start()
     }
 }
