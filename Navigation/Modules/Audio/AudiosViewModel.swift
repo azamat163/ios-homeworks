@@ -8,24 +8,34 @@
 import Foundation
 import UIKit
 
-final class AudiosViewModel {
-    
+protocol AudiosViewModelProtocol {
+    var onStateChanged: ((AudiosViewModel.State) -> Void)? { get set }
+    var showRecordVc: ((UIViewController) -> Void)? { get set }
+    func send(_ action: AudiosViewModel.Action)
+}
+
+final class AudiosViewModel: AudiosViewModelProtocol {
     var onStateChanged: ((State) -> Void)?
     var showRecordVc: ((UIViewController) -> Void)?
     
-    private(set) var state: State = .initial {
+    private var state: State = .initial {
         didSet {
             onStateChanged?(state)
         }
     }
     
-    private(set) var audios = [AudioModel]()
-    private let audioApi: AudioAPI = AudioAPI()
+    var audios = [AudioModel]()
+    var videos = [VideoModel]()
+
+    private let audioApi: AudioAPI
+    private let videoApi: VideoAPI
+    let service: AudioPlayerService
     
-    private(set) var videos = [VideoModel]()
-    private let videoApi: VideoAPI = VideoAPI()
-    
-    private let service = AudioPlayerService.shared
+    init(audioApi: AudioAPI, videoApi: VideoAPI, service: AudioPlayerService) {
+        self.audioApi = audioApi
+        self.videoApi = videoApi
+        self.service = service
+    }
     
     func send(_ action: AudiosViewModel.Action) {
         switch action {
@@ -33,13 +43,13 @@ final class AudiosViewModel {
             fetchAudio()
             fetchVideo()
         case .tappedPlayPause(let audioModel):
-            let viewModel = AudioViewModel(model: audioModel)
+            let viewModel = AudioViewModel(model: audioModel, service: service)
             playPause(with: viewModel)
         case .tappedPrev(let audioModel):
-            let viewModel = AudioViewModel(model: audioModel)
+            let viewModel = AudioViewModel(model: audioModel, service: service)
             playPrev(with: viewModel)
         case .tappedNext(let audioModel):
-            let viewModel = AudioViewModel(model: audioModel)
+            let viewModel = AudioViewModel(model: audioModel, service: service)
             playNext(with: viewModel)
         case .showRecordVc(let vc):
             showRecordVc?(vc)
@@ -67,7 +77,7 @@ final class AudiosViewModel {
     }
     
     private func playPause(with viewModel: AudioViewModel) {
-        if viewModel.isNowPlaying {
+        if viewModel.isNowPlaying() {
             stop()
         } else {
             play(with: viewModel)
@@ -93,7 +103,7 @@ final class AudiosViewModel {
             model = audios[index - 1]
         }
         guard let model = model else { return }
-        let preViewModel = AudioViewModel(model: model)
+        let preViewModel = AudioViewModel(model: model, service: service)
         playPause(with: preViewModel)
         state = .playPrev
     }
@@ -107,7 +117,7 @@ final class AudiosViewModel {
             model = audios[index + 1]
         }
         guard let model = model else { return }
-        let preViewModel = AudioViewModel(model: model)
+        let preViewModel = AudioViewModel(model: model, service: service)
         playPause(with: preViewModel)
         state = .playNext
     }

@@ -7,15 +7,20 @@
 
 import Foundation
 
-final class AudioViewModel {
+protocol AudioViewModelProtocol {
+    func isNowPlaying() -> Bool
+}
 
-    private let service = AudioPlayerService.shared
-    private(set) var model: AudioModel
-    var isNowPlaying: Bool {
-        return service.isPlaying && service.audio == model
+final class AudioViewModel: AudioViewModelProtocol {
+    private let service: AudioPlayerService
+    var model: AudioModel
+    
+    init(model: AudioModel, service: AudioPlayerService) {
+        self.model = model
+        self.service = service
     }
     
-    init(model: AudioModel) {
-        self.model = model
+    func isNowPlaying() -> Bool {
+        return service.isPlaying && service.audio == model
     }
 }

@@ -107,7 +107,7 @@ extension AudiosViewController: UITableViewDataSource {
             }
             
             let audioModel = viewModel.audios[indexPath.row]
-            let viewModel = AudioViewModel(model: audioModel)
+            let viewModel = AudioViewModel(model: audioModel, service: viewModel.service)
             cell.configure(with: viewModel)
             cell.delegate = self
             return cell

@@ -168,7 +168,7 @@ extension AudioTableViewCell {
         audioArtist.text = viewModel.model.artist
         audioImageView.image = UIImage(named: viewModel.model.image)
         
-        let image = viewModel.isNowPlaying ? UIImage(systemName: "pause.circle.fill") : UIImage(systemName: "play.circle.fill")
+        let image = viewModel.isNowPlaying() ? UIImage(systemName: "pause.circle.fill") : UIImage(systemName: "play.circle.fill")
         audioPlayImageView.image = image
     }
 }

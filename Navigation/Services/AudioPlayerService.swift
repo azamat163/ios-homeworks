@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import AVFoundation
+import AVKit
 
 final class AudioPlayerService {
     static let shared = AudioPlayerService()

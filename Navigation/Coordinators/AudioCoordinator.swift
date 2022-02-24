@@ -18,7 +18,11 @@ class AudioCoordinator: Coordinator {
     }
     
     func start() {
-        let viewModel = AudiosViewModel()
+        let viewModel = AudiosViewModel(
+            audioApi: AudioAPI(),
+            videoApi: VideoAPI(),
+            service: AudioPlayerService.shared
+        )
         let viewController = viewControllerFactory.viewController(for: .audio(viewModel: viewModel)) as! AudiosViewController
         viewModel.showRecordVc = showRecordVc(viewController:)
         navigationController?.setViewControllers([viewController], animated: false)
