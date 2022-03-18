@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
-class PhotosAPI {
+final class PhotosAPI {
     
     static func getPhotos() -> [Photo] {
         return [
