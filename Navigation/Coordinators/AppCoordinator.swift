@@ -17,8 +17,10 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
     private enum Constants {
         static let feedTitle: String = "Feed"
         static let profileTitle: String = "Profile"
+        static let audioTitle: String = "Listen Now"
         static let feedImageName: String = "house"
         static let profileImageName: String = "person"
+        static let audioImageName: String = "play.circle.fill"
         static let mainColor: UIColor = UIColor(named: "Color") ?? .label
     }
 
@@ -55,15 +57,27 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
         let navLogInVc = createNavController(for: logInVc, title: NSLocalizedString(Constants.profileTitle, comment: ""), image: UIImage(systemName: Constants.profileImageName)!)
         let logInCoordinator = LogInCoordinator(navigationController: navLogInVc, viewControllerFactory: viewControllerFactory)
         
+        let audiosViewModel = AudiosViewModel(
+            audioApi: AudioAPI(),
+            videoApi: VideoAPI(),
+            service: AudioPlayerService.shared
+        )
+        let audioVc = viewControllerFactory.viewController(for: .audio(viewModel: audiosViewModel))
+        let navAudioVc = createNavController(for: audioVc, title: Constants.audioTitle, image: UIImage(systemName: Constants.audioImageName)!)
+        let audioCoordinator = AudioCoordinator(navigationController: navAudioVc, viewControllerFactory: viewControllerFactory)
+        
         addDependency(feedCoordinator)
         addDependency(logInCoordinator)
+        addDependency(audioCoordinator)
         
         feedCoordinator.start()
         logInCoordinator.start()
+        audioCoordinator.start()
         
         return [
             navFeedVc,
-            navLogInVc
+            navLogInVc,
+            navAudioVc,
         ]
     }
     

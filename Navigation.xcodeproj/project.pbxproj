@@ -53,7 +53,17 @@
 		881D961D7A0EBBE72819CD0F /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D504B08EB11230732DF502B /* Pods_StorageService.framework */; };
 		A136399D7BB098E8B318B63E /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2964D07A393470927A5535E /* Pods_Navigation.framework */; };
 		BEDDA02978E227E43330DE33 /* Pods_StorageService_StorageServiceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3960A154F1BDAE608E1119 /* Pods_StorageService_StorageServiceTests.framework */; };
+		F312B3AF27BE53420033889E /* AudiosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3AE27BE53420033889E /* AudiosViewController.swift */; };
+		F312B3B127BE69EF0033889E /* AudioCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3B027BE69EF0033889E /* AudioCoordinator.swift */; };
+		F312B3B527BE745B0033889E /* AudioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3B427BE745B0033889E /* AudioModel.swift */; };
+		F312B3B727BE74AE0033889E /* AudioAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3B627BE74AE0033889E /* AudioAPI.swift */; };
+		F312B3B927BE78400033889E /* AudiosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3B827BE78400033889E /* AudiosViewModel.swift */; };
+		F312B3BB27BE7E340033889E /* AudioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3BA27BE7E340033889E /* AudioTableViewCell.swift */; };
+		F312B3BD27BF7EF80033889E /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3BC27BF7EF80033889E /* AudioPlayerService.swift */; };
 		F3133A6927B17DB200BA3DD2 /* TimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3133A6827B17DB200BA3DD2 /* TimerTableViewCell.swift */; };
+		F35B067527C50A7B00FCA585 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B067427C50A7B00FCA585 /* RecordViewController.swift */; };
+		F35B067727C50E6800FCA585 /* RecordButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B067627C50E6800FCA585 /* RecordButtonTableViewCell.swift */; };
+		F35B067A27C51B0100FCA585 /* RecordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B067927C51B0100FCA585 /* RecordCoordinator.swift */; };
 		F385D793271415F0006458CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D792271415F0006458CD /* AppDelegate.swift */; };
 		F385D795271415F0006458CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D794271415F0006458CD /* SceneDelegate.swift */; };
 		F385D79D271415F0006458CD /* Navigation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F385D79B271415F0006458CD /* Navigation.xcdatamodeld */; };
@@ -70,6 +80,21 @@
 		F385D82027183C16006458CD /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D81F27183C16006458CD /* FeedView.swift */; };
 		F385D82F27185E51006458CD /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D82E27185E51006458CD /* InfoViewController.swift */; };
 		F385D83427185ECA006458CD /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D83327185ECA006458CD /* InfoView.swift */; };
+		F390013E27C3667700171D53 /* AudioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F390013D27C3667700171D53 /* AudioViewModel.swift */; };
+		F390014E27C36D6500171D53 /* 2002.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F390014927C36D6500171D53 /* 2002.mp3 */; };
+		F390014F27C36D6500171D53 /* Iris.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F390014A27C36D6500171D53 /* Iris.mp3 */; };
+		F390015027C36D6500171D53 /* Remember.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F390014B27C36D6500171D53 /* Remember.mp3 */; };
+		F390015127C36D6500171D53 /* Little Bit of Love.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F390014C27C36D6500171D53 /* Little Bit of Love.mp3 */; };
+		F390015227C36D6500171D53 /* Before You Go.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F390014D27C36D6500171D53 /* Before You Go.mp3 */; };
+		F390015427C3C6FB00171D53 /* VideoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F390015327C3C6FB00171D53 /* VideoModel.swift */; };
+		F390015C27C3CE1300171D53 /* VideosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F390015B27C3CE1300171D53 /* VideosTableViewCell.swift */; };
+		F390015E27C3CEA300171D53 /* VideoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F390015D27C3CEA300171D53 /* VideoAPI.swift */; };
+		F390016027C3D71900171D53 /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F390015F27C3D71900171D53 /* VideoViewModel.swift */; };
+		F390016127C3E10900171D53 /* Video1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F390015A27C3CC8B00171D53 /* Video1.mp4 */; };
+		F390016227C3E10D00171D53 /* Video2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F390015927C3CC8900171D53 /* Video2.mp4 */; };
+		F390016327C3E11000171D53 /* Video3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F390015827C3CC8900171D53 /* Video3.mp4 */; };
+		F390016427C3E11300171D53 /* Video4.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F390015627C3CC8600171D53 /* Video4.mp4 */; };
+		F390016527C3E11700171D53 /* Video5.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = F390015727C3CC8800171D53 /* Video5.mp4 */; };
 		F39AE77127BA29B5002E9751 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39AE77027BA29B5002E9751 /* ProfileViewModel.swift */; };
 		F39AE77527BA5EEE002E9751 /* CommonAlertError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39AE77427BA5EEE002E9751 /* CommonAlertError.swift */; };
 		F3D792DC27206D80008299BC /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792DB27206D80008299BC /* ProfileHeaderView.swift */; };
@@ -184,7 +209,17 @@
 		F0DCA5721FAB1CF0D9F8DA1F /* Pods_NavigationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NavigationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F21B715891E6AA67FDCF17D7 /* Pods-StorageService-StorageServiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService-StorageServiceTests.debug.xcconfig"; path = "Target Support Files/Pods-StorageService-StorageServiceTests/Pods-StorageService-StorageServiceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F2964D07A393470927A5535E /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F312B3AE27BE53420033889E /* AudiosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudiosViewController.swift; sourceTree = "<group>"; };
+		F312B3B027BE69EF0033889E /* AudioCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCoordinator.swift; sourceTree = "<group>"; };
+		F312B3B427BE745B0033889E /* AudioModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioModel.swift; sourceTree = "<group>"; };
+		F312B3B627BE74AE0033889E /* AudioAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioAPI.swift; sourceTree = "<group>"; };
+		F312B3B827BE78400033889E /* AudiosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudiosViewModel.swift; sourceTree = "<group>"; };
+		F312B3BA27BE7E340033889E /* AudioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTableViewCell.swift; sourceTree = "<group>"; };
+		F312B3BC27BF7EF80033889E /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
 		F3133A6827B17DB200BA3DD2 /* TimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTableViewCell.swift; sourceTree = "<group>"; };
+		F35B067427C50A7B00FCA585 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		F35B067627C50E6800FCA585 /* RecordButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButtonTableViewCell.swift; sourceTree = "<group>"; };
+		F35B067927C51B0100FCA585 /* RecordCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordCoordinator.swift; sourceTree = "<group>"; };
 		F385D78F271415F0006458CD /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F385D792271415F0006458CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F385D794271415F0006458CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -206,6 +241,21 @@
 		F385D82927184C46006458CD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F385D82E27185E51006458CD /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		F385D83327185ECA006458CD /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		F390013D27C3667700171D53 /* AudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewModel.swift; sourceTree = "<group>"; };
+		F390014927C36D6500171D53 /* 2002.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 2002.mp3; sourceTree = "<group>"; };
+		F390014A27C36D6500171D53 /* Iris.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Iris.mp3; sourceTree = "<group>"; };
+		F390014B27C36D6500171D53 /* Remember.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Remember.mp3; sourceTree = "<group>"; };
+		F390014C27C36D6500171D53 /* Little Bit of Love.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Little Bit of Love.mp3"; sourceTree = "<group>"; };
+		F390014D27C36D6500171D53 /* Before You Go.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Before You Go.mp3"; sourceTree = "<group>"; };
+		F390015327C3C6FB00171D53 /* VideoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoModel.swift; sourceTree = "<group>"; };
+		F390015627C3CC8600171D53 /* Video4.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Video4.mp4; sourceTree = "<group>"; };
+		F390015727C3CC8800171D53 /* Video5.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Video5.mp4; sourceTree = "<group>"; };
+		F390015827C3CC8900171D53 /* Video3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Video3.mp4; sourceTree = "<group>"; };
+		F390015927C3CC8900171D53 /* Video2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Video2.mp4; sourceTree = "<group>"; };
+		F390015A27C3CC8B00171D53 /* Video1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Video1.mp4; sourceTree = "<group>"; };
+		F390015B27C3CE1300171D53 /* VideosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosTableViewCell.swift; sourceTree = "<group>"; };
+		F390015D27C3CEA300171D53 /* VideoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAPI.swift; sourceTree = "<group>"; };
+		F390015F27C3D71900171D53 /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
 		F39AE77027BA29B5002E9751 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		F39AE77427BA5EEE002E9751 /* CommonAlertError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonAlertError.swift; sourceTree = "<group>"; };
 		F3D792DB27206D80008299BC /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
@@ -272,6 +322,8 @@
 				03439B4527A6C14E00BF8002 /* PostViewCoordinator.swift */,
 				03439B4727A6C3B900BF8002 /* InfoViewCoordinator.swift */,
 				03439B4927A6C58600BF8002 /* PhotosViewCoordinator.swift */,
+				F312B3B027BE69EF0033889E /* AudioCoordinator.swift */,
+				F35B067927C51B0100FCA585 /* RecordCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -297,6 +349,8 @@
 		033DC5642775F5CE00802BBA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F35B067827C50E6F00FCA585 /* Record */,
+				F312B3AD27BE53210033889E /* Audio */,
 				F385D81627183731006458CD /* Post */,
 				F385D80E2716AD5F006458CD /* Feed */,
 				F385D8072716A9B0006458CD /* Home */,
@@ -392,6 +446,8 @@
 			children = (
 				03BB803E273712EF009B7B54 /* PostAPI.swift */,
 				03053C3E274019C4002D5EC4 /* PhotosAPI.swift */,
+				F312B3B627BE74AE0033889E /* AudioAPI.swift */,
+				F390015D27C3CEA300171D53 /* VideoAPI.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -403,6 +459,7 @@
 				03D23CA52776602F0009A6DB /* CurrentService.swift */,
 				03D23CA727766A910009A6DB /* TestUserService.swift */,
 				03E8E4A32778B5EF00B073A5 /* CheckerService.swift */,
+				F312B3BC27BF7EF80033889E /* AudioPlayerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -436,6 +493,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F312B3AD27BE53210033889E /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				F312B3AE27BE53420033889E /* AudiosViewController.swift */,
+				F312B3B827BE78400033889E /* AudiosViewModel.swift */,
+				F312B3BA27BE7E340033889E /* AudioTableViewCell.swift */,
+				F390013D27C3667700171D53 /* AudioViewModel.swift */,
+				F390015B27C3CE1300171D53 /* VideosTableViewCell.swift */,
+				F390015F27C3D71900171D53 /* VideoViewModel.swift */,
+				F35B067627C50E6800FCA585 /* RecordButtonTableViewCell.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		F35B067827C50E6F00FCA585 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				F35B067427C50A7B00FCA585 /* RecordViewController.swift */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
 		F385D786271415F0006458CD = {
 			isa = PBXGroup;
 			children = (
@@ -465,6 +544,8 @@
 		F385D791271415F0006458CD /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F390015527C3CC7000171D53 /* Videos */,
+				F390013227C358E800171D53 /* Musics */,
 				03439B5327AC499C00BF8002 /* Operation */,
 				03439B4C27A6CB2500BF8002 /* Factory */,
 				031475B9279F27C50004502C /* Coordinators */,
@@ -544,8 +625,34 @@
 				03053C4027401A0A002D5EC4 /* Photo.swift */,
 				03D23CA027765F850009A6DB /* User.swift */,
 				039C4E27279D5DE400AA58C0 /* FeedModel.swift */,
+				F312B3B427BE745B0033889E /* AudioModel.swift */,
+				F390015327C3C6FB00171D53 /* VideoModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F390013227C358E800171D53 /* Musics */ = {
+			isa = PBXGroup;
+			children = (
+				F390014927C36D6500171D53 /* 2002.mp3 */,
+				F390014D27C36D6500171D53 /* Before You Go.mp3 */,
+				F390014A27C36D6500171D53 /* Iris.mp3 */,
+				F390014C27C36D6500171D53 /* Little Bit of Love.mp3 */,
+				F390014B27C36D6500171D53 /* Remember.mp3 */,
+			);
+			path = Musics;
+			sourceTree = "<group>";
+		};
+		F390015527C3CC7000171D53 /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				F390015A27C3CC8B00171D53 /* Video1.mp4 */,
+				F390015927C3CC8900171D53 /* Video2.mp4 */,
+				F390015827C3CC8900171D53 /* Video3.mp4 */,
+				F390015627C3CC8600171D53 /* Video4.mp4 */,
+				F390015727C3CC8800171D53 /* Video5.mp4 */,
+			);
+			path = Videos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -738,6 +845,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F390016527C3E11700171D53 /* Video5.mp4 in Resources */,
+				F390016427C3E11300171D53 /* Video4.mp4 in Resources */,
+				F390016327C3E11000171D53 /* Video3.mp4 in Resources */,
+				F390016227C3E10D00171D53 /* Video2.mp4 in Resources */,
+				F390016127C3E10900171D53 /* Video1.mp4 in Resources */,
+				F390015127C36D6500171D53 /* Little Bit of Love.mp3 in Resources */,
+				F390015227C36D6500171D53 /* Before You Go.mp3 in Resources */,
+				F390014E27C36D6500171D53 /* 2002.mp3 in Resources */,
+				F390015027C36D6500171D53 /* Remember.mp3 in Resources */,
+				F390014F27C36D6500171D53 /* Iris.mp3 in Resources */,
 				F385D7A2271415F4006458CD /* LaunchScreen.storyboard in Resources */,
 				F385D79F271415F4006458CD /* Assets.xcassets in Resources */,
 			);
@@ -942,19 +1059,26 @@
 				03D23CA127765F850009A6DB /* User.swift in Sources */,
 				03F4FEF027A05E9E00AE4A17 /* LogInCoordinator.swift in Sources */,
 				03D23CA827766A910009A6DB /* TestUserService.swift in Sources */,
+				F312B3BB27BE7E340033889E /* AudioTableViewCell.swift in Sources */,
 				F39AE77127BA29B5002E9751 /* ProfileViewModel.swift in Sources */,
 				F385D8152716AEBE006458CD /* View+Extensions.swift in Sources */,
 				03F4FEF227A0734C00AE4A17 /* FeedViewModel.swift in Sources */,
 				F385D7CD27141F92006458CD /* ProfileViewController.swift in Sources */,
+				F35B067A27C51B0100FCA585 /* RecordCoordinator.swift in Sources */,
+				F35B067727C50E6800FCA585 /* RecordButtonTableViewCell.swift in Sources */,
+				F35B067527C50A7B00FCA585 /* RecordViewController.swift in Sources */,
 				03AE911D2734F79D00CEE4C4 /* LogInViewController.swift in Sources */,
 				F3133A6927B17DB200BA3DD2 /* TimerTableViewCell.swift in Sources */,
+				F312B3B727BE74AE0033889E /* AudioAPI.swift in Sources */,
 				034B5EF2274AADBC00E84998 /* ProfileShadowView.swift in Sources */,
 				03AE911F2734F90600CEE4C4 /* LogInView.swift in Sources */,
 				03439B4827A6C3B900BF8002 /* InfoViewCoordinator.swift in Sources */,
 				031475BB279F2A0E0004502C /* Coordinator.swift in Sources */,
 				03E8E4A82778F06800B073A5 /* LoginFactory.swift in Sources */,
+				F312B3AF27BE53420033889E /* AudiosViewController.swift in Sources */,
 				F385D793271415F0006458CD /* AppDelegate.swift in Sources */,
 				F385D795271415F0006458CD /* SceneDelegate.swift in Sources */,
+				F312B3B127BE69EF0033889E /* AudioCoordinator.swift in Sources */,
 				03439B4427A6BCF800BF8002 /* ProfileCoordinator.swift in Sources */,
 				F39AE77527BA5EEE002E9751 /* CommonAlertError.swift in Sources */,
 				03053C3D27400E5D002D5EC4 /* PhotosTableViewCell.swift in Sources */,
@@ -962,20 +1086,28 @@
 				03439B5027A6DE3200BF8002 /* LoginViewModel.swift in Sources */,
 				03AE91312735D41000CEE4C4 /* PostTableViewCell.swift in Sources */,
 				F385D79D271415F0006458CD /* Navigation.xcdatamodeld in Sources */,
+				F312B3B927BE78400033889E /* AudiosViewModel.swift in Sources */,
 				F3D792E22722912F008299BC /* Button+Extensions.swift in Sources */,
 				F3D792E42722A532008299BC /* TextField+Extensions.swift in Sources */,
+				F312B3BD27BF7EF80033889E /* AudioPlayerService.swift in Sources */,
 				F385D82F27185E51006458CD /* InfoViewController.swift in Sources */,
+				F390015427C3C6FB00171D53 /* VideoModel.swift in Sources */,
 				03E8E4A42778B5EF00B073A5 /* CheckerService.swift in Sources */,
 				F385D80D2716AAB5006458CD /* HomeViewController.swift in Sources */,
+				F390016027C3D71900171D53 /* VideoViewModel.swift in Sources */,
 				03053C4127401A0A002D5EC4 /* Photo.swift in Sources */,
 				03439B4A27A6C58700BF8002 /* PhotosViewCoordinator.swift in Sources */,
+				F312B3B527BE745B0033889E /* AudioModel.swift in Sources */,
 				03E8E4AA2778F1C800B073A5 /* MyLoginFactory.swift in Sources */,
 				03439B4E27A6CCDC00BF8002 /* ViewControllerFactory.swift in Sources */,
 				03BB803F273712EF009B7B54 /* PostAPI.swift in Sources */,
+				F390015C27C3CE1300171D53 /* VideosTableViewCell.swift in Sources */,
 				F3D792DC27206D80008299BC /* ProfileHeaderView.swift in Sources */,
+				F390015E27C3CEA300171D53 /* VideoAPI.swift in Sources */,
 				F385D83427185ECA006458CD /* InfoView.swift in Sources */,
 				03AE91252735251500CEE4C4 /* UIImage+Extensions.swift in Sources */,
 				031475BD279F30BD0004502C /* AppCoordinator.swift in Sources */,
+				F390013E27C3667700171D53 /* AudioViewModel.swift in Sources */,
 				F3D792E62722C620008299BC /* UIImageView+Extensions.swift in Sources */,
 				F385D8102716AD7F006458CD /* FeedViewController.swift in Sources */,
 				03E8E4A62778DB4D00B073A5 /* LoginInspector.swift in Sources */,
