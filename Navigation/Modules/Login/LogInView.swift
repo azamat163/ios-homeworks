@@ -117,17 +117,19 @@ final class LogInView: UIView {
     }()
     
     private lazy var pickUpPassButton: CustomButton = {
-        pickUpPassButton = CustomButton(frame: .zero)
-        pickUpPassButton.apply(title: .pickUpPassButtonTitle, titleColor: .white)
+        pickUpPassButton = CustomButton(
+            title: .pickUpPassButtonTitle,
+            titleColor: .white,
+            onTap: { [weak self] in
+                self?.pickUpPasswordButton()
+            }
+        )
+
         pickUpPassButton.setBackgroundImage(Constants.Button.image?.alpha(1), for: .normal)
         pickUpPassButton.setBackgroundImage(Constants.Button.image?.alpha(0.8), for: [.selected, .highlighted, .disabled])
         
         pickUpPassButton.layer.cornerRadius = Constants.Button.cornerRadius
         pickUpPassButton.layer.masksToBounds = true
-        
-        pickUpPassButton.onTap = { [weak self] in
-            self?.pickUpPasswordButton()
-        }
         
         pickUpPassButton.toAutoLayout()
         

@@ -8,9 +8,35 @@
 import Foundation
 import StorageService
 
-class PostAPI {
+enum EmptyDataError: Error {
+    case emptydata
+}
+
+extension EmptyDataError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .emptydata:
+            return "Не удалось загрузить посты!"
+        }
+    }
+}
+
+final class PostAPI {
+    func fetchPosts(_ completion: @escaping (Result<[Post], EmptyDataError>) -> Void) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            guard let posts = Self.getPosts() else {
+                completion(.failure(.emptydata))
+                return
+            }
+            completion(.success(posts))
+        }
+    }
     
-    static func getPosts() -> [Post] {
+    static func fakeEmptyPosts() -> [Post]? {
+        return nil
+    }
+    
+    static func getPosts() -> [Post]? {
         let posts = [
             Post(
                 author: "vedmak.official",

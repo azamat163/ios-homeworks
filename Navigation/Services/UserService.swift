@@ -8,5 +8,5 @@
 import Foundation
 
 protocol UserService {
-    func getUser(fullName: String) -> User?
+    func getUser(fullName: String) throws -> User
 }

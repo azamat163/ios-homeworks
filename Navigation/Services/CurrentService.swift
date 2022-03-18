@@ -7,6 +7,19 @@
 
 import Foundation
 
+enum UserNotFoundError: Error {
+    case userNotFound
+}
+
+extension UserNotFoundError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .userNotFound:
+            return "Пользователь не найден"
+        }
+    }
+}
+
 class CurrentService: UserService {
     var user: User
     
@@ -14,8 +27,8 @@ class CurrentService: UserService {
         self.user = user
     }
 
-    func getUser(fullName: String) -> User? {
-        guard user.fullName == fullName else { return nil }
+    func getUser(fullName: String) throws -> User {
+        guard user.fullName == fullName else { throw UserNotFoundError.userNotFound }
         return user
     }
     

@@ -57,18 +57,8 @@ class LogInViewController: UIViewController {
         
         logInView.delegate = self
         logInView.checkerDelegate = delegate
-    }
-    
-    
-    private func setupViewModel() {
-        viewModel.onStateChanged = { [weak self] state in
-            guard let self = self else { return }
-            switch state {
-            case .configureKeyboards:
-                self.configureKeyboardNotifications()
-            default: break
-            }
-        }
+        
+        configureKeyboardNotifications()
     }
     
     override func viewDidDisappear(_ animated: Bool) {

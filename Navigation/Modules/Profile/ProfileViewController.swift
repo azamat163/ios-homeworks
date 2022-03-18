@@ -16,12 +16,10 @@ class ProfileViewController: UIViewController {
     
     private var posts = PostAPI.getPosts()
     private let photos = PhotosAPI.getPhotos()
-    var showPhotosVc: (() -> Void)?
+    private let viewModel: ProfileViewModel
     
-    var service: UserService
-    var fullName: String
-    var timer: Timer?
-    var reverseTime: Int = 10
+    private var service: UserService
+    private var fullName: String
     
     private lazy var profileHeaderView: ProfileHeaderView = {
         profileHeaderView = ProfileHeaderView(frame: .zero)
@@ -37,7 +35,8 @@ class ProfileViewController: UIViewController {
         return tableView
     }()
     
-    init(service: UserService, fullName: String) {
+    init(viewModel: ProfileViewModel, service: UserService, fullName: String) {
+        self.viewModel = viewModel
         self.service = service
         self.fullName = fullName
         super.init(nibName: nil, bundle: nil)
@@ -56,21 +55,33 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        setupView()
+        setupLayout()
+        
+        configureProfileHeaderView()
+        setupTableView()
+        
+        profileHeaderView.delegate = self
+        
+        setupViewModel()
+        viewModel.send(.viewIsReady)
+    }
+    
+    private func setupView() {
         #if DEBUG
             view.backgroundColor = .red
         #else
             view.backgroundColor = .blue
         #endif
-
+        
         navigationItem.hidesBackButton = true
         navigationItem.title = .profileTitle
-        
+
         view.addSubview(tableView)
-        
-        setupLayout()
-        
-        configureProfileHeaderView()
-        
+    }
+    
+    private func setupTableView() {
         tableView.tableHeaderView = profileHeaderView
         
         let widthConstraint = NSLayoutConstraint(
@@ -95,12 +106,6 @@ class ProfileViewController: UIViewController {
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
-        
-        tableView.reloadData()
-        
-        profileHeaderView.delegate = self
-        
-        createTimer()
     }
     
     override func viewDidLayoutSubviews() {
@@ -109,7 +114,7 @@ class ProfileViewController: UIViewController {
         sizeHeaderToFit(tableView)
     }
     
-    func sizeHeaderToFit(_ tableView: UITableView) {
+    private func sizeHeaderToFit(_ tableView: UITableView) {
         
         guard let headerView = tableView.tableHeaderView else {
             return
@@ -121,13 +126,7 @@ class ProfileViewController: UIViewController {
     }
     
     deinit {
-        cancelTimer()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        createTimer()
+        viewModel.cancelTimer()
     }
     
     //MARK: - setup tableView layout
@@ -144,8 +143,33 @@ class ProfileViewController: UIViewController {
     }
     
     private func configureProfileHeaderView() {
-        guard let user = service.getUser(fullName: fullName) else { return }
-        profileHeaderView.configure(with: user)
+        do {
+            let user = try service.getUser(fullName: fullName)
+            profileHeaderView.configure(with: user)
+        } catch let error as UserNotFoundError {
+            showAlertUserNotFound(with: error)
+        } catch {
+            print("Counldn't create the user")
+        }
+    }
+    
+    private func setupViewModel() {
+        viewModel.onStateChanged = { [weak self] state in
+            guard let self = self else { return }
+            switch state {
+            case .initial:
+                print("initial")
+            case .loaded:
+                self.tableView.reloadData()
+                self.viewModel.createTimer()
+            case .updateCell:
+                self.updateCell()
+            case .presentNewsAlert:
+                self.presentNewsAlert()
+            case .alertEmptyData(let error):
+                self.showAlertEmptyPosts(with: error)
+            }
+        }
     }
 }
 
@@ -162,7 +186,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             return 1
         case 2:
-            return posts.count
+            return viewModel.posts.count
         default:
             return 0
         }
@@ -171,20 +195,20 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: .photosTableId, for: indexPath) as? PhotosTableViewCell else { fatalError() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: .photosTableId, for: indexPath) as? PhotosTableViewCell else { preconditionFailure("Unable to cast cell to PhotosTableViewCell") }
             cell.photosFirstImageView.image = UIImage(named: photos[0].imageNamed)
             cell.photosSecondImageView.image = UIImage(named: photos[1].imageNamed)
             cell.photosThirdImageView.image = UIImage(named: photos[2].imageNamed)
             cell.photosFourthImageView.image = UIImage(named: photos[3].imageNamed)
             return cell
         case 1:
-            guard let cell = self.tableView.dequeueReusableCell(withIdentifier: .timerTableId, for: indexPath) as? TimerTableViewCell else { fatalError() }
-            cell.titleLabel.text = "Осташееся время обновления: \(self.reverseTime)"
+            guard let cell = self.tableView.dequeueReusableCell(withIdentifier: .timerTableId, for: indexPath) as? TimerTableViewCell else { preconditionFailure("Unable to cast cell to TimerTableViewCell") }
+            cell.titleLabel.text = "Осташееся время обновления: \(viewModel.reverseTime)"
             return cell
 
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: .postTableId, for: indexPath) as? PostTableViewCell else { fatalError() }
-            let currentPost: Post = posts[indexPath.row]
+            let currentPost: Post = viewModel.posts[indexPath.row]
             cell.configure(with: currentPost)
             
             return cell
@@ -195,7 +219,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            showPhotosVc?()
+            viewModel.send(.showPhotosVc)
         }
     }
     
@@ -215,63 +239,25 @@ extension ProfileViewController: ProfileViewControllerDelegate {
     }
 }
 
+//MARK: - setup update timer and present alert
 extension ProfileViewController {
-    func createTimer() {
-        if timer == nil {
-            let timer = Timer.scheduledTimer(
-                timeInterval: 1.0,
-                target: self,
-                selector: #selector(self.updateTimer),
-                userInfo: nil,
-                repeats: true
-            )
-            timer.tolerance = 0.1
-
-            DispatchQueue.global().async {
-                RunLoop.current.add(timer, forMode: .common)
-                RunLoop.current.run()
-            }
-            self.timer = timer
-        }
-    }
-    
-    @objc func updateTimer() {
-        if reverseTime > 0 {
-            reverseTime -= 1
-            DispatchQueue.main.async {
-                self.updateCell()
-            }
-        } else {
-            reverseTime = 10
-            cancelTimer()
-            posts.append(posts.randomElement()!)
-            DispatchQueue.main.async {
-                self.presentNewsAlert()
-            }
-        }
-    }
-    
-    func cancelTimer() {
-      timer?.invalidate()
-      timer = nil
-    }
     
     func updateCell() {
         let indexPath = IndexPath(row: 0, section: 1)
         if let cell = tableView.cellForRow(at: indexPath) as? TimerTableViewCell {
-            cell.titleLabel.text = "Осташееся время обновления: \(reverseTime)"
-        }
+            cell.titleLabel.text = "Осташееся время обновления: \(viewModel.reverseTime)"
+        } else { preconditionFailure("Unable to cast cell to TimerTableViewCell") }
         tableView.reloadRows(at: [indexPath], with: .none)
     }
     
     func presentNewsAlert() {
         let alertVC = UIAlertController(title: "Свежая новость", message: "Показать новость?", preferredStyle: .alert)
         let yes = UIAlertAction(title: "Да", style: .default) { _ in
-            self.createTimer()
+            self.viewModel.createTimer()
             self.tableView.reloadData()
         }
         let no = UIAlertAction(title: "Нет", style: .default) { _ in
-            self.cancelTimer()
+            self.viewModel.cancelTimer()
             self.tableView.reloadData()
 
         }
@@ -280,6 +266,17 @@ extension ProfileViewController {
         alertVC.addAction(no)
         
         self.present(alertVC, animated: true, completion: nil)
+    }
+}
+
+extension ProfileViewController {
+        
+    private func showAlertEmptyPosts(with error: EmptyDataError) {
+        CommonAlertError.present(vc: self, with: error)
+    }
+    
+    private func showAlertUserNotFound(with error: UserNotFoundError) {
+        CommonAlertError.present(vc: self, with: error)
     }
 }
 

@@ -12,7 +12,7 @@ enum TypeOfViewController {
     case home
     case feed(viewModel: FeedViewModel)
     case login(viewModel: LoginViewModel)
-    case profile(service: UserService, name: String)
+    case profile(viewModel: ProfileViewModel, service: UserService, name: String)
     case postView(title: String)
     case infoView
     case photosView
@@ -27,8 +27,8 @@ extension TypeOfViewController {
             return FeedViewController(viewModel: viewModel)
         case .login(let viewModel):
             return LogInViewController(viewModel: viewModel)
-        case .profile(let service, let name):
-            return ProfileViewController(service: service, fullName: name)
+        case .profile(let viewModel, let service, let name):
+            return ProfileViewController(viewModel: viewModel, service: service, fullName: name)
         case .postView(let title):
             return PostViewController(postTitle: title)
         case .infoView:
