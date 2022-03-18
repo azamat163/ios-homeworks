@@ -13,10 +13,12 @@ protocol FeedViewControllerDelegate: AnyObject {
 }
 
 final class FeedViewController: UIViewController {
-    private var model: FeedModel
+    var showPostVc: (() -> Void)?
     
-    init(model: FeedModel) {
-        self.model = model
+    private var viewModel: FeedViewModel
+    
+    init(viewModel: FeedViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -26,7 +28,6 @@ final class FeedViewController: UIViewController {
     
     private lazy var feedView: FeedView = {
         feedView = FeedView(frame: .zero)
-
         return feedView
     }()
 
@@ -58,12 +59,10 @@ private extension String {
 
 extension FeedViewController: FeedViewControllerDelegate {
     func clickButton() {
-        let postVc: PostViewController = PostViewController()
-        postVc.setupTitle(.postTitle)
-        navigationController?.pushViewController(postVc, animated: true)
+        viewModel.send(.showPostVc(.postTitle))
     }
     
     func clickCheckerButton(word: String) {
-        model.check(word: word)
+        viewModel.model.check(word: word)
     }
 }

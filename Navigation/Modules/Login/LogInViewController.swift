@@ -17,7 +17,9 @@ protocol LogInViewControllerCheckerDelegate: AnyObject {
 
 class LogInViewController: UIViewController {
     
+    private let viewModel: LoginViewModel
     var delegate: LogInViewControllerCheckerDelegate?
+    var showProfileVc: ((String) -> Void)?
         
     private lazy var logInView: LogInView = {
         logInView = LogInView(frame: .zero)
@@ -32,7 +34,16 @@ class LogInViewController: UIViewController {
         
         return scrollView
     }()
-
+    
+    init(viewModel: LoginViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = ""
@@ -46,8 +57,18 @@ class LogInViewController: UIViewController {
         
         logInView.delegate = self
         logInView.checkerDelegate = delegate
-        
-        configureKeyboardNotifications()
+    }
+    
+    
+    private func setupViewModel() {
+        viewModel.onStateChanged = { [weak self] state in
+            guard let self = self else { return }
+            switch state {
+            case .configureKeyboards:
+                self.configureKeyboardNotifications()
+            default: break
+            }
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -107,19 +128,6 @@ class LogInViewController: UIViewController {
 extension LogInViewController: LogInViewControllerDelegate {
     
     func tappedButton(fullName: String) {
-        var currentUser: UserService
-
-        #if DEBUG
-            currentUser = TestUserService()
-        #else
-           let user = User(
-            fullName: fullName,
-            avatar: "avatar_cat",
-            status: "Waiting for something..."
-           )
-           currentUser = CurrentService(user: user)
-        #endif
-        let profileVc = ProfileViewController(service: currentUser, fullName: fullName)
-        navigationController?.pushViewController(profileVc, animated: true)
+        viewModel.send(.showProfileVc(fullName))
     }
 }
