@@ -6,14 +6,13 @@
 //
 
 import UIKit
+import SnapKit
 
 final class InfoView: UIView {
     
     weak var delegate: InfoViewControllerDelegate?
     
     private enum Constains {
-        static let width: CGFloat = 300
-        static let height: CGFloat = 60
         static let bordetWidth: CGFloat = 1.0
         static let borderColor: CGColor = UIColor.blue.cgColor
     }
@@ -32,30 +31,76 @@ final class InfoView: UIView {
         return alertButton
     }()
     
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.textColor = .blue
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.layer.borderColor = Constains.borderColor
+        label.layer.borderWidth = Constains.bordetWidth
+        
+        return label
+    }()
+    
+    private lazy var orbitalPeriodLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.textColor = .blue
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.layer.borderColor = Constains.borderColor
+        label.layer.borderWidth = Constains.bordetWidth
+        
+        return label
+    }()
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            alertButton,
+            titleLabel,
+            orbitalPeriodLabel
+        ])
+        stackView.spacing = 3
+        stackView.axis = .vertical
+        stackView.distribution = .equalSpacing
+        
+        return stackView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.addSubview(alertButton)
-        
-        alertButton.toAutoLayout()
-        setupLayout()
+        addSubview(stackView)
+        setup()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    private func setupLayout() {
-        NSLayoutConstraint.activate([
-            alertButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            alertButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            alertButton.widthAnchor.constraint(equalToConstant: Constains.width),
-            alertButton.heightAnchor.constraint(equalToConstant: Constains.height)
-        ])
+    private func setup() {
+        stackView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalToSuperview().offset(-100)
+        }
     }
     
     private func buttonTapped() {
         delegate?.clickAlertAction()
+    }
+}
+
+extension InfoView {
+    func configureTitle(model: TodosModel) {
+        titleLabel.text = model.title
+    }
+    
+    func configureOrbitalPeriod(model: PlanetModel) {
+        orbitalPeriodLabel.text = model.orbitalPeriod
     }
 }
 
