@@ -13,6 +13,7 @@ final class ProfileViewModel {
     
     var onStateChanged: ((State) -> Void)?
     var showPhotosVc: (() -> Void)?
+    var showLoginVc: (() -> Void)?
     
     private(set) var state: State = .initial {
         didSet {
@@ -32,6 +33,8 @@ final class ProfileViewModel {
             fetchPosts()
         case .showPhotosVc:
             showPhotosVc?()
+        case .showLoginVc:
+            showLoginVc?()
         }
     }
     
@@ -102,6 +105,7 @@ extension ProfileViewModel {
     enum Action {
         case viewIsReady
         case showPhotosVc
+        case showLoginVc
     }
     
     enum State {

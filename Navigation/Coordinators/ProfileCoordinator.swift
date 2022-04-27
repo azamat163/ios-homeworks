@@ -25,6 +25,7 @@ final class ProfileCoordinator: Coordinator {
         let viewModel = ProfileViewModel()
         let profileVc = viewControllerFactory.viewController(for: .profile(viewModel: viewModel, service: service, name: fullName)) as! ProfileViewController
         viewModel.showPhotosVc = showPhotosVc
+        viewModel.showLoginVc = showLoginVc
         navigationController?.pushViewController(profileVc, animated: true)
     }
     
@@ -33,5 +34,12 @@ final class ProfileCoordinator: Coordinator {
 
         let photosViewCoordinator = PhotosViewCoordinator(navigationController: navigationController, viewControllerFactory: viewControllerFactory)
         photosViewCoordinator.start()
+    }
+    
+    func showLoginVc() {
+        guard let navigationController = navigationController else { return }
+
+        let logInCoordinator = LogInCoordinator(navigationController: navigationController, viewControllerFactory: viewControllerFactory)
+        logInCoordinator.start()
     }
 }

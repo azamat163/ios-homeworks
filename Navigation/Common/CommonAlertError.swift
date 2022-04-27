@@ -19,4 +19,17 @@ final class CommonAlertError {
         alertVC.addAction(OkAlertAction)
         vc.present(alertVC, animated: true, completion: nil)
     }
+    
+    static func present(vc: UIViewController, with message: String) {
+        let OkAlertAction = UIAlertAction(title: "Ok", style: .default, handler: {_ in
+            vc.navigationController?.popViewController(animated: true)
+        })
+        let alertVC = UIAlertController(
+            title: "",
+            message: message,
+            preferredStyle: .alert
+        )
+        alertVC.addAction(OkAlertAction)
+        vc.present(alertVC, animated: true, completion: nil)
+    }
 }

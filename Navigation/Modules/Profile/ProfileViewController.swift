@@ -77,6 +77,7 @@ class ProfileViewController: UIViewController {
         
         navigationItem.hidesBackButton = true
         navigationItem.title = .profileTitle
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOutTapped))
 
         view.addSubview(tableView)
     }
@@ -170,6 +171,12 @@ class ProfileViewController: UIViewController {
                 self.showAlertEmptyPosts(with: error)
             }
         }
+    }
+    
+    @objc
+    func signOutTapped() {
+        LoginInspector.signOut()
+        viewModel.send(.showLoginVc)
     }
 }
 
