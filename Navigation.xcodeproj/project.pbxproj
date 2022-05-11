@@ -69,6 +69,7 @@
 		F37A2B51280D5B7D00B7DEFB /* TodosApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A2B50280D5B7D00B7DEFB /* TodosApi.swift */; };
 		F37A2B53280D6B8C00B7DEFB /* PlanetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A2B52280D6B8C00B7DEFB /* PlanetModel.swift */; };
 		F37A2B55280D74A700B7DEFB /* PlanetApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A2B54280D74A700B7DEFB /* PlanetApi.swift */; };
+		F37A2B4B280D3C1400B7DEFB /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A2B4A280D3C1400B7DEFB /* NetworkService.swift */; };
 		F385D793271415F0006458CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D792271415F0006458CD /* AppDelegate.swift */; };
 		F385D795271415F0006458CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D794271415F0006458CD /* SceneDelegate.swift */; };
 		F385D79D271415F0006458CD /* Navigation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F385D79B271415F0006458CD /* Navigation.xcdatamodeld */; };
@@ -230,6 +231,7 @@
 		F37A2B50280D5B7D00B7DEFB /* TodosApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosApi.swift; sourceTree = "<group>"; };
 		F37A2B52280D6B8C00B7DEFB /* PlanetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetModel.swift; sourceTree = "<group>"; };
 		F37A2B54280D74A700B7DEFB /* PlanetApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetApi.swift; sourceTree = "<group>"; };
+		F37A2B4A280D3C1400B7DEFB /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		F385D78F271415F0006458CD /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F385D792271415F0006458CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F385D794271415F0006458CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -473,6 +475,7 @@
 				03D23CA727766A910009A6DB /* TestUserService.swift */,
 				03E8E4A32778B5EF00B073A5 /* CheckerService.swift */,
 				F312B3BC27BF7EF80033889E /* AudioPlayerService.swift */,
+				F37A2B4A280D3C1400B7DEFB /* NetworkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1113,6 +1116,7 @@
 				F385D82F27185E51006458CD /* InfoViewController.swift in Sources */,
 				F390015427C3C6FB00171D53 /* VideoModel.swift in Sources */,
 				03E8E4A42778B5EF00B073A5 /* CheckerService.swift in Sources */,
+				F37A2B4B280D3C1400B7DEFB /* NetworkService.swift in Sources */,
 				F385D80D2716AAB5006458CD /* HomeViewController.swift in Sources */,
 				F390016027C3D71900171D53 /* VideoViewModel.swift in Sources */,
 				03053C4127401A0A002D5EC4 /* Photo.swift in Sources */,
