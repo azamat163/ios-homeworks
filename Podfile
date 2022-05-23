@@ -7,6 +7,8 @@ target 'Navigation' do
 
   # Pods for Navigation
   pod 'SnapKit', '~> 5.0.0'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Core'
 
   target 'NavigationTests' do
     inherit! :search_paths

@@ -205,26 +205,27 @@ final class LogInView: UIView {
     }
     
     private func tappedButton() {
-        guard let emailText = emailOfPhoneTextField.text, !emailText.isEmpty else { return }
-        guard let passwordText = passwordTextField.text, !passwordText.isEmpty else { return }
-        
-        guard let isAvailabilityLogin = checkerDelegate?.checkLoginPasswordAvailability(
-            inputLogin: emailText,
-            inputPassword: passwordText
-        ), isAvailabilityLogin == true else {
-            animateButton()
+        guard let vc = self.window?.rootViewController else { return }
+
+        guard let emailText = emailOfPhoneTextField.text, !emailText.isEmpty else {
+            CommonAlertError.present(vc: vc, with: "Input correct email")
             return
         }
-        delegate?.tappedButton(fullName: emailText)
-    }
-    
-    private func animateButton() {
-        UIView.animate(withDuration: 0.5) {
-            [weak self] in
-            self?.logInButton.layer.borderWidth = 2
-            self?.logInButton.layer.borderColor = UIColor.red.cgColor
-            self?.layoutIfNeeded()
+        guard let passwordText = passwordTextField.text, !passwordText.isEmpty else {
+            CommonAlertError.present(vc: vc, with: "Input correct password")
+            return
         }
+        
+        checkerDelegate?.signIn(inputLogin: emailText, inputPassword: passwordText, completion: { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(_):
+                self.delegate?.tappedButton(fullName: emailText)
+//                CommonAlertError.present(vc: vc, with: description)
+            case .failure(let error):
+                CommonAlertError.present(vc: vc, with: error.localizedDescription)
+            }
+        })
     }
     
     private func pickUpPasswordButton() {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LoginViewModel {
+final class LoginViewModel {
     var showProfileVc: ((String) -> Void)?
 
     func send(_ action: Action){

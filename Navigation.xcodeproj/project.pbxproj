@@ -61,6 +61,7 @@
 		F312B3BB27BE7E340033889E /* AudioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3BA27BE7E340033889E /* AudioTableViewCell.swift */; };
 		F312B3BD27BF7EF80033889E /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3BC27BF7EF80033889E /* AudioPlayerService.swift */; };
 		F3133A6927B17DB200BA3DD2 /* TimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3133A6827B17DB200BA3DD2 /* TimerTableViewCell.swift */; };
+		F33710A028166F9400A12298 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F337109F28166F9400A12298 /* GoogleService-Info.plist */; };
 		F34DDD5C280D8974009201C6 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34DDD5B280D8974009201C6 /* PeopleTableViewCell.swift */; };
 		F35B067527C50A7B00FCA585 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B067427C50A7B00FCA585 /* RecordViewController.swift */; };
 		F35B067727C50E6800FCA585 /* RecordButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B067627C50E6800FCA585 /* RecordButtonTableViewCell.swift */; };
@@ -223,6 +224,7 @@
 		F312B3BA27BE7E340033889E /* AudioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTableViewCell.swift; sourceTree = "<group>"; };
 		F312B3BC27BF7EF80033889E /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
 		F3133A6827B17DB200BA3DD2 /* TimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTableViewCell.swift; sourceTree = "<group>"; };
+		F337109F28166F9400A12298 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F34DDD5B280D8974009201C6 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
 		F35B067427C50A7B00FCA585 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		F35B067627C50E6800FCA585 /* RecordButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButtonTableViewCell.swift; sourceTree = "<group>"; };
@@ -560,6 +562,7 @@
 		F385D791271415F0006458CD /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F337109F28166F9400A12298 /* GoogleService-Info.plist */,
 				F390015527C3CC7000171D53 /* Videos */,
 				F390013227C358E800171D53 /* Musics */,
 				03439B5327AC499C00BF8002 /* Operation */,
@@ -863,6 +866,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F33710A028166F9400A12298 /* GoogleService-Info.plist in Resources */,
 				F390016527C3E11700171D53 /* Video5.mp4 in Resources */,
 				F390016427C3E11300171D53 /* Video4.mp4 in Resources */,
 				F390016327C3E11000171D53 /* Video3.mp4 in Resources */,

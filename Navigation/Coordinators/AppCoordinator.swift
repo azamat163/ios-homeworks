@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import FirebaseAuth
 
 final class AppCoordinator: BaseCoordinator, Coordinator {
     private let viewControllerFactory: ViewControllerFactoryProtocol
@@ -47,15 +48,11 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
     }
     
     private func settingsViewControllers() -> [UIViewController] {
+        let ud = UserDefaults.standard
         let feedViewModel = FeedViewModel()
         let feedVc = viewControllerFactory.viewController(for: .feed(viewModel: feedViewModel))
         let navFeedVc = createNavController(for: feedVc, title: NSLocalizedString(Constants.feedTitle, comment: ""), image: UIImage(systemName: Constants.feedImageName)!)
         let feedCoordinator = FeedCoordinator(navigationController: navFeedVc, viewControllerFactory: viewControllerFactory)
-        
-        let loginViewModel = LoginViewModel()
-        let logInVc = viewControllerFactory.viewController(for: .login(viewModel: loginViewModel))
-        let navLogInVc = createNavController(for: logInVc, title: NSLocalizedString(Constants.profileTitle, comment: ""), image: UIImage(systemName: Constants.profileImageName)!)
-        let logInCoordinator = LogInCoordinator(navigationController: navLogInVc, viewControllerFactory: viewControllerFactory)
         
         let audiosViewModel = AudiosViewModel(
             audioApi: AudioAPI(),
@@ -67,16 +64,41 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
         let audioCoordinator = AudioCoordinator(navigationController: navAudioVc, viewControllerFactory: viewControllerFactory)
         
         addDependency(feedCoordinator)
-        addDependency(logInCoordinator)
         addDependency(audioCoordinator)
         
         feedCoordinator.start()
-        logInCoordinator.start()
         audioCoordinator.start()
+        
+        guard let user = Auth.auth().currentUser,
+              let userInfo = ud.object(forKey: user.uid) as? [String: String],
+              let email = userInfo["email"]
+        else {
+            let loginViewModel = LoginViewModel()
+            let logInVc = viewControllerFactory.viewController(for: .login(viewModel: loginViewModel))
+            let navLogInVc = createNavController(for: logInVc, title: NSLocalizedString(Constants.profileTitle, comment: ""), image: UIImage(systemName: Constants.profileImageName)!)
+            let logInCoordinator = LogInCoordinator(navigationController: navLogInVc, viewControllerFactory: viewControllerFactory)
+            addDependency(logInCoordinator)
+            logInCoordinator.start()
+            return [
+                navFeedVc,
+                navLogInVc,
+                navAudioVc,
+            ]
+        }
+        
+        let profileViewModel = ProfileViewModel()
+        let testService = TestUserService()
+        testService.user.fullName = email
+        let profileVc = viewControllerFactory.viewController(for: .profile(viewModel: profileViewModel, service: testService, name: email)) as! ProfileViewController
+        let navProfileInVc = createNavController(for: profileVc, title: NSLocalizedString(Constants.profileTitle, comment: ""), image: UIImage(systemName: Constants.profileImageName)!)
+        let profileCoordinator = ProfileCoordinator(navigationController: navProfileInVc, fullName: email, service: testService, viewControllerFactory: viewControllerFactory)
+        
+        addDependency(profileCoordinator)
+        profileCoordinator.start()
         
         return [
             navFeedVc,
-            navLogInVc,
+            navProfileInVc,
             navAudioVc,
         ]
     }

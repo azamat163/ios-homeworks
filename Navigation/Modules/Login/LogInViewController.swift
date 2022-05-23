@@ -7,12 +7,14 @@
 
 import UIKit
 
+typealias Handler = (Result<String, Error>) -> Void
+
 protocol LogInViewControllerDelegate: AnyObject {
     func tappedButton(fullName: String)
 }
 
 protocol LogInViewControllerCheckerDelegate: AnyObject {
-    func checkLoginPasswordAvailability(inputLogin: String, inputPassword: String) -> Bool
+    func signIn(inputLogin: String, inputPassword: String, completion: @escaping Handler)
 }
 
 class LogInViewController: UIViewController {
