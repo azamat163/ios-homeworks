@@ -216,12 +216,11 @@ final class LogInView: UIView {
             return
         }
         
-        checkerDelegate?.signIn(inputLogin: emailText, inputPassword: passwordText, completion: { [weak self] result in
+        checkerDelegate?.login(inputLogin: emailText, inputPassword: passwordText, completion: { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(_):
                 self.delegate?.tappedButton(fullName: emailText)
-//                CommonAlertError.present(vc: vc, with: description)
             case .failure(let error):
                 CommonAlertError.present(vc: vc, with: error.localizedDescription)
             }
