@@ -18,9 +18,11 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
     private enum Constants {
         static let feedTitle: String = "Feed"
         static let profileTitle: String = "Profile"
+        static let postFavorites: String = "Post Favorites"
         static let audioTitle: String = "Listen Now"
         static let feedImageName: String = "house"
         static let profileImageName: String = "person"
+        static let postFavoritesImageName: String = "heart"
         static let audioImageName: String = "play.circle.fill"
         static let mainColor: UIColor = UIColor(named: "Color") ?? .label
     }
@@ -63,7 +65,12 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
         let navAudioVc = createNavController(for: audioVc, title: Constants.audioTitle, image: UIImage(systemName: Constants.audioImageName)!)
         let audioCoordinator = AudioCoordinator(navigationController: navAudioVc, viewControllerFactory: viewControllerFactory)
         
+        let postFavoritesVc = viewControllerFactory.viewController(for: .postFavorites(viewModel: PostFavoritesViewModel()))
+        let navPostFavoritesVc = createNavController(for: postFavoritesVc, title: Constants.postFavorites, image: UIImage(systemName: Constants.postFavoritesImageName)!)
+        let postFavoritesCoordinator = PostFavoritesCoordinator(navigationController: navPostFavoritesVc, viewControllerFactory: viewControllerFactory)
+        
         addDependency(feedCoordinator)
+        addDependency(postFavoritesCoordinator)
         addDependency(audioCoordinator)
         
         feedCoordinator.start()
@@ -82,6 +89,7 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
             return [
                 navFeedVc,
                 navLogInVc,
+                navPostFavoritesVc,
                 navAudioVc,
             ]
         }
@@ -99,6 +107,7 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
         return [
             navFeedVc,
             navProfileInVc,
+            navPostFavoritesVc,
             navAudioVc,
         ]
     }
