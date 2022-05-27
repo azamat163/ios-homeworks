@@ -10,28 +10,49 @@ import RealmSwift
 
 final class RealmService: AuthService {
     private let ud = UserDefaults.standard
-    private let realm = try! Realm()
-    lazy var credentials: Results<Credentials> = { self.realm.objects(Credentials.self) }()
     
     func login(email: String, password: String, completion: @escaping Handler) {
-        guard let credential = credentials.filter({ $0.email == email }).first else {
-            createUser(email: email, password: password, completion: completion)
-            return
+        do {
+            let realm = try Realm()
+            
+            let credentials: Results<Credentials> = { realm.objects(Credentials.self) }()
+            guard let credential = credentials.filter({ $0.email == email }).first else {
+                createUser(email: email, password: password, completion: completion)
+                return
+            }
+            
+            signIn(email: credential.email, password: credential.password, completion: completion)
+            let userInfo = ["email": credential.email, "password": credential.password]
+            ud.set(userInfo, forKey: "login_user")
+        } catch let error {
+            print("Unable to get credentials \(error.localizedDescription)")
         }
-        signIn(email: credential.email, password: credential.password, completion: completion)
     }
     
     func createUser(email: String, password: String, completion: @escaping Handler) {
-        try! realm.write({
-            let newCredentials = Credentials()
-            newCredentials.email = email
-            newCredentials.password = password
+        let newCredentials = Credentials()
+        newCredentials.email = email
+        newCredentials.password = password
+        
+        do {
+            let realm = try Realm()
             
-            realm.add(newCredentials)
-        })
-        
-        credentials = realm.objects(Credentials.self)
-        
+            let block: () -> Void = {
+                realm.add(newCredentials)
+            }
+            
+            if realm.isInWriteTransaction {
+                block()
+            } else {
+                try realm.write({
+                    block()
+                })
+            }
+            
+        } catch let error {
+            print("Failed to write \(error.localizedDescription)")
+        }
+                
         completion(.success("\(String(describing: email)) created"))
     }
     
@@ -44,8 +65,23 @@ final class RealmService: AuthService {
     func signOut() {
         ud.removeObject(forKey: "login_user")
         print("Delete user from UserDefaults")
-        try! realm.write({
-            realm.delete(realm.objects(Credentials.self))
-        })
+        
+        do {
+            let realm = try Realm()
+            
+            let block: () -> Void = {
+                realm.delete(realm.objects(Credentials.self))
+            }
+            
+            if realm.isInWriteTransaction {
+                block()
+            } else {
+                try realm.write({
+                    block()
+                })
+            }
+        } catch let error {
+            print("Failed to delete \(error.localizedDescription)")
+        }
     }
 }
