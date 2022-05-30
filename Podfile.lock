@@ -94,11 +94,17 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.1.0)
+  - Realm (10.26.0):
+    - Realm/Headers (= 10.26.0)
+  - Realm/Headers (10.26.0)
+  - RealmSwift (10.26.0):
+    - Realm (= 10.26.0)
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
+  - RealmSwift
   - SnapKit (~> 5.0.0)
 
 SPEC REPOS:
@@ -115,6 +121,8 @@ SPEC REPOS:
     - GTMSessionFetcher
     - nanopb
     - PromisesObjC
+    - Realm
+    - RealmSwift
     - SnapKit
 
 SPEC CHECKSUMS:
@@ -130,8 +138,10 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 4577a4cc914a5a07c40a8a0ad0acc22080418c2d
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
+  Realm: 97bc2540088e1e88a4b2051ba4b8eac85be0039a
+  RealmSwift: 1bc3cbcb1681c5a9262df5883280123aa2d1d4cf
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 7d4a7b1bceaaa04eb93cc71a55fe3418ec77e5d3
+PODFILE CHECKSUM: 5c525e94284d9c146b67dbacebacc43bd8ceb2f9
 
 COCOAPODS: 1.11.3

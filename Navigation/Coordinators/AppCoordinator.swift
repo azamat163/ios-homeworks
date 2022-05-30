@@ -76,8 +76,7 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
         feedCoordinator.start()
         audioCoordinator.start()
         
-        guard let user = Auth.auth().currentUser,
-              let userInfo = ud.object(forKey: user.uid) as? [String: String],
+        guard let userInfo = ud.object(forKey: "login_user") as? [String: String],
               let email = userInfo["email"]
         else {
             let loginViewModel = LoginViewModel()

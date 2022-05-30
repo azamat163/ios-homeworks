@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 final class ProfileCoordinator: Coordinator {
+    private let myLoginFactory = MyLoginFactory()
     private weak var navigationController: UINavigationController?
     private let fullName: String
     private let service: UserService
@@ -37,6 +38,8 @@ final class ProfileCoordinator: Coordinator {
     }
     
     func showLoginVc() {
+        let loginInspector = myLoginFactory.makeLoginInspector()
+        loginInspector.signOut()
         guard let navigationController = navigationController else { return }
 
         let logInCoordinator = LogInCoordinator(navigationController: navigationController, viewControllerFactory: viewControllerFactory)

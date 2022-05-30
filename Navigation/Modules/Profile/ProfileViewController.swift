@@ -175,7 +175,6 @@ class ProfileViewController: UIViewController {
     
     @objc
     func signOutTapped() {
-        LoginInspector.signOut()
         viewModel.send(.showLoginVc)
     }
 }

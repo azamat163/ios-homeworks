@@ -14,7 +14,8 @@ protocol LogInViewControllerDelegate: AnyObject {
 }
 
 protocol LogInViewControllerCheckerDelegate: AnyObject {
-    func signIn(inputLogin: String, inputPassword: String, completion: @escaping Handler)
+    func login(inputLogin: String, inputPassword: String, completion: @escaping Handler)
+    func signOut()
 }
 
 class LogInViewController: UIViewController {
