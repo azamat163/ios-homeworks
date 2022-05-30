@@ -216,7 +216,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: .postTableId, for: indexPath) as? PostTableViewCell else { fatalError() }
             let currentPost: Post = viewModel.posts[indexPath.row]
             cell.configure(with: currentPost)
-            
             return cell
         default:
             return UITableViewCell()
@@ -227,8 +226,26 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             viewModel.send(.showPhotosVc)
         }
+        
+        if indexPath.section == 2 {
+            let doubleTap = UITapGestureRecognizer(target: self, action: #selector(savePostCoreData(_:)))
+            doubleTap.numberOfTapsRequired = 2
+            tableView.addGestureRecognizer(doubleTap)
+        }
     }
     
+}
+
+extension ProfileViewController {
+    @objc
+    func savePostCoreData(_ sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            let touchLocation: CGPoint = sender.location(in: sender.view)
+            guard let indexPath: IndexPath = tableView.indexPathForRow(at: touchLocation) else { return }
+            let post = viewModel.posts[indexPath.row]
+            viewModel.send(.savePost(post))
+        }
+    }
 }
 
 extension ProfileViewController: ProfileViewControllerDelegate {
@@ -249,11 +266,15 @@ extension ProfileViewController: ProfileViewControllerDelegate {
 extension ProfileViewController {
     
     func updateCell() {
-        let indexPath = IndexPath(row: 0, section: 1)
-        if let cell = tableView.cellForRow(at: indexPath) as? TimerTableViewCell {
-            cell.titleLabel.text = "Осташееся время обновления: \(viewModel.reverseTime)"
-        } else { preconditionFailure("Unable to cast cell to TimerTableViewCell") }
-        tableView.reloadRows(at: [indexPath], with: .none)
+        UIView.performWithoutAnimation {
+            let indexPath = IndexPath(row: 0, section: 1)
+            if let cell = tableView.cellForRow(at: indexPath) as? TimerTableViewCell {
+                cell.titleLabel.text = "Осташееся время обновления: \(viewModel.reverseTime)"
+            } else {
+                tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+            }
+            tableView.reloadRows(at: [indexPath], with: .none)
+        }
     }
     
     func presentNewsAlert() {
@@ -286,7 +307,7 @@ extension ProfileViewController {
     }
 }
 
-private extension String {
+extension String {
     static let postTableId = "postTableId"
     static let photosTableId = "photosTableId"
     static let timerTableId = "timerTableId"

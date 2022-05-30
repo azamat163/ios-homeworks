@@ -23,6 +23,7 @@ final class ProfileViewModel {
     
     var posts = [Post]()
     private let postApi: PostAPI = PostAPI()
+    private let coreDataService = CoreDataService()
     
     private var timer: Timer?
     var reverseTime: Int = 10
@@ -35,6 +36,8 @@ final class ProfileViewModel {
             showPhotosVc?()
         case .showLoginVc:
             showLoginVc?()
+        case .savePost(let post):
+            coreDataService.save(post: post)
         }
     }
     
@@ -106,6 +109,7 @@ extension ProfileViewModel {
         case viewIsReady
         case showPhotosVc
         case showLoginVc
+        case savePost(Post)
     }
     
     enum State {
