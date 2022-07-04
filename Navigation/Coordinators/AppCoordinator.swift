@@ -18,12 +18,14 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
     private enum Constants {
         static let feedTitle: String = "Feed"
         static let profileTitle: String = "Profile"
-        static let postFavorites: String = "Post Favorites"
+        static let postFavoritesTitle: String = "Post Favorites"
+        static let mapTitle: String = "Map"
         static let audioTitle: String = "Listen Now"
         static let feedImageName: String = "house"
         static let profileImageName: String = "person"
         static let postFavoritesImageName: String = "heart"
         static let audioImageName: String = "play.circle.fill"
+        static let mapImageName: String = "map.circle"
         static let mainColor: UIColor = UIColor(named: "Color") ?? .label
     }
 
@@ -53,8 +55,14 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
         let ud = UserDefaults.standard
         let feedViewModel = FeedViewModel()
         let feedVc = viewControllerFactory.viewController(for: .feed(viewModel: feedViewModel))
-        let navFeedVc = createNavController(for: feedVc, title: NSLocalizedString(Constants.feedTitle, comment: ""), image: UIImage(systemName: Constants.feedImageName)!)
-        let feedCoordinator = FeedCoordinator(navigationController: navFeedVc, viewControllerFactory: viewControllerFactory)
+        let navFeedVc = createNavController(
+            for: feedVc, title: NSLocalizedString(Constants.feedTitle, comment: ""),
+            image: UIImage(systemName: Constants.feedImageName)!
+        )
+        let feedCoordinator = FeedCoordinator(
+            navigationController: navFeedVc,
+            viewControllerFactory: viewControllerFactory
+        )
         
         let audiosViewModel = AudiosViewModel(
             audioApi: AudioAPI(),
@@ -62,19 +70,45 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
             service: AudioPlayerService.shared
         )
         let audioVc = viewControllerFactory.viewController(for: .audio(viewModel: audiosViewModel))
-        let navAudioVc = createNavController(for: audioVc, title: Constants.audioTitle, image: UIImage(systemName: Constants.audioImageName)!)
-        let audioCoordinator = AudioCoordinator(navigationController: navAudioVc, viewControllerFactory: viewControllerFactory)
+        let navAudioVc = createNavController(
+            for: audioVc,
+            title: Constants.audioTitle,
+            image: UIImage(systemName: Constants.audioImageName)!
+        )
+        let audioCoordinator = AudioCoordinator(
+            navigationController: navAudioVc,
+            viewControllerFactory: viewControllerFactory
+        )
         
         let postFavoritesVc = viewControllerFactory.viewController(for: .postFavorites(viewModel: PostFavoritesViewModel()))
-        let navPostFavoritesVc = createNavController(for: postFavoritesVc, title: Constants.postFavorites, image: UIImage(systemName: Constants.postFavoritesImageName)!)
-        let postFavoritesCoordinator = PostFavoritesCoordinator(navigationController: navPostFavoritesVc, viewControllerFactory: viewControllerFactory)
+        let navPostFavoritesVc = createNavController(
+            for: postFavoritesVc, title: Constants.postFavoritesTitle,
+            image: UIImage(systemName: Constants.postFavoritesImageName)!
+        )
+        let postFavoritesCoordinator = PostFavoritesCoordinator(
+            navigationController: navPostFavoritesVc,
+            viewControllerFactory: viewControllerFactory
+        )
+        
+        let mapVc = viewControllerFactory.viewController(for: .map)
+        let navMapVc = createNavController(
+            for: mapVc, title: Constants.mapTitle,
+            image: UIImage(systemName: Constants.postFavoritesImageName)!
+        )
+        let mapCoordinator = MapCoordinator(
+            navigationController: navMapVc,
+            viewControllerFactory: viewControllerFactory
+        )
         
         addDependency(feedCoordinator)
         addDependency(postFavoritesCoordinator)
         addDependency(audioCoordinator)
+        addDependency(mapCoordinator)
         
         feedCoordinator.start()
         audioCoordinator.start()
+        postFavoritesCoordinator.start()
+        mapCoordinator.start()
         
         guard let userInfo = ud.object(forKey: "login_user") as? [String: String],
               let email = userInfo["email"]
@@ -90,6 +124,7 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
                 navLogInVc,
                 navPostFavoritesVc,
                 navAudioVc,
+                navMapVc
             ]
         }
         
@@ -108,6 +143,7 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
             navProfileInVc,
             navPostFavoritesVc,
             navAudioVc,
+            navMapVc
         ]
     }
     

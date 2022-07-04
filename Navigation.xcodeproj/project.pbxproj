@@ -67,6 +67,8 @@
 		F312B3BD27BF7EF80033889E /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3BC27BF7EF80033889E /* AudioPlayerService.swift */; };
 		F3133A6927B17DB200BA3DD2 /* TimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3133A6827B17DB200BA3DD2 /* TimerTableViewCell.swift */; };
 		F33710A028166F9400A12298 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F337109F28166F9400A12298 /* GoogleService-Info.plist */; };
+		F34900FB2872AFF60047E9D6 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34900FA2872AFF60047E9D6 /* MapViewController.swift */; };
+		F34900FD2872B0080047E9D6 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34900FC2872B0080047E9D6 /* MapCoordinator.swift */; };
 		F34DDD5C280D8974009201C6 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34DDD5B280D8974009201C6 /* PeopleTableViewCell.swift */; };
 		F35B067527C50A7B00FCA585 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B067427C50A7B00FCA585 /* RecordViewController.swift */; };
 		F35B067727C50E6800FCA585 /* RecordButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B067627C50E6800FCA585 /* RecordButtonTableViewCell.swift */; };
@@ -239,6 +241,8 @@
 		F312B3BC27BF7EF80033889E /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
 		F3133A6827B17DB200BA3DD2 /* TimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTableViewCell.swift; sourceTree = "<group>"; };
 		F337109F28166F9400A12298 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F34900FA2872AFF60047E9D6 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		F34900FC2872B0080047E9D6 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
 		F34DDD5B280D8974009201C6 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
 		F35B067427C50A7B00FCA585 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		F35B067627C50E6800FCA585 /* RecordButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButtonTableViewCell.swift; sourceTree = "<group>"; };
@@ -357,6 +361,7 @@
 				F312B3B027BE69EF0033889E /* AudioCoordinator.swift */,
 				F35B067927C51B0100FCA585 /* RecordCoordinator.swift */,
 				F39B63BE283E1316005CA3DC /* PostFavoritesCoordinator.swift */,
+				F34900FC2872B0080047E9D6 /* MapCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -382,6 +387,7 @@
 		033DC5642775F5CE00802BBA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F34900F92872AFBD0047E9D6 /* Map */,
 				F39B63B1283DF489005CA3DC /* PostFavorites */,
 				F35B067827C50E6F00FCA585 /* Record */,
 				F312B3AD27BE53210033889E /* Audio */,
@@ -556,6 +562,14 @@
 				F35B067627C50E6800FCA585 /* RecordButtonTableViewCell.swift */,
 			);
 			path = Audio;
+			sourceTree = "<group>";
+		};
+		F34900F92872AFBD0047E9D6 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				F34900FA2872AFF60047E9D6 /* MapViewController.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		F35B067827C50E6F00FCA585 /* Record */ = {
@@ -1130,6 +1144,7 @@
 				F304199C283CCB20001D1D5F /* FirebaseService.swift in Sources */,
 				F312B3BB27BE7E340033889E /* AudioTableViewCell.swift in Sources */,
 				F39AE77127BA29B5002E9751 /* ProfileViewModel.swift in Sources */,
+				F34900FD2872B0080047E9D6 /* MapCoordinator.swift in Sources */,
 				F385D8152716AEBE006458CD /* View+Extensions.swift in Sources */,
 				03F4FEF227A0734C00AE4A17 /* FeedViewModel.swift in Sources */,
 				F37A2B53280D6B8C00B7DEFB /* PlanetModel.swift in Sources */,
@@ -1183,6 +1198,7 @@
 				F390015E27C3CEA300171D53 /* VideoAPI.swift in Sources */,
 				F39B63BD283DFDCC005CA3DC /* CoreDataService.swift in Sources */,
 				F385D83427185ECA006458CD /* InfoView.swift in Sources */,
+				F34900FB2872AFF60047E9D6 /* MapViewController.swift in Sources */,
 				03AE91252735251500CEE4C4 /* UIImage+Extensions.swift in Sources */,
 				031475BD279F30BD0004502C /* AppCoordinator.swift in Sources */,
 				F390013E27C3667700171D53 /* AudioViewModel.swift in Sources */,
