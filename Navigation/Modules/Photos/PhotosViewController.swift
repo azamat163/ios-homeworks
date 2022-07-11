@@ -160,7 +160,7 @@ extension PhotosViewController {
 }
 
 private extension String {
-    static let photosGallery = "Photos Gallery"
+    static let photosGallery = String(localized: "photos.header.title")
 }
 
 private extension CGFloat {

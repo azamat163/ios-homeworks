@@ -130,11 +130,11 @@ extension AudiosViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0 {
-            return "Музыка"
+            return String(localized: "audio.section.music.title")
         } else if section == 1 {
-            return "Видеo"
+            return String(localized: "audio.section.video.title")
         } else {
-            return ""
+            return nil
         }
         
     }

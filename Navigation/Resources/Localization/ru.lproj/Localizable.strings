@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  Navigation
+
+  Created by a.agataev on 11.07.2022.
+  
+*/
+
+"tabbar_feed_title" = "Фид";
+"tabbar_profile_title" = "Профиль";
+"tabbar_audio_title" = "Слушать сейчас";
+"tabbar_post_favorites_title" = "Избранные посты";
+
+"audio.section.music.title" = "Музыка";
+"audio.section.video.title" = "Видео";
+
+"post.barItem.title" = "Инфо";
+
+"feed.first.post.button.title" = "Первая кнопка";
+"feed.second.post.button.title" = "Вторая кнопка";
+"feed.button.title" = "Проверка";
+"feed.check.textField.title" = "Введите текст для проверки";
+"feed.check.false.title" =  "Неверно";
+"feed.check.true.title" = "Верно";
+
+"profile.fullNameLabel.text" = "Hipster Cat";
+"profile.statusLabel.text" = "Ожидаю чего-либо...";
+"profile.placeholder.text" = "Задай статус...";
+"profile.setStatusButton.text" = "Задать статус";
+
+"profile.photos.title" = "Фото";
+
+"info.button.title" = "Кнопка для вызова алерта";
+
+"photos.header.title" = "Фото галерея";
+
+"login.button.title" = "Залогиниться";

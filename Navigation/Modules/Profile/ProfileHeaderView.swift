@@ -248,8 +248,8 @@ extension ProfileHeaderView {
 
 private extension String {
     static let avatarImageNamed = "avatar_cat"
-    static let fullNameLabelText = "Hipster Cat"
-    static let statusLabelText = "Waiting for something..."
-    static let placeholderText = "Set status..."
-    static let setStatusButtonText = "Set status"
+    static let fullNameLabelText = String(localized: "profile.fullNameLabel.text")
+    static let statusLabelText = String(localized: "profile.statusLabel.text")
+    static let placeholderText = String(localized: "profile.placeholder.text")
+    static let setStatusButtonText = String(localized: "profile.setStatusButton.text")
 }

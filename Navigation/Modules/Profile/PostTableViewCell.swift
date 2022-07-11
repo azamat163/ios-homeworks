@@ -108,7 +108,8 @@ extension PostTableViewCell {
     public func configure(with post: Post) {
         postAuthorLabel.text = post.author
         postDescription.text = post.description
-        postLikes.text = "Likes: \(post.likes)"
+        let formatLikesString = String(localized: "likes")
+        postLikes.text = String.localizedStringWithFormat(formatLikesString, post.likes)
         postViews.text = "Views: \(post.views)"
                 
         randomFilterImage(with: post.image)

@@ -1,0 +1,37 @@
+/* 
+  Localizable.strings
+  Navigation
+
+  Created by a.agataev on 11.07.2022.
+  
+*/
+
+"tabbar_feed_title" = "Feed";
+"tabbar_profile_title" = "Profile";
+"tabbar_audio_title" = "Listen now";
+"tabbar_post_favorites_title" = "Post Favorites";
+
+"audio.section.music.title" = "Music";
+"audio.section.video.title" = "Video";
+
+"post.barItem.title" = "Info";
+
+"feed.first.post.button.title" = "First button";
+"feed.second.post.button.title" = "Second button";
+"feed.button.title" = "Check";
+"feed.check.textField.title" = "Input text for check";
+"feed.check.false.title" =  "False";
+"feed.check.true.title" = "True";
+
+"profile.fullNameLabel.text" = "Hipster Cat";
+"profile.statusLabel.text" = "Waiting for something...";
+"profile.placeholder.text" = "Set status...";
+"profile.setStatusButton.text" = "Set status";
+
+"profile.photos.title" = "Photos";
+
+"info.button.title" = "Button show alert";
+
+"photos.header.title" = "Фото галерея";
+
+"login.button.title" = "Log In";

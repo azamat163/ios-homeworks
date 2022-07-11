@@ -10,10 +10,6 @@ import UIKit
 class HomeViewController: UITabBarController {
     
     private enum Constants {
-        static let feedTitle: String = "Feed"
-        static let profileTitle: String = "Profile"
-        static let feedImageName: String = "house"
-        static let profileImageName: String = "person"
         static let mainColor: UIColor = UIColor(named: "Color") ?? .label
     }
 

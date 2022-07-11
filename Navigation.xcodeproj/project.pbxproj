@@ -66,6 +66,8 @@
 		F312B3BB27BE7E340033889E /* AudioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3BA27BE7E340033889E /* AudioTableViewCell.swift */; };
 		F312B3BD27BF7EF80033889E /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3BC27BF7EF80033889E /* AudioPlayerService.swift */; };
 		F3133A6927B17DB200BA3DD2 /* TimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3133A6827B17DB200BA3DD2 /* TimerTableViewCell.swift */; };
+		F320C4E1287C029B00F3F22E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F320C4E3287C029B00F3F22E /* Localizable.strings */; };
+		F320C4E7287C0E2000F3F22E /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = F320C4E9287C0E2000F3F22E /* Localizable.stringsdict */; };
 		F33710A028166F9400A12298 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F337109F28166F9400A12298 /* GoogleService-Info.plist */; };
 		F34DDD5C280D8974009201C6 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34DDD5B280D8974009201C6 /* PeopleTableViewCell.swift */; };
 		F35B067527C50A7B00FCA585 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35B067427C50A7B00FCA585 /* RecordViewController.swift */; };
@@ -238,6 +240,10 @@
 		F312B3BA27BE7E340033889E /* AudioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTableViewCell.swift; sourceTree = "<group>"; };
 		F312B3BC27BF7EF80033889E /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
 		F3133A6827B17DB200BA3DD2 /* TimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTableViewCell.swift; sourceTree = "<group>"; };
+		F320C4E2287C029B00F3F22E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F320C4E4287C02D400F3F22E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F320C4E8287C0E2000F3F22E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		F320C4EA287C0E2400F3F22E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		F337109F28166F9400A12298 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F34DDD5B280D8974009201C6 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
 		F35B067427C50A7B00FCA585 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
@@ -558,6 +564,24 @@
 			path = Audio;
 			sourceTree = "<group>";
 		};
+		F320C4DC287C01FF00F3F22E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F320C4DE287C025100F3F22E /* Localization */,
+				F385D79E271415F4006458CD /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		F320C4DE287C025100F3F22E /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				F320C4E3287C029B00F3F22E /* Localizable.strings */,
+				F320C4E9287C0E2000F3F22E /* Localizable.stringsdict */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
 		F35B067827C50E6F00FCA585 /* Record */ = {
 			isa = PBXGroup;
 			children = (
@@ -595,6 +619,7 @@
 		F385D791271415F0006458CD /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F320C4DC287C01FF00F3F22E /* Resources */,
 				F39B63B9283DF841005CA3DC /* Navigation.xcdatamodeld */,
 				F3041996283CC8E0001D1D5F /* Entities */,
 				F337109F28166F9400A12298 /* GoogleService-Info.plist */,
@@ -610,7 +635,6 @@
 				03BB803C273712BB009B7B54 /* APIs */,
 				F385D82727184C2E006458CD /* Models */,
 				F385D8132716AEA5006458CD /* Extentions */,
-				F385D79E271415F4006458CD /* Assets.xcassets */,
 				F385D7A0271415F4006458CD /* LaunchScreen.storyboard */,
 				F385D7A3271415F4006458CD /* Info.plist */,
 			);
@@ -872,6 +896,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = F385D786271415F0006458CD;
 			packageReferences = (
@@ -912,10 +937,12 @@
 				F33710A028166F9400A12298 /* GoogleService-Info.plist in Resources */,
 				F390016527C3E11700171D53 /* Video5.mp4 in Resources */,
 				F390016427C3E11300171D53 /* Video4.mp4 in Resources */,
+				F320C4E1287C029B00F3F22E /* Localizable.strings in Resources */,
 				F390016327C3E11000171D53 /* Video3.mp4 in Resources */,
 				F390016227C3E10D00171D53 /* Video2.mp4 in Resources */,
 				F390016127C3E10900171D53 /* Video1.mp4 in Resources */,
 				F390015127C36D6500171D53 /* Little Bit of Love.mp3 in Resources */,
+				F320C4E7287C0E2000F3F22E /* Localizable.stringsdict in Resources */,
 				F390015227C36D6500171D53 /* Before You Go.mp3 in Resources */,
 				F390014E27C36D6500171D53 /* 2002.mp3 in Resources */,
 				F390015027C36D6500171D53 /* Remember.mp3 in Resources */,
@@ -1242,6 +1269,24 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		F320C4E3287C029B00F3F22E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F320C4E2287C029B00F3F22E /* en */,
+				F320C4E4287C02D400F3F22E /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		F320C4E9287C0E2000F3F22E /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F320C4E8287C0E2000F3F22E /* ru */,
+				F320C4EA287C0E2400F3F22E /* en */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
 		F385D7A0271415F4006458CD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1361,6 +1406,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -1422,6 +1468,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
