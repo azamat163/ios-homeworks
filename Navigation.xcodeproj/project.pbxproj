@@ -115,6 +115,8 @@
 		F39B63BB283DF841005CA3DC /* Navigation.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F39B63B9283DF841005CA3DC /* Navigation.xcdatamodeld */; };
 		F39B63BD283DFDCC005CA3DC /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39B63BC283DFDCC005CA3DC /* CoreDataService.swift */; };
 		F39B63BF283E1316005CA3DC /* PostFavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39B63BE283E1316005CA3DC /* PostFavoritesCoordinator.swift */; };
+		F3C45AF0288317B700C96F6D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C45AEF288317B700C96F6D /* Theme.swift */; };
+		F3C45AF22883380700C96F6D /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C45AF12883380700C96F6D /* UIColor+Extensions.swift */; };
 		F3D792DC27206D80008299BC /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792DB27206D80008299BC /* ProfileHeaderView.swift */; };
 		F3D792E22722912F008299BC /* Button+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792E12722912F008299BC /* Button+Extensions.swift */; };
 		F3D792E42722A532008299BC /* TextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792E32722A532008299BC /* TextField+Extensions.swift */; };
@@ -294,6 +296,8 @@
 		F39B63BA283DF841005CA3DC /* Navigation.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Navigation.xcdatamodel; sourceTree = "<group>"; };
 		F39B63BC283DFDCC005CA3DC /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		F39B63BE283E1316005CA3DC /* PostFavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFavoritesCoordinator.swift; sourceTree = "<group>"; };
+		F3C45AEF288317B700C96F6D /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		F3C45AF12883380700C96F6D /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		F3D792DB27206D80008299BC /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		F3D792E12722912F008299BC /* Button+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+Extensions.swift"; sourceTree = "<group>"; };
 		F3D792E32722A532008299BC /* TextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+Extensions.swift"; sourceTree = "<group>"; };
@@ -398,6 +402,7 @@
 				033DC5672775F63000802BBA /* Info */,
 				033DC5662775F5F600802BBA /* Login */,
 				033DC5652775F5DC00802BBA /* Photos */,
+				F3C45AEF288317B700C96F6D /* Theme.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -674,6 +679,7 @@
 				F3D792E32722A532008299BC /* TextField+Extensions.swift */,
 				F3D792E52722C61F008299BC /* UIImageView+Extensions.swift */,
 				03AE91242735251500CEE4C4 /* UIImage+Extensions.swift */,
+				F3C45AF12883380700C96F6D /* UIColor+Extensions.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -1190,7 +1196,9 @@
 				03439B4A27A6C58700BF8002 /* PhotosViewCoordinator.swift in Sources */,
 				F312B3B527BE745B0033889E /* AudioModel.swift in Sources */,
 				F304199A283CCAF0001D1D5F /* LoginService.swift in Sources */,
+				F3C45AF22883380700C96F6D /* UIColor+Extensions.swift in Sources */,
 				03E8E4AA2778F1C800B073A5 /* MyLoginFactory.swift in Sources */,
+				F3C45AF0288317B700C96F6D /* Theme.swift in Sources */,
 				03439B4E27A6CCDC00BF8002 /* ViewControllerFactory.swift in Sources */,
 				03BB803F273712EF009B7B54 /* PostAPI.swift in Sources */,
 				F390015C27C3CE1300171D53 /* VideosTableViewCell.swift in Sources */,
@@ -1501,6 +1509,8 @@
 				DEVELOPMENT_TEAM = 2DN45PHB4N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location in demo app";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app requires the access to Microphone to record your voice memo";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -1532,6 +1542,8 @@
 				DEVELOPMENT_TEAM = 2DN45PHB4N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location in demo app";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app requires the access to Microphone to record your voice memo";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";

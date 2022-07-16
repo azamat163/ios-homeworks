@@ -9,6 +9,7 @@ import UIKit
 
 
 final class LogInView: UIView {
+    private let theme: Theme = .current
     
     weak var delegate: LogInViewControllerDelegate?
     weak var checkerDelegate: LogInViewControllerCheckerDelegate?
@@ -154,6 +155,7 @@ final class LogInView: UIView {
         ])
         
         setupLayout()
+        apply(theme: theme)
     }
     
     required init?(coder: NSCoder) {
@@ -241,6 +243,15 @@ final class LogInView: UIView {
         let operation = OperationQueue()
         operation.qualityOfService = .userInitiated
         operation.addOperation(bruteForceOperation)
+    }
+}
+
+extension LogInView: ThemeAble {
+    func apply(theme: Theme) {
+        emailOfPhoneTextField.backgroundColor = theme.textLabel
+        passwordTextField.backgroundColor = theme.textLabel
+        logInButton.backgroundColor = theme.buttonColor
+        pickUpPassButton.backgroundColor = theme.buttonColor
     }
 }
 
