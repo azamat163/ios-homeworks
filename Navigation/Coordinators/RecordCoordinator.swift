@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class RecordCoordinator: Coordinator {
+final class RecordCoordinator: Coordinator {
     private let vc: UIViewController
     private let viewControllerFactory: ViewControllerFactoryProtocol
     

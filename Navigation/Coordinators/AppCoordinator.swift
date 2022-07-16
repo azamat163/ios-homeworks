@@ -20,6 +20,7 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
         static let profileImageName: String = "person"
         static let postFavoritesImageName: String = "heart"
         static let audioImageName: String = "play.circle.fill"
+        static let mapImageName: String = "map.circle"
         static let mainColor: UIColor = UIColor(named: "Color") ?? .label
     }
 
@@ -77,12 +78,25 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
         )
         let postFavoritesCoordinator = PostFavoritesCoordinator(navigationController: navPostFavoritesVc, viewControllerFactory: viewControllerFactory)
         
+        let mapVc = viewControllerFactory.viewController(for: .map)
+        let navMapVc = createNavController(
+            for: mapVc, title: Constants.mapTitle,
+            image: UIImage(systemName: Constants.postFavoritesImageName)!
+        )
+        let mapCoordinator = MapCoordinator(
+            navigationController: navMapVc,
+            viewControllerFactory: viewControllerFactory
+        )
+        
         addDependency(feedCoordinator)
         addDependency(postFavoritesCoordinator)
         addDependency(audioCoordinator)
+        addDependency(mapCoordinator)
         
         feedCoordinator.start()
         audioCoordinator.start()
+        postFavoritesCoordinator.start()
+        mapCoordinator.start()
         
         guard let userInfo = ud.object(forKey: "login_user") as? [String: String],
               let email = userInfo["email"]
@@ -102,6 +116,7 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
                 navLogInVc,
                 navPostFavoritesVc,
                 navAudioVc,
+                navMapVc
             ]
         }
         
@@ -124,6 +139,7 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
             navProfileInVc,
             navPostFavoritesVc,
             navAudioVc,
+            navMapVc
         ]
     }
     

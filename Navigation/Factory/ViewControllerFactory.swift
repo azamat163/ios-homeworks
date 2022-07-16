@@ -19,6 +19,7 @@ enum TypeOfViewController {
     case audio(viewModel: AudiosViewModel)
     case record
     case postFavorites(viewModel: PostFavoritesViewModel)
+    case map
 }
 
 extension TypeOfViewController {
@@ -44,6 +45,8 @@ extension TypeOfViewController {
             return RecordViewController()
         case .postFavorites(let viewModel):
             return PostFavoritesViewController(viewModel: viewModel)
+        case .map:
+            return MapViewController()
         }
     }
 }

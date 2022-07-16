@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class AudioCoordinator: Coordinator {
+final class AudioCoordinator: Coordinator {
     private weak var navigationController: UINavigationController?
     private let viewControllerFactory: ViewControllerFactoryProtocol
     
