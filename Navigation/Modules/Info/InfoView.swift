@@ -105,5 +105,5 @@ extension InfoView {
 }
 
 private extension String {
-    static let alertButtonTitle = "Кнопка для вызова алерта"
+    static let alertButtonTitle = String(localized: "info.button.title")
 }

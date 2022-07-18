@@ -35,5 +35,5 @@ final class PostViewController: UIViewController {
 }
 
 private extension String {
-    static let barItemTitle = "Info"
+    static let barItemTitle = String(localized: "post.barItem.title")
 }

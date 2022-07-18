@@ -142,12 +142,12 @@ final class FeedView: UIView {
 }
 
 private extension String {
-    static let firstPostButtonTitle = "Первая кнопка"
-    static let secondPostButtonTitle = "Вторая кнопка"
-    static let buttonTitle = "Проверка"
-    static let checkTextFieldTitle = "Введите текст для проверки"
-    static let checkFalseTitle =  "Неверно"
-    static let checkTrueTitle = "Верно"
+    static let firstPostButtonTitle = String(localized: "feed.first.post.button.title")
+    static let secondPostButtonTitle = String(localized: "feed.second.post.button.title")
+    static let buttonTitle = String(localized: "feed.button.title")
+    static let checkTextFieldTitle = String(localized: "feed.check.textField.title")
+    static let checkFalseTitle =  String(localized: "feed.check.false.title")
+    static let checkTrueTitle = String(localized: "feed.check.true.title")
 }
 
 private extension CGFloat {

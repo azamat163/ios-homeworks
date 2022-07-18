@@ -119,7 +119,7 @@ private var height: CGFloat = {
 }()
 
 private extension String {
-    static let photosTitleText = "Photos"
+    static let photosTitleText = String(localized: "profile.photos.title")
 }
 
 private extension CGFloat {
