@@ -21,6 +21,8 @@ class ProfileViewController: UIViewController {
     private var service: UserService
     private var fullName: String
     
+    private let theme: Theme = .current
+    
     private lazy var profileHeaderView: ProfileHeaderView = {
         profileHeaderView = ProfileHeaderView(frame: .zero)
         profileHeaderView.toAutoLayout()
@@ -66,15 +68,11 @@ class ProfileViewController: UIViewController {
         
         setupViewModel()
         viewModel.send(.viewIsReady)
+        
+        apply(theme: theme)
     }
     
     private func setupView() {
-        #if DEBUG
-            view.backgroundColor = .red
-        #else
-            view.backgroundColor = .blue
-        #endif
-        
         navigationItem.hidesBackButton = true
         navigationItem.title = .profileTitle
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOutTapped))
@@ -304,6 +302,12 @@ extension ProfileViewController {
     
     private func showAlertUserNotFound(with error: UserNotFoundError) {
         CommonAlertError.present(vc: self, with: error)
+    }
+}
+
+extension ProfileViewController: ThemeAble {
+    func apply(theme: Theme) {
+        view.backgroundColor = theme.background
     }
 }
 

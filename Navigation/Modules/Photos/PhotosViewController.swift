@@ -15,6 +15,7 @@ final class PhotosViewController: UIViewController {
     private var userImages: [UIImage] = [] // массив локальных картинок, которые преобразуются из photos
     private let imagePublisherFacade = ImagePublisherFacade() // экземпляр ImagePublisherFacade
     private let imageProcessor = ImageProcessor()
+    private let theme: Theme = .current
     
     deinit {
         imagePublisherFacade.removeSubscription(for: self)
@@ -38,6 +39,7 @@ final class PhotosViewController: UIViewController {
 
         setupViews()
         setupLayout()
+        apply(theme: theme)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,7 +49,6 @@ final class PhotosViewController: UIViewController {
     }
     
     private func setupViews() {
-        view.backgroundColor = .white
         view.addSubview(collectionView)
         
         collectionView.dataSource = self
@@ -156,6 +157,12 @@ extension PhotosViewController {
                 }
             }
         )
+    }
+}
+
+extension PhotosViewController: ThemeAble {
+    func apply(theme: Theme) {
+        view.backgroundColor = theme.background
     }
 }
 

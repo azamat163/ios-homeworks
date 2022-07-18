@@ -23,6 +23,7 @@ class LogInViewController: UIViewController {
     private let viewModel: LoginViewModel
     var delegate: LogInViewControllerCheckerDelegate?
     var showProfileVc: ((String) -> Void)?
+    private let theme: Theme = .current
         
     private lazy var logInView: LogInView = {
         logInView = LogInView(frame: .zero)
@@ -50,9 +51,7 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = ""
-        
-        view.backgroundColor = .white
-        
+                
         view.addSubview(scrollView)
         scrollView.addSubview(logInView)
         
@@ -62,6 +61,8 @@ class LogInViewController: UIViewController {
         logInView.checkerDelegate = delegate
         
         configureKeyboardNotifications()
+        
+        apply(theme: theme)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -122,5 +123,11 @@ extension LogInViewController: LogInViewControllerDelegate {
     
     func tappedButton(fullName: String) {
         viewModel.send(.showProfileVc(fullName))
+    }
+}
+
+extension LogInViewController: ThemeAble {
+    func apply(theme: Theme) {
+        view.backgroundColor = theme.background
     }
 }
