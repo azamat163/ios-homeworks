@@ -8,41 +8,80 @@
 import Foundation
 import UIKit
 
-final class ProfileCoordinator: Coordinator {
-    private let myLoginFactory = MyLoginFactory()
-    private weak var navigationController: UINavigationController?
-    private let fullName: String
-    private let service: UserService
-    private let viewControllerFactory: ViewControllerFactoryProtocol
+protocol ProfileCoordinatorFlowProtocol {
+    var navigationController: UINavigationController { get }
+    var viewControllerFactory: ViewControllerFactoryProtocol { get }
     
-    init(navigationController: UINavigationController, fullName: String, service: UserService, viewControllerFactory: ViewControllerFactoryProtocol) {
+    func showPhotosVc()
+    func showLoginVc()
+}
+
+class ProfileCoordinatorFlow: ProfileCoordinatorFlowProtocol {
+    let navigationController: UINavigationController
+    let viewControllerFactory: ViewControllerFactoryProtocol
+    
+    private let myLoginFactory = MyLoginFactory()
+    
+    init(
+        navigationController: UINavigationController,
+        viewControllerFactory: ViewControllerFactoryProtocol
+    ) {
         self.navigationController = navigationController
-        self.fullName = fullName
-        self.service = service
         self.viewControllerFactory = viewControllerFactory
     }
     
-    func start() {
-        let viewModel = ProfileViewModel()
-        let profileVc = viewControllerFactory.viewController(for: .profile(viewModel: viewModel, service: service, name: fullName)) as! ProfileViewController
-        viewModel.showPhotosVc = showPhotosVc
-        viewModel.showLoginVc = showLoginVc
-        navigationController?.pushViewController(profileVc, animated: true)
-    }
-    
     func showPhotosVc() {
-        guard let navigationController = navigationController else { return }
-
-        let photosViewCoordinator = PhotosViewCoordinator(navigationController: navigationController, viewControllerFactory: viewControllerFactory)
+        let photosViewCoordinator = PhotosViewCoordinator(
+            navigationController: navigationController,
+            viewControllerFactory: viewControllerFactory
+        )
         photosViewCoordinator.start()
     }
     
     func showLoginVc() {
         let loginInspector = myLoginFactory.makeLoginInspector()
         loginInspector.signOut()
-        guard let navigationController = navigationController else { return }
-
-        let logInCoordinator = LogInCoordinator(navigationController: navigationController, viewControllerFactory: viewControllerFactory)
+        let logInCoordinator = LogInCoordinator(
+            navigationController: navigationController,
+            viewControllerFactory: viewControllerFactory
+        )
         logInCoordinator.start()
+    }
+}
+
+class ProfileCoordinator: Coordinator {
+    private weak var navigationController: UINavigationController?
+    private let fullName: String
+    private let service: UserService
+    private let viewControllerFactory: ViewControllerFactoryProtocol
+    private let profileCoordinatorFlow: ProfileCoordinatorFlow
+    
+    init(
+        navigationController: UINavigationController,
+        fullName: String, service: UserService,
+        viewControllerFactory: ViewControllerFactoryProtocol
+    ) {
+        self.navigationController = navigationController
+        self.fullName = fullName
+        self.service = service
+        self.viewControllerFactory = viewControllerFactory
+        self.profileCoordinatorFlow = ProfileCoordinatorFlow(
+            navigationController: navigationController,
+            viewControllerFactory: viewControllerFactory
+        )
+    }
+    
+    func start() {
+        let viewModel = ProfileViewModel()
+        let profileVc = viewControllerFactory.viewController(
+            for: .profile(
+                viewModel: viewModel,
+                service: service,
+                name: fullName
+            )
+        ) as! ProfileViewController
+        viewModel.showPhotosVc = profileCoordinatorFlow.showPhotosVc
+        viewModel.showLoginVc = profileCoordinatorFlow.showLoginVc
+        navigationController?.pushViewController(profileVc, animated: true)
     }
 }

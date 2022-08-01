@@ -10,6 +10,7 @@
 "tabbar_profile_title" = "Profile";
 "tabbar_audio_title" = "Listen now";
 "tabbar_post_favorites_title" = "Post Favorites";
+"tabbar_map_title" = "Map";
 
 "audio.section.music.title" = "Music";
 "audio.section.video.title" = "Video";

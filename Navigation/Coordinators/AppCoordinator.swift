@@ -80,7 +80,7 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
         
         let mapVc = viewControllerFactory.viewController(for: .map)
         let navMapVc = createNavController(
-            for: mapVc, title: Constants.mapTitle,
+            for: mapVc, title: NSLocalizedString("tabbar_map_title", comment: ""),
             image: UIImage(systemName: Constants.postFavoritesImageName)!
         )
         let mapCoordinator = MapCoordinator(
