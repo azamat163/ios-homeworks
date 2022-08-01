@@ -137,6 +137,16 @@ final class LogInView: UIView {
         return pickUpPassButton
     }()
     
+    private lazy var biometryButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.setBackgroundImage(UIImage(systemName: "touchid"), for: .normal)
+        button.addTarget(self, action: #selector(biometryTapped), for: .touchUpInside)
+        
+        button.toAutoLayout()
+        
+        return button
+    }()
+    
     private lazy var spinnerView: UIActivityIndicatorView = {
         spinnerView = UIActivityIndicatorView(style: .large)
         spinnerView.toAutoLayout()
@@ -151,7 +161,8 @@ final class LogInView: UIView {
             formStackView,
             pickUpPassButton,
             spinnerView,
-            logInButton
+            logInButton,
+            biometryButton
         ])
         
         setupLayout()
@@ -194,15 +205,22 @@ final class LogInView: UIView {
         let snipperViewConstraints: [NSLayoutConstraint] = [
             spinnerView.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor),
             spinnerView.bottomAnchor.constraint(equalTo: passwordTextField.bottomAnchor)
-
         ]
+        
+        let biomentryConstraints: [NSLayoutConstraint] = [
+            biometryButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: .FormStackView.padding),
+            biometryButton.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+        ]
+        
+        
         
         NSLayoutConstraint.activate(
             logoImageConstraints +
             formStackViewConstraints +
             pickUpPassButtonConstraints +
             logInButtonConstraints +
-            snipperViewConstraints
+            snipperViewConstraints +
+            biomentryConstraints
         )
     }
     
@@ -243,6 +261,20 @@ final class LogInView: UIView {
         let operation = OperationQueue()
         operation.qualityOfService = .userInitiated
         operation.addOperation(bruteForceOperation)
+    }
+    
+    @objc
+    private func biometryTapped() {
+        guard let vc = self.window?.rootViewController else { return }
+
+        let local = LocalAuthorizationService()
+        local.authorizeIfPossible { [weak self] flag in
+            if flag {
+                self?.delegate?.tappedButton(fullName: "")
+            } else {
+                CommonAlertError.present(vc: vc, with: "Error in biometry authorized!")
+            }
+        }
     }
 }
 
