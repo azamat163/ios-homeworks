@@ -8,27 +8,26 @@
 import Foundation
 import UIKit
 
-final class LogInCoordinator: Coordinator {
-    private let myLoginFactory = MyLoginFactory()
-    private weak var navigationController: UINavigationController?
-    private let viewControllerFactory: ViewControllerFactoryProtocol
+protocol LogInCoordinatorFlowProtocol {
+    var navigationController: UINavigationController { get }
+    var viewControllerFactory: ViewControllerFactoryProtocol { get }
     
-    init(navigationController: UINavigationController, viewControllerFactory: ViewControllerFactoryProtocol) {
+    func showProfileVc(fullName: String)
+}
+
+class LogInCoordinatorFlow: LogInCoordinatorFlowProtocol {
+    let navigationController: UINavigationController
+    let viewControllerFactory: ViewControllerFactoryProtocol
+    
+    init(
+        navigationController: UINavigationController,
+        viewControllerFactory: ViewControllerFactoryProtocol
+    ) {
         self.navigationController = navigationController
         self.viewControllerFactory = viewControllerFactory
     }
     
-    func start() {
-        let viewModel = LoginViewModel()
-        let viewController = viewControllerFactory.viewController(for: .login(viewModel: viewModel)) as! LogInViewController
-        viewController.delegate = myLoginFactory.makeLoginInspector()
-        viewModel.showProfileVc = showProfileVc(fullName:)
-        navigationController?.setViewControllers([viewController], animated: false)
-    }
-    
     func showProfileVc(fullName: String) {
-        guard let navigationController = navigationController else { return }
-
         var currentUser: UserService
         
         #if DEBUG
@@ -48,5 +47,29 @@ final class LogInCoordinator: Coordinator {
             viewControllerFactory: viewControllerFactory
         )
         profileCoordinator.start()
+    }
+}
+
+class LogInCoordinator: Coordinator {
+    private let myLoginFactory = MyLoginFactory()
+    private weak var navigationController: UINavigationController?
+    private let viewControllerFactory: ViewControllerFactoryProtocol
+    private let logInCoordinatorFlow: LogInCoordinatorFlow
+    
+    init(navigationController: UINavigationController, viewControllerFactory: ViewControllerFactoryProtocol) {
+        self.navigationController = navigationController
+        self.viewControllerFactory = viewControllerFactory
+        self.logInCoordinatorFlow = LogInCoordinatorFlow(
+            navigationController: navigationController,
+            viewControllerFactory: viewControllerFactory
+        )
+    }
+    
+    func start() {
+        let viewModel = LoginViewModel()
+        let viewController = viewControllerFactory.viewController(for: .login(viewModel: viewModel)) as! LogInViewController
+        viewController.delegate = myLoginFactory.makeLoginInspector()
+        viewModel.showProfileVc = logInCoordinatorFlow.showProfileVc(fullName:)
+        navigationController?.setViewControllers([viewController], animated: false)
     }
 }

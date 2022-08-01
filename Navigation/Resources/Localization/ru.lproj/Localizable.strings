@@ -10,6 +10,7 @@
 "tabbar_profile_title" = "Профиль";
 "tabbar_audio_title" = "Слушать сейчас";
 "tabbar_post_favorites_title" = "Избранные посты";
+"tabbar_map_title" = "Карта";
 
 "audio.section.music.title" = "Музыка";
 "audio.section.video.title" = "Видео";
