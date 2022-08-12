@@ -67,6 +67,7 @@
 		F312B3BD27BF7EF80033889E /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312B3BC27BF7EF80033889E /* AudioPlayerService.swift */; };
 		F3133A6927B17DB200BA3DD2 /* TimerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3133A6827B17DB200BA3DD2 /* TimerTableViewCell.swift */; };
 		F33710A028166F9400A12298 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F337109F28166F9400A12298 /* GoogleService-Info.plist */; };
+		F33922AD289E382D008CDEDC /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F33922AC289E382D008CDEDC /* MapKit.framework */; };
 		F34900FB2872AFF60047E9D6 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34900FA2872AFF60047E9D6 /* MapViewController.swift */; };
 		F34900FD2872B0080047E9D6 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34900FC2872B0080047E9D6 /* MapCoordinator.swift */; };
 		F34DDD5C280D8974009201C6 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34DDD5B280D8974009201C6 /* PeopleTableViewCell.swift */; };
@@ -123,6 +124,7 @@
 		F3D792E62722C620008299BC /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D792E52722C61F008299BC /* UIImageView+Extensions.swift */; };
 		F3E22AE92897ABBA00B29CEA /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E22AE82897ABBA00B29CEA /* ProfileTests.swift */; };
 		F3E22AEB2897B55E00B29CEA /* LocalAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E22AEA2897B55E00B29CEA /* LocalAuthorizationService.swift */; };
+		F3F4DD6C289BB748001C3FF0 /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F4DD6B289BB748001C3FF0 /* LocalNotificationsService.swift */; };
 		F3FCC88B28910C970023C0A8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3FCC88528910C970023C0A8 /* Localizable.strings */; };
 		F3FCC88C28910C970023C0A8 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = F3FCC88728910C970023C0A8 /* Localizable.stringsdict */; };
 /* End PBXBuildFile section */
@@ -247,6 +249,7 @@
 		F312B3BC27BF7EF80033889E /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
 		F3133A6827B17DB200BA3DD2 /* TimerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTableViewCell.swift; sourceTree = "<group>"; };
 		F337109F28166F9400A12298 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F33922AC289E382D008CDEDC /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F34900FA2872AFF60047E9D6 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		F34900FC2872B0080047E9D6 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
 		F34DDD5B280D8974009201C6 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
@@ -308,6 +311,7 @@
 		F3D792E52722C61F008299BC /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		F3E22AE82897ABBA00B29CEA /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
 		F3E22AEA2897B55E00B29CEA /* LocalAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthorizationService.swift; sourceTree = "<group>"; };
+		F3F4DD6B289BB748001C3FF0 /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
 		F3FCC88628910C970023C0A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F3FCC88828910C970023C0A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		F3FCC88928910C970023C0A8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -338,6 +342,7 @@
 			files = (
 				033DC56C27761B4A00802BBA /* iOSIntPackage in Frameworks */,
 				033DC5582775F24500802BBA /* StorageService.framework in Frameworks */,
+				F33922AD289E382D008CDEDC /* MapKit.framework in Frameworks */,
 				A136399D7BB098E8B318B63E /* Pods_Navigation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,6 +530,7 @@
 				F304199D283CCC2D001D1D5F /* RealmService.swift */,
 				F304199F283CCC9E001D1D5F /* AuthService.swift */,
 				F3E22AEA2897B55E00B29CEA /* LocalAuthorizationService.swift */,
+				F3F4DD6B289BB748001C3FF0 /* LocalNotificationsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -549,6 +555,7 @@
 		E628FA454684868D30C6FDC9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F33922AC289E382D008CDEDC /* MapKit.framework */,
 				F2964D07A393470927A5535E /* Pods_Navigation.framework */,
 				70451A3E2C1A491677B57628 /* Pods_Navigation_NavigationUITests.framework */,
 				F0DCA5721FAB1CF0D9F8DA1F /* Pods_NavigationTests.framework */,
@@ -1195,6 +1202,7 @@
 				03AE911D2734F79D00CEE4C4 /* LogInViewController.swift in Sources */,
 				F30419A0283CCC9E001D1D5F /* AuthService.swift in Sources */,
 				F3133A6927B17DB200BA3DD2 /* TimerTableViewCell.swift in Sources */,
+				F3F4DD6C289BB748001C3FF0 /* LocalNotificationsService.swift in Sources */,
 				F312B3B727BE74AE0033889E /* AudioAPI.swift in Sources */,
 				034B5EF2274AADBC00E84998 /* ProfileShadowView.swift in Sources */,
 				F39B63B5283DF4D1005CA3DC /* PostFavoritesViewModel.swift in Sources */,
@@ -1562,9 +1570,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2DN45PHB4N;
+				DEVELOPMENT_TEAM = PS835QR9S2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Example face id";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location in demo app";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app requires the access to Microphone to record your voice memo";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1595,9 +1604,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2DN45PHB4N;
+				DEVELOPMENT_TEAM = PS835QR9S2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Example face id";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location in demo app";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app requires the access to Microphone to record your voice memo";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
