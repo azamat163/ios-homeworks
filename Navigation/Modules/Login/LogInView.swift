@@ -147,6 +147,26 @@ final class LogInView: UIView {
         return button
     }()
     
+    private lazy var signUpButton: CustomButton = {
+        signUpButton = CustomButton(
+            title: .signUpButtonTitle,
+            titleColor: .white,
+            onTap: { [weak self] in
+                self?.signUpTapped()
+            }
+        )
+
+        signUpButton.setBackgroundImage(Constants.Button.image?.alpha(1), for: .normal)
+        signUpButton.setBackgroundImage(Constants.Button.image?.alpha(0.8), for: [.selected, .highlighted, .disabled])
+        
+        signUpButton.layer.cornerRadius = Constants.Button.cornerRadius
+        signUpButton.layer.masksToBounds = true
+        
+        signUpButton.toAutoLayout()
+        
+        return signUpButton
+    }()
+    
     private lazy var spinnerView: UIActivityIndicatorView = {
         spinnerView = UIActivityIndicatorView(style: .large)
         spinnerView.toAutoLayout()
@@ -159,10 +179,9 @@ final class LogInView: UIView {
         addSubviews([
             logoImageView,
             formStackView,
-            pickUpPassButton,
             spinnerView,
             logInButton,
-            biometryButton
+            signUpButton,
         ])
         
         setupLayout()
@@ -188,17 +207,10 @@ final class LogInView: UIView {
             formStackView.heightAnchor.constraint(equalToConstant: .FormStackView.height)
         ]
         
-        let pickUpPassButtonConstraints: [NSLayoutConstraint] = [
-            pickUpPassButton.topAnchor.constraint(equalTo: formStackView.bottomAnchor, constant: .FormStackView.padding),
-            pickUpPassButton.leadingAnchor.constraint(equalTo: formStackView.leadingAnchor),
-            pickUpPassButton.trailingAnchor.constraint(equalTo: formStackView.trailingAnchor),
-            pickUpPassButton.heightAnchor.constraint(equalToConstant: .Button.height)
-        ]
-        
         let logInButtonConstraints: [NSLayoutConstraint] = [
-            logInButton.topAnchor.constraint(equalTo: pickUpPassButton.bottomAnchor, constant: .FormStackView.padding),
-            logInButton.leadingAnchor.constraint(equalTo: pickUpPassButton.leadingAnchor),
-            logInButton.trailingAnchor.constraint(equalTo: pickUpPassButton.trailingAnchor),
+            logInButton.topAnchor.constraint(equalTo: formStackView.bottomAnchor, constant: .FormStackView.padding),
+            logInButton.leadingAnchor.constraint(equalTo: formStackView.leadingAnchor),
+            logInButton.trailingAnchor.constraint(equalTo: formStackView.trailingAnchor),
             logInButton.heightAnchor.constraint(equalToConstant: .Button.height)
         ]
         
@@ -207,20 +219,19 @@ final class LogInView: UIView {
             spinnerView.bottomAnchor.constraint(equalTo: passwordTextField.bottomAnchor)
         ]
         
-        let biomentryConstraints: [NSLayoutConstraint] = [
-            biometryButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: .FormStackView.padding),
-            biometryButton.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+        let signUpButtonConstraints: [NSLayoutConstraint] = [
+            signUpButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: .FormStackView.padding),
+            signUpButton.leadingAnchor.constraint(equalTo: logInButton.leadingAnchor),
+            signUpButton.trailingAnchor.constraint(equalTo: logInButton.trailingAnchor),
+            signUpButton.heightAnchor.constraint(equalToConstant: .Button.height)
         ]
-        
-        
         
         NSLayoutConstraint.activate(
             logoImageConstraints +
             formStackViewConstraints +
-            pickUpPassButtonConstraints +
             logInButtonConstraints +
-            snipperViewConstraints +
-            biomentryConstraints
+            signUpButtonConstraints +
+            snipperViewConstraints
         )
     }
     
@@ -276,6 +287,10 @@ final class LogInView: UIView {
             }
         }
     }
+    
+    private func signUpTapped() {
+        delegate?.pushSignUp()
+    }
 }
 
 extension LogInView: ThemeAble {
@@ -290,18 +305,19 @@ extension LogInView: ThemeAble {
 private extension String {
     static let logoImageNamed = "logo"
     
-    static let emailOfPhonePlaceholder = "Email of phone"
+    static let emailOfPhonePlaceholder = "Email address"
     static let passwordPlaceholder = "Password"
     
     static let logInButtonTitle = "Log In"
     static let blueImageNamed = "blue_pixel"
     static let pickUpPassButtonTitle = "Pick up password"
+    static let signUpButtonTitle = "Sign Up"
 }
 
 private extension CGFloat {
     enum LogoImage {
-        static let padding: CGFloat = 120
-        static let width: CGFloat = 100
+        static let padding: CGFloat = 50
+        static let width: CGFloat = 50
     }
     
     enum FormStackView {
@@ -315,5 +331,9 @@ private extension CGFloat {
     
     enum Button {
         static let height: CGFloat = 50
+    }
+    
+    enum BiometryButton {
+        static let width: CGFloat = 50
     }
 }

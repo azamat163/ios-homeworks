@@ -11,6 +11,7 @@ typealias Handler = (Result<String, Error>) -> Void
 
 protocol LogInViewControllerDelegate: AnyObject {
     func tappedButton(fullName: String)
+    func pushSignUp()
 }
 
 protocol LogInViewControllerCheckerDelegate: AnyObject {
@@ -23,6 +24,7 @@ class LogInViewController: UIViewController {
     private let viewModel: LoginViewModel
     var delegate: LogInViewControllerCheckerDelegate?
     var showProfileVc: ((String) -> Void)?
+    var showRegistrationVc: (() -> Void)?
     private let theme: Theme = .current
         
     private lazy var logInView: LogInView = {
@@ -50,7 +52,7 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = ""
+        title = "Login"
                 
         view.addSubview(scrollView)
         scrollView.addSubview(logInView)
@@ -123,6 +125,10 @@ extension LogInViewController: LogInViewControllerDelegate {
     
     func tappedButton(fullName: String) {
         viewModel.send(.showProfileVc(fullName))
+    }
+    
+    func pushSignUp() {
+        viewModel.send(.showRegistrationVc)
     }
 }
 

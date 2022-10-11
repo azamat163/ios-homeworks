@@ -82,6 +82,6 @@ class ProfileCoordinator: Coordinator {
         ) as! ProfileViewController
         viewModel.showPhotosVc = profileCoordinatorFlow.showPhotosVc
         viewModel.showLoginVc = profileCoordinatorFlow.showLoginVc
-        navigationController?.pushViewController(profileVc, animated: true)
+        navigationController?.setViewControllers([profileVc], animated: false)
     }
 }

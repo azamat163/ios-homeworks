@@ -79,6 +79,7 @@
 		F37A2B51280D5B7D00B7DEFB /* TodosApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A2B50280D5B7D00B7DEFB /* TodosApi.swift */; };
 		F37A2B53280D6B8C00B7DEFB /* PlanetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A2B52280D6B8C00B7DEFB /* PlanetModel.swift */; };
 		F37A2B55280D74A700B7DEFB /* PlanetApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A2B54280D74A700B7DEFB /* PlanetApi.swift */; };
+		F384BC2A28F17D9100F77525 /* RegistrationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F384BC2928F17D9100F77525 /* RegistrationCoordinator.swift */; };
 		F385D793271415F0006458CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D792271415F0006458CD /* AppDelegate.swift */; };
 		F385D795271415F0006458CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D794271415F0006458CD /* SceneDelegate.swift */; };
 		F385D79F271415F4006458CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F385D79E271415F4006458CD /* Assets.xcassets */; };
@@ -94,6 +95,8 @@
 		F385D82027183C16006458CD /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D81F27183C16006458CD /* FeedView.swift */; };
 		F385D82F27185E51006458CD /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D82E27185E51006458CD /* InfoViewController.swift */; };
 		F385D83427185ECA006458CD /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F385D83327185ECA006458CD /* InfoView.swift */; };
+		F3894CDD28EC165C00D54DE9 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3894CDC28EC165C00D54DE9 /* RegistrationViewController.swift */; };
+		F3894CDF28EC167000D54DE9 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3894CDE28EC167000D54DE9 /* RegistrationViewModel.swift */; };
 		F390013E27C3667700171D53 /* AudioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F390013D27C3667700171D53 /* AudioViewModel.swift */; };
 		F390014E27C36D6500171D53 /* 2002.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F390014927C36D6500171D53 /* 2002.mp3 */; };
 		F390014F27C36D6500171D53 /* Iris.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F390014A27C36D6500171D53 /* Iris.mp3 */; };
@@ -261,6 +264,7 @@
 		F37A2B50280D5B7D00B7DEFB /* TodosApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodosApi.swift; sourceTree = "<group>"; };
 		F37A2B52280D6B8C00B7DEFB /* PlanetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetModel.swift; sourceTree = "<group>"; };
 		F37A2B54280D74A700B7DEFB /* PlanetApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetApi.swift; sourceTree = "<group>"; };
+		F384BC2928F17D9100F77525 /* RegistrationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCoordinator.swift; sourceTree = "<group>"; };
 		F385D78F271415F0006458CD /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F385D792271415F0006458CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F385D794271415F0006458CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -281,6 +285,8 @@
 		F385D82927184C46006458CD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F385D82E27185E51006458CD /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		F385D83327185ECA006458CD /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		F3894CDC28EC165C00D54DE9 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		F3894CDE28EC167000D54DE9 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		F390013D27C3667700171D53 /* AudioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewModel.swift; sourceTree = "<group>"; };
 		F390014927C36D6500171D53 /* 2002.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 2002.mp3; sourceTree = "<group>"; };
 		F390014A27C36D6500171D53 /* Iris.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Iris.mp3; sourceTree = "<group>"; };
@@ -381,6 +387,7 @@
 				F35B067927C51B0100FCA585 /* RecordCoordinator.swift */,
 				F39B63BE283E1316005CA3DC /* PostFavoritesCoordinator.swift */,
 				F34900FC2872B0080047E9D6 /* MapCoordinator.swift */,
+				F384BC2928F17D9100F77525 /* RegistrationCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -406,6 +413,7 @@
 		033DC5642775F5CE00802BBA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				F3894CDB28EC160E00D54DE9 /* Registration */,
 				F34900F92872AFBD0047E9D6 /* Map */,
 				F39B63B1283DF489005CA3DC /* PostFavorites */,
 				F35B067827C50E6F00FCA585 /* Record */,
@@ -732,6 +740,15 @@
 				F37A2B52280D6B8C00B7DEFB /* PlanetModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F3894CDB28EC160E00D54DE9 /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				F3894CDC28EC165C00D54DE9 /* RegistrationViewController.swift */,
+				F3894CDE28EC167000D54DE9 /* RegistrationViewModel.swift */,
+			);
+			path = Registration;
 			sourceTree = "<group>";
 		};
 		F390013227C358E800171D53 /* Musics */ = {
@@ -1184,6 +1201,7 @@
 				03D23CA62776602F0009A6DB /* CurrentService.swift in Sources */,
 				F39B63B3283DF4BA005CA3DC /* PostFavoritesViewController.swift in Sources */,
 				F37A2B4D280D59F700B7DEFB /* TodosModel.swift in Sources */,
+				F3894CDF28EC167000D54DE9 /* RegistrationViewModel.swift in Sources */,
 				F385D819271837B0006458CD /* PostViewController.swift in Sources */,
 				03D23CA127765F850009A6DB /* User.swift in Sources */,
 				03F4FEF027A05E9E00AE4A17 /* LogInCoordinator.swift in Sources */,
@@ -1229,6 +1247,7 @@
 				F3D792E42722A532008299BC /* TextField+Extensions.swift in Sources */,
 				F312B3BD27BF7EF80033889E /* AudioPlayerService.swift in Sources */,
 				F385D82F27185E51006458CD /* InfoViewController.swift in Sources */,
+				F3894CDD28EC165C00D54DE9 /* RegistrationViewController.swift in Sources */,
 				F390015427C3C6FB00171D53 /* VideoModel.swift in Sources */,
 				03E8E4A42778B5EF00B073A5 /* CheckerService.swift in Sources */,
 				F37A2B4B280D3C1400B7DEFB /* NetworkService.swift in Sources */,
@@ -1252,6 +1271,7 @@
 				F34900FB2872AFF60047E9D6 /* MapViewController.swift in Sources */,
 				03AE91252735251500CEE4C4 /* UIImage+Extensions.swift in Sources */,
 				031475BD279F30BD0004502C /* AppCoordinator.swift in Sources */,
+				F384BC2A28F17D9100F77525 /* RegistrationCoordinator.swift in Sources */,
 				F390013E27C3667700171D53 /* AudioViewModel.swift in Sources */,
 				F304199E283CCC2D001D1D5F /* RealmService.swift in Sources */,
 				F3041998283CCA27001D1D5F /* Credentials.swift in Sources */,

@@ -9,7 +9,7 @@ import Foundation
 import FirebaseAuth
 
 final class LoginInspector: LogInViewControllerCheckerDelegate {
-    private var loginService: LoginService = .realm
+    private var loginService: LoginService = .firebase
     
     func login(inputLogin: String, inputPassword: String, completion: @escaping Handler) {
         loginService.current.login(email: inputLogin, password: inputPassword, completion: completion)

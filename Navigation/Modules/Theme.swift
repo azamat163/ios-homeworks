@@ -22,19 +22,19 @@ struct Theme {
 extension Theme {
     static let current = Self(
         titleLabel: .createColor(
-            lightMode: .lightGray,
+            lightMode: .black,
             darkMode: .white
         ),
         textLabel: .createColor(
-            lightMode: .lightGray,
+            lightMode: .systemGray6,
             darkMode: .white
         ),
         buttonColor: .createColor(
-            lightMode: .green,
+            lightMode: .systemBlue,
             darkMode: .black
         ),
         background: .createColor(
-            lightMode: .purple,
+            lightMode: .white,
             darkMode: .black
         )
     )

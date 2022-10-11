@@ -35,6 +35,7 @@ class AudiosViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Audio"
         
         setupView()
         setupLayout()

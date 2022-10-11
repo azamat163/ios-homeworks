@@ -20,6 +20,7 @@ enum TypeOfViewController {
     case record
     case postFavorites(viewModel: PostFavoritesViewModel)
     case map
+    case registration(viewModel: RegistrationViewModel)
 }
 
 extension TypeOfViewController {
@@ -47,6 +48,8 @@ extension TypeOfViewController {
             return PostFavoritesViewController(viewModel: viewModel)
         case .map:
             return MapViewController()
+        case .registration(let viewModel):
+            return RegistrationViewController(viewModel: viewModel)
         }
     }
 }

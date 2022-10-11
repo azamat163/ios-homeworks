@@ -7,6 +7,7 @@
 */
 
 "tabbar_feed_title" = "Фид";
+"tabbar_login_title" = "Логин";
 "tabbar_profile_title" = "Профиль";
 "tabbar_audio_title" = "Слушать сейчас";
 "tabbar_post_favorites_title" = "Избранные посты";

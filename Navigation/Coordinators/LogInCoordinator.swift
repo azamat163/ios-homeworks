@@ -48,6 +48,14 @@ class LogInCoordinatorFlow: LogInCoordinatorFlowProtocol {
         )
         profileCoordinator.start()
     }
+    
+    func showRegistrationVc() {
+        let registrationCoordinator = RegistrationCoordinator(
+            navigationController: navigationController,
+            viewControllerFactory: viewControllerFactory
+        )
+        registrationCoordinator.start()
+    }
 }
 
 class LogInCoordinator: Coordinator {
@@ -70,6 +78,7 @@ class LogInCoordinator: Coordinator {
         let viewController = viewControllerFactory.viewController(for: .login(viewModel: viewModel)) as! LogInViewController
         viewController.delegate = myLoginFactory.makeLoginInspector()
         viewModel.showProfileVc = logInCoordinatorFlow.showProfileVc(fullName:)
+        viewModel.showRegistrationVc = logInCoordinatorFlow.showRegistrationVc
         navigationController?.setViewControllers([viewController], animated: false)
     }
 }

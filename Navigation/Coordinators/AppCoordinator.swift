@@ -48,15 +48,6 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
     
     private func settingsViewControllers() -> [UIViewController] {
         let ud = UserDefaults.standard
-        let feedViewModel = FeedViewModel()
-        let feedVc = viewControllerFactory.viewController(for: .feed(viewModel: feedViewModel))
-        let navFeedVc = createNavController(
-            for: feedVc,
-            title: String(localized: "tabbar_feed_title"),
-            image: UIImage(systemName: Constants.feedImageName)!
-        )
-        let feedCoordinator = FeedCoordinator(navigationController: navFeedVc, viewControllerFactory: viewControllerFactory)
-        
         let audiosViewModel = AudiosViewModel(
             audioApi: AudioAPI(),
             videoApi: VideoAPI(),
@@ -80,7 +71,8 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
         
         let mapVc = viewControllerFactory.viewController(for: .map)
         let navMapVc = createNavController(
-            for: mapVc, title: NSLocalizedString("tabbar_map_title", comment: ""),
+            for: mapVc,
+            title: String(localized: "tabbar_map_title"),
             image: UIImage(systemName: Constants.postFavoritesImageName)!
         )
         let mapCoordinator = MapCoordinator(
@@ -88,12 +80,10 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
             viewControllerFactory: viewControllerFactory
         )
         
-        addDependency(feedCoordinator)
         addDependency(postFavoritesCoordinator)
         addDependency(audioCoordinator)
         addDependency(mapCoordinator)
         
-        feedCoordinator.start()
         audioCoordinator.start()
         postFavoritesCoordinator.start()
         mapCoordinator.start()
@@ -105,14 +95,13 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
             let logInVc = viewControllerFactory.viewController(for: .login(viewModel: loginViewModel))
             let navLogInVc = createNavController(
                 for: logInVc,
-                title: String(localized: "tabbar_profile_title"),
+                title: String(localized: "tabbar_login_title"),
                 image: UIImage(systemName: Constants.profileImageName)!
             )
             let logInCoordinator = LogInCoordinator(navigationController: navLogInVc, viewControllerFactory: viewControllerFactory)
             addDependency(logInCoordinator)
             logInCoordinator.start()
             return [
-                navFeedVc,
                 navLogInVc,
                 navPostFavoritesVc,
                 navAudioVc,
@@ -133,9 +122,11 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
         
         addDependency(profileCoordinator)
         profileCoordinator.start()
+        postFavoritesCoordinator.start()
+        audioCoordinator.start()
+        mapCoordinator.start()
         
         return [
-            navFeedVc,
             navProfileInVc,
             navPostFavoritesVc,
             navAudioVc,

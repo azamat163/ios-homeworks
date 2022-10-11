@@ -25,11 +25,20 @@ final class PostFavoritesViewModel {
         case .viewWillAppear:
             state = .loading
             fetchPosts()
+        case .deleted(let post):
+            coreDataService.delete(post: post)
+            state = .loading
+            fetchPosts()
         }
     }
     
     private func fetchPosts() {
-        self.posts = coreDataService.read()
+        let posts = coreDataService.read()
+        guard !posts.isEmpty else {
+            self.state = .empty
+            return
+        }
+        self.posts = posts
         self.state = .loaded
     }
 }
@@ -39,8 +48,10 @@ extension PostFavoritesViewModel {
         case initial
         case loading
         case loaded
+        case empty
     }
     enum Action {
         case viewWillAppear
+        case deleted(Post)
     }
 }

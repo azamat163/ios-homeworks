@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import CoreData
 
 class PostFavoritesViewController: UIViewController {
     private let viewModel: PostFavoritesViewModel
@@ -17,6 +18,18 @@ class PostFavoritesViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: .postTableId)
         return tableView
+    }()
+    
+    private lazy var emptyView: UIView = {
+        let emptyView = UIView(frame: .zero)
+        return emptyView
+    }()
+    
+    private lazy var emptyTitleLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "Список избранных постов пуст!"
+        label.font = UIFont.systemFont(ofSize: 14, weight: .bold)
+        return label
     }()
     
     private lazy var spinnerView: UIActivityIndicatorView = {
@@ -35,10 +48,15 @@ class PostFavoritesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .red
+        
+        title = "Favorites Posts"
+        
+        view.backgroundColor = .clear
         view.addSubview(tableView)
         view.addSubview(spinnerView)
+        
+        emptyView.addSubview(emptyTitleLabel)
+        view.addSubview(emptyView)
 
         setup()
         setupViewModel()
@@ -59,6 +77,16 @@ class PostFavoritesViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
         }
+        
+        emptyTitleLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        
+        emptyView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
     }
     
     private func setupViewModel() {
@@ -75,6 +103,8 @@ class PostFavoritesViewController: UIViewController {
                 self.spinnerView.stopAnimating()
                 self.showContent()
                 self.tableView.reloadData()
+            case .empty:
+                self.spinnerView.stopAnimating()
             }
         }
     }
@@ -82,12 +112,14 @@ class PostFavoritesViewController: UIViewController {
     private func showContent() {
         UIView.animate(withDuration: 0.25) {
             self.tableView.alpha = 1
+            self.emptyView.alpha = 0
         }
     }
     
     private func hideContent() {
         UIView.animate(withDuration: 0.25) {
             self.tableView.alpha = 0
+            self.emptyView.alpha = 1
         }
     }
 }
@@ -104,5 +136,16 @@ extension PostFavoritesViewController: UITableViewDelegate, UITableViewDataSourc
         cell.configure(with: viewModel.posts[indexPath.row])
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let post = viewModel.posts[indexPath.row]
+            viewModel.send(.deleted(post))
+        }
     }
 }

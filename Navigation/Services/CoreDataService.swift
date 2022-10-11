@@ -28,11 +28,32 @@ final class CoreDataService {
         }
     }
     
+    func delete(post: Post) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PostFavorites")
+        fetchRequest.predicate = NSPredicate(format: "id = %@", post.id)
+        do {
+            guard let result = try managedContext.fetch(fetchRequest) as? [NSManagedObject],
+                  !result.isEmpty
+            else { return }
+            result.forEach {
+                managedContext.delete($0)
+            }
+            try managedContext.save()
+            print("Succesfully deleted")
+        } catch let error {
+            print("Failed to delete post \(error.localizedDescription)")
+            return
+        }
+    }
+    
     func save(post: Post) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let postFavoritesEntity = NSEntityDescription.entity(forEntityName: "PostFavorites", in: managedContext)!
         let postFavorites = NSManagedObject(entity: postFavoritesEntity, insertInto: managedContext)
+        postFavorites.setValue(post.id, forKey: "id")
         postFavorites.setValue(post.author, forKey: "author")
         postFavorites.setValue(post.image, forKey: "image")
         postFavorites.setValue(post.description, forKey: "depiction")
@@ -49,6 +70,7 @@ final class CoreDataService {
     
     static func makePost(data: NSManagedObject) -> Post {
         return Post(
+            id: data.value(forKey: "id") as! String,
             author: data.value(forKey: "author") as! String,
             image: data.value(forKey: "image") as! String,
             description: data.value(forKey: "depiction") as! String,
